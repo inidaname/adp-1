@@ -4,6 +4,12 @@ var app = (function () {
     'use strict';
 
     function noop() { }
+    function assign(tar, src) {
+        // @ts-ignore
+        for (const k in src)
+            tar[k] = src[k];
+        return tar;
+    }
     function add_location(element, file, line, column, char) {
         element.__svelte_meta = {
             loc: { file, line, column, char }
@@ -26,6 +32,42 @@ var app = (function () {
     }
     function is_empty(obj) {
         return Object.keys(obj).length === 0;
+    }
+    function create_slot(definition, ctx, $$scope, fn) {
+        if (definition) {
+            const slot_ctx = get_slot_context(definition, ctx, $$scope, fn);
+            return definition[0](slot_ctx);
+        }
+    }
+    function get_slot_context(definition, ctx, $$scope, fn) {
+        return definition[1] && fn
+            ? assign($$scope.ctx.slice(), definition[1](fn(ctx)))
+            : $$scope.ctx;
+    }
+    function get_slot_changes(definition, $$scope, dirty, fn) {
+        if (definition[2] && fn) {
+            const lets = definition[2](fn(dirty));
+            if ($$scope.dirty === undefined) {
+                return lets;
+            }
+            if (typeof lets === 'object') {
+                const merged = [];
+                const len = Math.max($$scope.dirty.length, lets.length);
+                for (let i = 0; i < len; i += 1) {
+                    merged[i] = $$scope.dirty[i] | lets[i];
+                }
+                return merged;
+            }
+            return $$scope.dirty | lets;
+        }
+        return $$scope.dirty;
+    }
+    function update_slot(slot, slot_definition, ctx, $$scope, dirty, get_slot_changes_fn, get_slot_context_fn) {
+        const slot_changes = get_slot_changes(slot_definition, $$scope, dirty, get_slot_changes_fn);
+        if (slot_changes) {
+            const slot_context = get_slot_context(slot_definition, ctx, $$scope, get_slot_context_fn);
+            slot.p(slot_context, slot_changes);
+        }
     }
 
     function append(target, node) {
@@ -70,6 +112,9 @@ var app = (function () {
     }
     function children(element) {
         return Array.from(element.childNodes);
+    }
+    function set_style(node, key, value, important) {
+        node.style.setProperty(key, value, important ? 'important' : '');
     }
     function custom_event(type, detail) {
         const e = document.createEvent('CustomEvent');
@@ -147,6 +192,19 @@ var app = (function () {
     }
     const outroing = new Set();
     let outros;
+    function group_outros() {
+        outros = {
+            r: 0,
+            c: [],
+            p: outros // parent group
+        };
+    }
+    function check_outros() {
+        if (!outros.r) {
+            run_all(outros.c);
+        }
+        outros = outros.p;
+    }
     function transition_in(block, local) {
         if (block && block.i) {
             outroing.delete(block);
@@ -454,7 +512,7 @@ var app = (function () {
     			attr_dev(img0, "alt", "adplogos");
     			add_location(img0, file, 14, 20, 477);
     			attr_dev(a0, "class", "text-gray-800 dark:text-white text-xl font-bold md:text-2xl hover:text-gray-700 dark:hover:text-gray-300");
-    			attr_dev(a0, "href", "#");
+    			attr_dev(a0, "href", "/");
     			add_location(a0, file, 13, 16, 331);
     			add_location(div0, file, 12, 12, 309);
     			if (img1.src !== (img1_src_value = /*isNav*/ ctx[0] ? "../xtimes.svg" : "../ham.svg")) attr_dev(img1, "src", img1_src_value);
@@ -469,27 +527,27 @@ var app = (function () {
     			add_location(div1, file, 19, 12, 627);
     			attr_dev(div2, "class", "flex justify-between items-center");
     			add_location(div2, file, 11, 8, 249);
-    			attr_dev(a1, "href", "#");
+    			attr_dev(a1, "href", "/");
     			attr_dev(a1, "class", "py-2 px-2 text-sm text-gray-800 dark:text-gray-200 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium md:mx-2");
     			add_location(a1, file, 29, 12, 1246);
-    			attr_dev(a2, "href", "#");
+    			attr_dev(a2, "href", "/about");
     			attr_dev(a2, "class", "py-2 px-2 text-sm text-gray-800 dark:text-gray-200 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium md:mx-2");
     			add_location(a2, file, 30, 12, 1410);
-    			attr_dev(a3, "href", "#");
+    			attr_dev(a3, "href", "/constitution");
     			attr_dev(a3, "class", "py-2 px-2 text-sm text-gray-800 dark:text-gray-200 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium md:mx-2");
-    			add_location(a3, file, 31, 12, 1578);
-    			attr_dev(a4, "href", "#");
+    			add_location(a3, file, 31, 12, 1583);
+    			attr_dev(a4, "href", "/structure");
     			attr_dev(a4, "class", "py-2 px-2 text-sm text-gray-800 dark:text-gray-200 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium md:mx-2");
-    			add_location(a4, file, 32, 12, 1751);
-    			attr_dev(a5, "href", "#");
+    			add_location(a4, file, 32, 12, 1768);
+    			attr_dev(a5, "href", "/register");
     			attr_dev(a5, "class", "py-2 px-2 text-sm text-gray-800 dark:text-gray-200 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium md:mx-2");
-    			add_location(a5, file, 33, 12, 1921);
-    			attr_dev(a6, "href", "#");
+    			add_location(a5, file, 33, 12, 1947);
+    			attr_dev(a6, "href", "/candidates");
     			attr_dev(a6, "class", "py-2 px-2 text-sm text-gray-800 dark:text-gray-200 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium md:mx-2");
-    			add_location(a6, file, 34, 12, 2090);
-    			attr_dev(a7, "href", "#");
+    			add_location(a6, file, 34, 12, 2124);
+    			attr_dev(a7, "href", "contact");
     			attr_dev(a7, "class", "py-2 px-2 text-sm text-gray-800 dark:text-gray-200 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium md:mx-2");
-    			add_location(a7, file, 35, 12, 2261);
+    			add_location(a7, file, 35, 12, 2305);
     			attr_dev(div3, "class", div3_class_value = "flex flex-col -mx-2 mt-2 md:mt-0 md:flex-row md:block " + `${/*isNav*/ ctx[0] ? "block" : "hidden"}`);
     			add_location(div3, file, 28, 8, 1134);
     			attr_dev(div4, "class", "md:flex items-center justify-between");
@@ -609,113 +667,85 @@ var app = (function () {
 
     /* src/components/Hero/Hero.svelte generated by Svelte v3.31.2 */
     const file$1 = "src/components/Hero/Hero.svelte";
+    const get_hero_image_slot_changes = dirty => ({});
+    const get_hero_image_slot_context = ctx => ({});
+    const get_hero_texts_slot_changes = dirty => ({});
+    const get_hero_texts_slot_context = ctx => ({});
 
     function create_fragment$1(ctx) {
     	let header;
-    	let navbar;
-    	let t0;
     	let section;
-    	let div3;
-    	let div1;
-    	let h1;
-    	let t2;
-    	let p;
-    	let t4;
-    	let div0;
-    	let button0;
-    	let t6;
-    	let button1;
-    	let t8;
-    	let div2;
-    	let img;
-    	let img_src_value;
+    	let div;
+    	let t;
     	let current;
-    	navbar = new Navbar({ $$inline: true });
+    	const hero_texts_slot_template = /*#slots*/ ctx[1]["hero-texts"];
+    	const hero_texts_slot = create_slot(hero_texts_slot_template, ctx, /*$$scope*/ ctx[0], get_hero_texts_slot_context);
+    	const hero_image_slot_template = /*#slots*/ ctx[1]["hero-image"];
+    	const hero_image_slot = create_slot(hero_image_slot_template, ctx, /*$$scope*/ ctx[0], get_hero_image_slot_context);
 
     	const block = {
     		c: function create() {
     			header = element("header");
-    			create_component(navbar.$$.fragment);
-    			t0 = space();
     			section = element("section");
-    			div3 = element("div");
-    			div1 = element("div");
-    			h1 = element("h1");
-    			h1.textContent = "Action Democratic Party";
-    			t2 = space();
-    			p = element("p");
-    			p.textContent = "THE ACTION DEMOCRATIC PARTY (ADP) is a registered political party in Nigeria. The party was formed and established in 2017 to deal with the lapses that have over the years been complained about by Nigerians because the tenets of true democracy have been lost thereby giving some select few a godlike image where political parties are being dictated upon by the few and powerful.";
-    			t4 = space();
-    			div0 = element("div");
-    			button0 = element("button");
-    			button0.textContent = "Join Us!";
-    			t6 = space();
-    			button1 = element("button");
-    			button1.textContent = "Explore";
-    			t8 = space();
-    			div2 = element("div");
-    			img = element("img");
-    			attr_dev(h1, "class", "title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900");
-    			add_location(h1, file$1, 12, 12, 434);
-    			attr_dev(p, "class", "mb-8 leading-relaxed");
-    			add_location(p, file$1, 14, 12, 563);
-    			attr_dev(button0, "class", "inline-flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg");
-    			add_location(button0, file$1, 16, 14, 1038);
-    			attr_dev(button1, "class", "ml-4 inline-flex text-gray-700 bg-white py-2 px-6 focus:outline-none hover:text-red-500 rounded text-lg border-red-500");
-    			add_location(button1, file$1, 17, 14, 1191);
-    			attr_dev(div0, "class", "flex justify-center");
-    			add_location(div0, file$1, 15, 12, 990);
-    			attr_dev(div1, "class", "lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center");
-    			add_location(div1, file$1, 11, 10, 287);
-    			attr_dev(img, "class", "object-cover object-center rounded");
-    			attr_dev(img, "alt", "hero");
-    			if (img.src !== (img_src_value = "../office.jpg")) attr_dev(img, "src", img_src_value);
-    			add_location(img, file$1, 21, 12, 1452);
-    			attr_dev(div2, "class", "lg:max-w-lg lg:w-full md:w-1/2 w-5/6");
-    			add_location(div2, file$1, 20, 10, 1389);
-    			attr_dev(div3, "class", "container mx-auto flex px-5 py-24 md:flex-row flex-col items-center");
-    			add_location(div3, file$1, 10, 8, 195);
+    			div = element("div");
+    			if (hero_texts_slot) hero_texts_slot.c();
+    			t = space();
+    			if (hero_image_slot) hero_image_slot.c();
+    			attr_dev(div, "class", "container mx-auto flex px-5 py-24 md:flex-row flex-col items-center");
+    			add_location(div, file$1, 10, 8, 181);
     			attr_dev(section, "class", "text-gray-600 body-font");
-    			add_location(section, file$1, 9, 4, 145);
+    			add_location(section, file$1, 9, 4, 131);
     			attr_dev(header, "class", "bg-white dark:bg-gray-800");
-    			add_location(header, file$1, 7, 0, 83);
+    			add_location(header, file$1, 8, 0, 84);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, header, anchor);
-    			mount_component(navbar, header, null);
-    			append_dev(header, t0);
     			append_dev(header, section);
-    			append_dev(section, div3);
-    			append_dev(div3, div1);
-    			append_dev(div1, h1);
-    			append_dev(div1, t2);
-    			append_dev(div1, p);
-    			append_dev(div1, t4);
-    			append_dev(div1, div0);
-    			append_dev(div0, button0);
-    			append_dev(div0, t6);
-    			append_dev(div0, button1);
-    			append_dev(div3, t8);
-    			append_dev(div3, div2);
-    			append_dev(div2, img);
+    			append_dev(section, div);
+
+    			if (hero_texts_slot) {
+    				hero_texts_slot.m(div, null);
+    			}
+
+    			append_dev(div, t);
+
+    			if (hero_image_slot) {
+    				hero_image_slot.m(div, null);
+    			}
+
     			current = true;
     		},
-    		p: noop,
+    		p: function update(ctx, [dirty]) {
+    			if (hero_texts_slot) {
+    				if (hero_texts_slot.p && dirty & /*$$scope*/ 1) {
+    					update_slot(hero_texts_slot, hero_texts_slot_template, ctx, /*$$scope*/ ctx[0], dirty, get_hero_texts_slot_changes, get_hero_texts_slot_context);
+    				}
+    			}
+
+    			if (hero_image_slot) {
+    				if (hero_image_slot.p && dirty & /*$$scope*/ 1) {
+    					update_slot(hero_image_slot, hero_image_slot_template, ctx, /*$$scope*/ ctx[0], dirty, get_hero_image_slot_changes, get_hero_image_slot_context);
+    				}
+    			}
+    		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(navbar.$$.fragment, local);
+    			transition_in(hero_texts_slot, local);
+    			transition_in(hero_image_slot, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(navbar.$$.fragment, local);
+    			transition_out(hero_texts_slot, local);
+    			transition_out(hero_image_slot, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(header);
-    			destroy_component(navbar);
+    			if (hero_texts_slot) hero_texts_slot.d(detaching);
+    			if (hero_image_slot) hero_image_slot.d(detaching);
     		}
     	};
 
@@ -732,15 +762,19 @@ var app = (function () {
 
     function instance$1($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
-    	validate_slots("Hero", slots, []);
+    	validate_slots("Hero", slots, ['hero-texts','hero-image']);
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Hero> was created with unknown prop '${key}'`);
     	});
 
+    	$$self.$$set = $$props => {
+    		if ("$$scope" in $$props) $$invalidate(0, $$scope = $$props.$$scope);
+    	};
+
     	$$self.$capture_state = () => ({ NavBar: Navbar });
-    	return [];
+    	return [$$scope, slots];
     }
 
     class Hero extends SvelteComponentDev {
@@ -1474,13 +1508,13 @@ var app = (function () {
     			div0 = element("div");
     			create_component(cardwithimage.$$.fragment);
     			attr_dev(h1, "class", "sm:text-3xl text-2xl font-medium title-font text-center text-gray-900 mb-10");
-    			add_location(h1, file$5, 22, 6, 503);
+    			add_location(h1, file$5, 24, 6, 563);
     			attr_dev(div0, "class", "flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4 md:space-y-0 space-y-6");
-    			add_location(div0, file$5, 25, 6, 631);
+    			add_location(div0, file$5, 27, 6, 691);
     			attr_dev(div1, "class", "container px-5 py-10 mx-auto");
-    			add_location(div1, file$5, 21, 4, 454);
+    			add_location(div1, file$5, 23, 4, 514);
     			attr_dev(section, "class", "text-gray-600 body-font");
-    			add_location(section, file$5, 20, 0, 408);
+    			add_location(section, file$5, 22, 0, 468);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1529,12 +1563,14 @@ var app = (function () {
     		{
     			title: "Mission",
     			body: "To provide Responsive leadership that is transparent and accountable to the people.",
-    			footer: ""
+    			footer: "",
+    			img: "../rocketicon.png"
     		},
     		{
     			title: "Vision",
     			body: "A Secure, Stable and Egalitarian Nigeria where Democracy and Rule of Law Reign.",
-    			footer: ""
+    			footer: "",
+    			img: "../sendicon.png"
     		}
     	];
 
@@ -1890,11 +1926,144 @@ var app = (function () {
     	}
     }
 
-    /* src/index.svelte generated by Svelte v3.31.2 */
-    const file$8 = "src/index.svelte";
+    /* src/pages/Index.svelte generated by Svelte v3.31.2 */
+    const file$8 = "src/pages/Index.svelte";
+
+    // (41:6) <div slot="hero-texts" class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
+    function create_hero_texts_slot(ctx) {
+    	let div0;
+    	let h1;
+    	let t1;
+    	let p;
+    	let t3;
+    	let div1;
+    	let button0;
+    	let t5;
+    	let button1;
+
+    	const block = {
+    		c: function create() {
+    			div0 = element("div");
+    			h1 = element("h1");
+    			h1.textContent = "Action Democratic Party";
+    			t1 = space();
+    			p = element("p");
+    			p.textContent = "THE ACTION DEMOCRATIC PARTY (ADP) is a registered political party in Nigeria. The party was formed and established in 2017 to deal with the lapses that have over the years been complained about by Nigerians because the tenets of true democracy have been lost thereby giving some select few a godlike image where political parties are being dictated upon by the few and powerful.";
+    			t3 = space();
+    			div1 = element("div");
+    			button0 = element("button");
+    			button0.textContent = "Join Us!";
+    			t5 = space();
+    			button1 = element("button");
+    			button1.textContent = "Explore";
+    			attr_dev(h1, "class", "title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900");
+    			add_location(h1, file$8, 41, 8, 1755);
+    			attr_dev(p, "class", "mb-8 leading-relaxed");
+    			add_location(p, file$8, 43, 8, 1876);
+    			attr_dev(button0, "class", "inline-flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg");
+    			add_location(button0, file$8, 45, 10, 2343);
+    			attr_dev(button1, "class", "ml-4 inline-flex text-gray-700 bg-white py-2 px-6 focus:outline-none hover:text-red-500 rounded text-lg border-red-500");
+    			add_location(button1, file$8, 46, 10, 2492);
+    			attr_dev(div1, "class", "flex justify-center");
+    			add_location(div1, file$8, 44, 8, 2299);
+    			attr_dev(div0, "slot", "hero-texts");
+    			attr_dev(div0, "class", "lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center");
+    			add_location(div0, file$8, 40, 6, 1594);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div0, anchor);
+    			append_dev(div0, h1);
+    			append_dev(div0, t1);
+    			append_dev(div0, p);
+    			append_dev(div0, t3);
+    			append_dev(div0, div1);
+    			append_dev(div1, button0);
+    			append_dev(div1, t5);
+    			append_dev(div1, button1);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div0);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_hero_texts_slot.name,
+    		type: "slot",
+    		source: "(41:6) <div slot=\\\"hero-texts\\\" class=\\\"lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center\\\">",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (52:6) <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6" slot="hero-image">
+    function create_hero_image_slot(ctx) {
+    	let div;
+    	let img;
+    	let img_src_value;
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			img = element("img");
+    			attr_dev(img, "class", "object-cover object-center rounded");
+    			attr_dev(img, "alt", "hero");
+    			if (img.src !== (img_src_value = "../office.jpg")) attr_dev(img, "src", img_src_value);
+    			add_location(img, file$8, 52, 8, 2765);
+    			attr_dev(div, "class", "lg:max-w-lg lg:w-full md:w-1/2 w-5/6");
+    			attr_dev(div, "slot", "hero-image");
+    			add_location(div, file$8, 51, 6, 2688);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, img);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_hero_image_slot.name,
+    		type: "slot",
+    		source: "(52:6) <div class=\\\"lg:max-w-lg lg:w-full md:w-1/2 w-5/6\\\" slot=\\\"hero-image\\\">",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (39:3) <Hero>
+    function create_default_slot(ctx) {
+    	let t;
+
+    	const block = {
+    		c: function create() {
+    			t = space();
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, t, anchor);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(t);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot.name,
+    		type: "slot",
+    		source: "(39:3) <Hero>",
+    		ctx
+    	});
+
+    	return block;
+    }
 
     function create_fragment$8(ctx) {
-    	let main;
     	let hero;
     	let t0;
     	let section0;
@@ -1938,10 +2107,19 @@ var app = (function () {
     	let sidereg;
     	let t18;
     	let newsbar;
-    	let t19;
-    	let footer;
     	let current;
-    	hero = new Hero({ $$inline: true });
+
+    	hero = new Hero({
+    			props: {
+    				$$slots: {
+    					default: [create_default_slot],
+    					"hero-image": [create_hero_image_slot],
+    					"hero-texts": [create_hero_texts_slot]
+    				},
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
 
     	cardwithimage = new CardImage({
     			props: { properties: /*data*/ ctx[0] },
@@ -1951,11 +2129,9 @@ var app = (function () {
     	missionbar = new Mission_Bar({ $$inline: true });
     	sidereg = new SideRegForm({ $$inline: true });
     	newsbar = new News_Bar({ $$inline: true });
-    	footer = new Footer({ $$inline: true });
 
     	const block = {
     		c: function create() {
-    			main = element("main");
     			create_component(hero.$$.fragment);
     			t0 = space();
     			section0 = element("section");
@@ -2002,23 +2178,21 @@ var app = (function () {
     			create_component(sidereg.$$.fragment);
     			t18 = space();
     			create_component(newsbar.$$.fragment);
-    			t19 = space();
-    			create_component(footer.$$.fragment);
     			attr_dev(h10, "class", "py-4 text-lg font-medium title-font sm:text-3xl text-2xl ");
-    			add_location(h10, file$8, 38, 6, 1595);
+    			add_location(h10, file$8, 58, 6, 2994);
     			attr_dev(div0, "class", "flex flex-wrap -m-4");
-    			add_location(div0, file$8, 39, 6, 1690);
+    			add_location(div0, file$8, 59, 6, 3089);
     			attr_dev(div1, "class", "container mx-auto px-5 py-4 mx-auto flex flex-wrap");
-    			add_location(div1, file$8, 37, 4, 1524);
+    			add_location(div1, file$8, 57, 4, 2923);
     			attr_dev(section0, "class", "text-gray-600 body-font");
-    			add_location(section0, file$8, 36, 3, 1478);
-    			add_location(br, file$8, 48, 8, 2053);
+    			add_location(section0, file$8, 56, 3, 2877);
+    			add_location(br, file$8, 68, 8, 3452);
     			attr_dev(h2, "class", "sm:text-3xl text-2xl text-red-900 font-medium title-font mb-10 md:w-2/5");
-    			add_location(h2, file$8, 47, 6, 1918);
+    			add_location(h2, file$8, 67, 6, 3317);
     			attr_dev(p0, "class", "leading-relaxed text-base");
-    			add_location(p0, file$8, 50, 8, 2119);
+    			add_location(p0, file$8, 70, 8, 3518);
     			attr_dev(path, "d", "M5 12h14M12 5l7 7-7 7");
-    			add_location(path, file$8, 55, 14, 2855);
+    			add_location(path, file$8, 75, 14, 4254);
     			attr_dev(svg, "fill", "none");
     			attr_dev(svg, "stroke", "currentColor");
     			attr_dev(svg, "stroke-linecap", "round");
@@ -2026,52 +2200,50 @@ var app = (function () {
     			attr_dev(svg, "stroke-width", "2");
     			attr_dev(svg, "class", "w-4 h-4 ml-2");
     			attr_dev(svg, "viewBox", "0 0 24 24");
-    			add_location(svg, file$8, 54, 12, 2696);
+    			add_location(svg, file$8, 74, 12, 4095);
     			attr_dev(a, "class", "text-blue-500 inline-flex items-center ml-4");
-    			add_location(a, file$8, 53, 10, 2618);
+    			add_location(a, file$8, 73, 10, 4017);
     			attr_dev(div2, "class", "flex md:mt-4 mt-6");
-    			add_location(div2, file$8, 51, 8, 2520);
+    			add_location(div2, file$8, 71, 8, 3919);
     			attr_dev(div3, "class", "md:w-3/5 md:pl-6");
-    			add_location(div3, file$8, 49, 6, 2080);
+    			add_location(div3, file$8, 69, 6, 3479);
     			attr_dev(div4, "class", "container px-5 py-24 mx-auto flex flex-wrap");
-    			add_location(div4, file$8, 46, 4, 1854);
+    			add_location(div4, file$8, 66, 4, 3253);
     			attr_dev(section1, "class", "text-gray-600 body-font");
-    			add_location(section1, file$8, 45, 2, 1808);
+    			add_location(section1, file$8, 65, 2, 3207);
     			attr_dev(img, "alt", "Chairman's photo");
     			attr_dev(img, "class", "lg:w-1/2 w-full lg:h-auto h-64  rounded");
     			if (img.src !== (img_src_value = "../nChairman.jpg")) attr_dev(img, "src", img_src_value);
-    			add_location(img, file$8, 73, 6, 3296);
+    			add_location(img, file$8, 93, 6, 4695);
     			attr_dev(h11, "class", "text-red-900 text-3xl title-font font-medium mb-1");
-    			add_location(h11, file$8, 76, 8, 3480);
+    			add_location(h11, file$8, 96, 8, 4879);
     			attr_dev(div5, "class", "flex mb-4");
-    			add_location(div5, file$8, 77, 8, 3580);
+    			add_location(div5, file$8, 97, 8, 4979);
     			attr_dev(p1, "class", "leading-relaxed");
-    			add_location(p1, file$8, 79, 8, 3627);
+    			add_location(p1, file$8, 99, 8, 5026);
     			attr_dev(div6, "class", "lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0");
-    			add_location(div6, file$8, 74, 6, 3403);
+    			add_location(div6, file$8, 94, 6, 4802);
     			attr_dev(div7, "class", "lg:w-4/5 mx-auto flex flex-wrap p-2");
-    			add_location(div7, file$8, 71, 4, 3188);
+    			add_location(div7, file$8, 91, 4, 4587);
     			attr_dev(div8, "class", "container px-5 py-4 mx-auto");
-    			add_location(div8, file$8, 70, 2, 3142);
+    			add_location(div8, file$8, 90, 2, 4541);
     			attr_dev(section2, "class", "text-gray-600 body-font overflow-hidden");
-    			add_location(section2, file$8, 69, 0, 3082);
-    			add_location(main, file$8, 33, 5, 1448);
+    			add_location(section2, file$8, 89, 0, 4481);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, main, anchor);
-    			mount_component(hero, main, null);
-    			append_dev(main, t0);
-    			append_dev(main, section0);
+    			mount_component(hero, target, anchor);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, section0, anchor);
     			append_dev(section0, div1);
     			append_dev(div1, h10);
     			append_dev(div1, t2);
     			append_dev(div1, div0);
     			mount_component(cardwithimage, div0, null);
-    			append_dev(main, t3);
-    			append_dev(main, section1);
+    			insert_dev(target, t3, anchor);
+    			insert_dev(target, section1, anchor);
     			append_dev(section1, div4);
     			append_dev(div4, h2);
     			append_dev(h2, t4);
@@ -2086,8 +2258,8 @@ var app = (function () {
     			append_dev(a, t9);
     			append_dev(a, svg);
     			append_dev(svg, path);
-    			append_dev(main, t10);
-    			append_dev(main, section2);
+    			insert_dev(target, t10, anchor);
+    			insert_dev(target, section2, anchor);
     			append_dev(section2, div8);
     			append_dev(div8, div7);
     			append_dev(div7, img);
@@ -2098,17 +2270,23 @@ var app = (function () {
     			append_dev(div6, div5);
     			append_dev(div6, t14);
     			append_dev(div6, p1);
-    			append_dev(main, t16);
-    			mount_component(missionbar, main, null);
-    			append_dev(main, t17);
-    			mount_component(sidereg, main, null);
-    			append_dev(main, t18);
-    			mount_component(newsbar, main, null);
-    			insert_dev(target, t19, anchor);
-    			mount_component(footer, target, anchor);
+    			insert_dev(target, t16, anchor);
+    			mount_component(missionbar, target, anchor);
+    			insert_dev(target, t17, anchor);
+    			mount_component(sidereg, target, anchor);
+    			insert_dev(target, t18, anchor);
+    			mount_component(newsbar, target, anchor);
     			current = true;
     		},
-    		p: noop,
+    		p: function update(ctx, [dirty]) {
+    			const hero_changes = {};
+
+    			if (dirty & /*$$scope*/ 2) {
+    				hero_changes.$$scope = { dirty, ctx };
+    			}
+
+    			hero.$set(hero_changes);
+    		},
     		i: function intro(local) {
     			if (current) return;
     			transition_in(hero.$$.fragment, local);
@@ -2116,7 +2294,6 @@ var app = (function () {
     			transition_in(missionbar.$$.fragment, local);
     			transition_in(sidereg.$$.fragment, local);
     			transition_in(newsbar.$$.fragment, local);
-    			transition_in(footer.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
@@ -2125,18 +2302,23 @@ var app = (function () {
     			transition_out(missionbar.$$.fragment, local);
     			transition_out(sidereg.$$.fragment, local);
     			transition_out(newsbar.$$.fragment, local);
-    			transition_out(footer.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(main);
-    			destroy_component(hero);
+    			destroy_component(hero, detaching);
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(section0);
     			destroy_component(cardwithimage);
-    			destroy_component(missionbar);
-    			destroy_component(sidereg);
-    			destroy_component(newsbar);
-    			if (detaching) detach_dev(t19);
-    			destroy_component(footer, detaching);
+    			if (detaching) detach_dev(t3);
+    			if (detaching) detach_dev(section1);
+    			if (detaching) detach_dev(t10);
+    			if (detaching) detach_dev(section2);
+    			if (detaching) detach_dev(t16);
+    			destroy_component(missionbar, detaching);
+    			if (detaching) detach_dev(t17);
+    			destroy_component(sidereg, detaching);
+    			if (detaching) detach_dev(t18);
+    			destroy_component(newsbar, detaching);
     		}
     	};
 
@@ -2153,35 +2335,39 @@ var app = (function () {
 
     function instance$8($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
-    	validate_slots("Src", slots, []);
+    	validate_slots("Index", slots, []);
 
     	const data = [
     		{
     			title: "Fact Number One",
     			body: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam repudiandae doloribus magni ratione accusamus accusantium quas odio veritatis dignissimos porro.",
-    			footer: "Learn more"
+    			footer: "Learn more",
+    			img: "../nChairman.jpg"
     		},
     		{
     			title: "Fact Number Two",
     			body: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam repudiandae doloribus magni ratione accusamus accusantium quas odio veritatis dignissimos porro.",
-    			footer: "Learn more"
+    			footer: "Learn more",
+    			img: "../nChairman.jpg"
     		},
     		{
     			title: "Fact Number Three",
     			body: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam repudiandae doloribus magni ratione accusamus accusantium quas odio veritatis dignissimos porro.",
-    			footer: "Learn more"
+    			footer: "Learn more",
+    			img: "../nChairman.jpg"
     		},
     		{
     			title: "Fact Number Four",
     			body: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam repudiandae doloribus magni ratione accusamus accusantium quas odio veritatis dignissimos porro.",
-    			footer: "Learn more"
+    			footer: "Learn more",
+    			img: "../nChairman.jpg"
     		}
     	];
 
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
-    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Src> was created with unknown prop '${key}'`);
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Index> was created with unknown prop '${key}'`);
     	});
 
     	$$self.$capture_state = () => ({
@@ -2198,50 +2384,170 @@ var app = (function () {
     	return [data];
     }
 
-    class Src extends SvelteComponentDev {
+    class Index extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
     		init(this, options, instance$8, create_fragment$8, safe_not_equal, {});
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
-    			tagName: "Src",
+    			tagName: "Index",
     			options,
     			id: create_fragment$8.name
     		});
     	}
     }
 
-    /* src/App.svelte generated by Svelte v3.31.2 */
+    /* src/components/Card/ImageCard.svelte generated by Svelte v3.31.2 */
 
-    function create_fragment$9(ctx) {
-    	let index;
-    	let current;
-    	index = new Src({ $$inline: true });
+    const file$9 = "src/components/Card/ImageCard.svelte";
+
+    function get_each_context$1(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[1] = list[i];
+    	return child_ctx;
+    }
+
+    // (2:0) {#each galleries as image }
+    function create_each_block$1(ctx) {
+    	let div2;
+    	let div1;
+    	let img;
+    	let img_src_value;
+    	let t0;
+    	let div0;
+    	let h1;
+    	let t1_value = /*image*/ ctx[1].name + "";
+    	let t1;
+    	let t2;
+    	let p;
+    	let t3_value = /*image*/ ctx[1].position + "";
+    	let t3;
+    	let t4;
 
     	const block = {
     		c: function create() {
-    			create_component(index.$$.fragment);
+    			div2 = element("div");
+    			div1 = element("div");
+    			img = element("img");
+    			t0 = space();
+    			div0 = element("div");
+    			h1 = element("h1");
+    			t1 = text(t1_value);
+    			t2 = space();
+    			p = element("p");
+    			t3 = text(t3_value);
+    			t4 = space();
+    			attr_dev(img, "alt", "gallery");
+    			attr_dev(img, "class", "absolute inset-0 w-full h-full object-cover object-center");
+    			if (img.src !== (img_src_value = /*image*/ ctx[1].img)) attr_dev(img, "src", img_src_value);
+    			add_location(img, file$9, 4, 6, 103);
+    			attr_dev(h1, "class", "title-font text-lg font-medium text-gray-900 mb-3");
+    			add_location(h1, file$9, 7, 8, 338);
+    			attr_dev(p, "class", "leading-relaxed");
+    			add_location(p, file$9, 8, 8, 426);
+    			attr_dev(div0, "class", "px-10 py-20 relative z-10 w-full border-4 border-gray-200 bg-white opacity-0 hover:opacity-100");
+    			add_location(div0, file$9, 5, 6, 213);
+    			attr_dev(div1, "class", "flex relative");
+    			add_location(div1, file$9, 3, 4, 69);
+    			attr_dev(div2, "class", "lg:w-1/3 sm:w-1/2 p-4");
+    			add_location(div2, file$9, 2, 0, 29);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div2, anchor);
+    			append_dev(div2, div1);
+    			append_dev(div1, img);
+    			append_dev(div1, t0);
+    			append_dev(div1, div0);
+    			append_dev(div0, h1);
+    			append_dev(h1, t1);
+    			append_dev(div0, t2);
+    			append_dev(div0, p);
+    			append_dev(p, t3);
+    			append_dev(div2, t4);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*galleries*/ 1 && img.src !== (img_src_value = /*image*/ ctx[1].img)) {
+    				attr_dev(img, "src", img_src_value);
+    			}
+
+    			if (dirty & /*galleries*/ 1 && t1_value !== (t1_value = /*image*/ ctx[1].name + "")) set_data_dev(t1, t1_value);
+    			if (dirty & /*galleries*/ 1 && t3_value !== (t3_value = /*image*/ ctx[1].position + "")) set_data_dev(t3, t3_value);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div2);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block$1.name,
+    		type: "each",
+    		source: "(2:0) {#each galleries as image }",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$9(ctx) {
+    	let each_1_anchor;
+    	let each_value = /*galleries*/ ctx[0];
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$1(get_each_context$1(ctx, each_value, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			each_1_anchor = empty();
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			mount_component(index, target, anchor);
-    			current = true;
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(target, anchor);
+    			}
+
+    			insert_dev(target, each_1_anchor, anchor);
     		},
-    		p: noop,
-    		i: function intro(local) {
-    			if (current) return;
-    			transition_in(index.$$.fragment, local);
-    			current = true;
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*galleries*/ 1) {
+    				each_value = /*galleries*/ ctx[0];
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$1(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block$1(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
     		},
-    		o: function outro(local) {
-    			transition_out(index.$$.fragment, local);
-    			current = false;
-    		},
+    		i: noop,
+    		o: noop,
     		d: function destroy(detaching) {
-    			destroy_component(index, detaching);
+    			destroy_each(each_blocks, detaching);
+    			if (detaching) detach_dev(each_1_anchor);
     		}
     	};
 
@@ -2258,27 +2564,3259 @@ var app = (function () {
 
     function instance$9($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("ImageCard", slots, []);
+    	let { galleries } = $$props;
+    	const writable_props = ["galleries"];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<ImageCard> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ("galleries" in $$props) $$invalidate(0, galleries = $$props.galleries);
+    	};
+
+    	$$self.$capture_state = () => ({ galleries });
+
+    	$$self.$inject_state = $$props => {
+    		if ("galleries" in $$props) $$invalidate(0, galleries = $$props.galleries);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [galleries];
+    }
+
+    class ImageCard extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$9, create_fragment$9, safe_not_equal, { galleries: 0 });
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "ImageCard",
+    			options,
+    			id: create_fragment$9.name
+    		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*galleries*/ ctx[0] === undefined && !("galleries" in props)) {
+    			console.warn("<ImageCard> was created without expected prop 'galleries'");
+    		}
+    	}
+
+    	get galleries() {
+    		throw new Error("<ImageCard>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set galleries(value) {
+    		throw new Error("<ImageCard>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* src/components/Gallery/Gallery_Block.svelte generated by Svelte v3.31.2 */
+    const file$a = "src/components/Gallery/Gallery_Block.svelte";
+    const get_gallery_subtitle_slot_changes = dirty => ({});
+    const get_gallery_subtitle_slot_context = ctx => ({});
+    const get_gallery_heading_slot_changes = dirty => ({});
+    const get_gallery_heading_slot_context = ctx => ({});
+
+    function create_fragment$a(ctx) {
+    	let section;
+    	let div2;
+    	let div0;
+    	let t0;
+    	let t1;
+    	let div1;
+    	let imagecard;
+    	let current;
+    	const gallery_heading_slot_template = /*#slots*/ ctx[2]["gallery-heading"];
+    	const gallery_heading_slot = create_slot(gallery_heading_slot_template, ctx, /*$$scope*/ ctx[1], get_gallery_heading_slot_context);
+    	const gallery_subtitle_slot_template = /*#slots*/ ctx[2]["gallery-subtitle"];
+    	const gallery_subtitle_slot = create_slot(gallery_subtitle_slot_template, ctx, /*$$scope*/ ctx[1], get_gallery_subtitle_slot_context);
+
+    	imagecard = new ImageCard({
+    			props: { galleries: /*galleries*/ ctx[0] },
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			section = element("section");
+    			div2 = element("div");
+    			div0 = element("div");
+    			if (gallery_heading_slot) gallery_heading_slot.c();
+    			t0 = space();
+    			if (gallery_subtitle_slot) gallery_subtitle_slot.c();
+    			t1 = space();
+    			div1 = element("div");
+    			create_component(imagecard.$$.fragment);
+    			attr_dev(div0, "class", "flex flex-col text-center w-full mb-20");
+    			add_location(div0, file$a, 31, 6, 874);
+    			attr_dev(div1, "class", "flex flex-wrap -m-4");
+    			add_location(div1, file$a, 38, 6, 1555);
+    			attr_dev(div2, "class", "container px-5 py-20 mx-auto");
+    			add_location(div2, file$a, 30, 4, 825);
+    			attr_dev(section, "class", "text-gray-600 body-font");
+    			add_location(section, file$a, 29, 0, 779);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, section, anchor);
+    			append_dev(section, div2);
+    			append_dev(div2, div0);
+
+    			if (gallery_heading_slot) {
+    				gallery_heading_slot.m(div0, null);
+    			}
+
+    			append_dev(div0, t0);
+
+    			if (gallery_subtitle_slot) {
+    				gallery_subtitle_slot.m(div0, null);
+    			}
+
+    			append_dev(div2, t1);
+    			append_dev(div2, div1);
+    			mount_component(imagecard, div1, null);
+    			current = true;
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (gallery_heading_slot) {
+    				if (gallery_heading_slot.p && dirty & /*$$scope*/ 2) {
+    					update_slot(gallery_heading_slot, gallery_heading_slot_template, ctx, /*$$scope*/ ctx[1], dirty, get_gallery_heading_slot_changes, get_gallery_heading_slot_context);
+    				}
+    			}
+
+    			if (gallery_subtitle_slot) {
+    				if (gallery_subtitle_slot.p && dirty & /*$$scope*/ 2) {
+    					update_slot(gallery_subtitle_slot, gallery_subtitle_slot_template, ctx, /*$$scope*/ ctx[1], dirty, get_gallery_subtitle_slot_changes, get_gallery_subtitle_slot_context);
+    				}
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(gallery_heading_slot, local);
+    			transition_in(gallery_subtitle_slot, local);
+    			transition_in(imagecard.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(gallery_heading_slot, local);
+    			transition_out(gallery_subtitle_slot, local);
+    			transition_out(imagecard.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(section);
+    			if (gallery_heading_slot) gallery_heading_slot.d(detaching);
+    			if (gallery_subtitle_slot) gallery_subtitle_slot.d(detaching);
+    			destroy_component(imagecard);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$a.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$a($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("Gallery_Block", slots, ['gallery-heading','gallery-subtitle']);
+
+    	const galleries = [
+    		{
+    			img: "../nChairman.jpg",
+    			position: "Leader, ADP",
+    			name: "Aduda Usman "
+    		},
+    		{
+    			img: "../nChairman.jpg",
+    			position: "Leader, ADP",
+    			name: "Aduda Usman "
+    		},
+    		{
+    			img: "../nChairman.jpg",
+    			position: "Leader, ADP",
+    			name: "Aduda Usman "
+    		},
+    		{
+    			img: "../nChairman.jpg",
+    			position: "Leader, ADP",
+    			name: "Aduda Usman "
+    		},
+    		{
+    			img: "../nChairman.jpg",
+    			position: "Leader, ADP",
+    			name: "Aduda Usman "
+    		},
+    		{
+    			img: "../nChairman.jpg",
+    			position: "Leader, ADP",
+    			name: "Aduda Usman "
+    		}
+    	];
+
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Gallery_Block> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ("$$scope" in $$props) $$invalidate(1, $$scope = $$props.$$scope);
+    	};
+
+    	$$self.$capture_state = () => ({ ImageCard, galleries });
+    	return [galleries, $$scope, slots];
+    }
+
+    class Gallery_Block extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$a, create_fragment$a, safe_not_equal, {});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "Gallery_Block",
+    			options,
+    			id: create_fragment$a.name
+    		});
+    	}
+    }
+
+    /* src/pages/Structure.svelte generated by Svelte v3.31.2 */
+    const file$b = "src/pages/Structure.svelte";
+
+    // (11:4) <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6" slot="hero-image">
+    function create_hero_image_slot$1(ctx) {
+    	let div;
+    	let img;
+    	let img_src_value;
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			img = element("img");
+    			attr_dev(img, "class", "object-cover object-center rounded");
+    			attr_dev(img, "alt", "hero");
+    			if (img.src !== (img_src_value = "../nChairman.jpg")) attr_dev(img, "src", img_src_value);
+    			add_location(img, file$b, 11, 8, 256);
+    			attr_dev(div, "class", "lg:max-w-lg lg:w-full md:w-1/2 w-5/6");
+    			attr_dev(div, "slot", "hero-image");
+    			add_location(div, file$b, 10, 4, 179);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, img);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_hero_image_slot$1.name,
+    		type: "slot",
+    		source: "(11:4) <div class=\\\"lg:max-w-lg lg:w-full md:w-1/2 w-5/6\\\" slot=\\\"hero-image\\\">",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (16:6) <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center" slot="hero-texts">
+    function create_hero_texts_slot$1(ctx) {
+    	let div;
+    	let h1;
+    	let t1;
+    	let p;
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			h1 = element("h1");
+    			h1.textContent = "The National Chairman";
+    			t1 = space();
+    			p = element("p");
+    			p.textContent = "The role of the Party's National Chairman is often different from a party leader. The duties of the chairman/chairperson are typically concerned with the party membership as a whole and the activities of the party organization. Chairman often play important roles in strategies to recruit and retain members in campaign fundersing and in internal party governance, where they may serve as member of or preside over a governing board or council.";
+    			attr_dev(h1, "class", "title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900");
+    			add_location(h1, file$b, 16, 8, 522);
+    			attr_dev(p, "class", "mb-8 leading-relaxed");
+    			add_location(p, file$b, 18, 8, 641);
+    			attr_dev(div, "class", "lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center");
+    			attr_dev(div, "slot", "hero-texts");
+    			add_location(div, file$b, 15, 6, 361);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, h1);
+    			append_dev(div, t1);
+    			append_dev(div, p);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_hero_texts_slot$1.name,
+    		type: "slot",
+    		source: "(16:6) <div class=\\\"lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center\\\" slot=\\\"hero-texts\\\">",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (10:0) <Hero>
+    function create_default_slot_2(ctx) {
+    	let t;
+
+    	const block = {
+    		c: function create() {
+    			t = space();
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, t, anchor);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(t);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_2.name,
+    		type: "slot",
+    		source: "(10:0) <Hero>",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (24:4) <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900" slot="gallery-heading">
+    function create_gallery_heading_slot_1(ctx) {
+    	let h1;
+
+    	const block = {
+    		c: function create() {
+    			h1 = element("h1");
+    			h1.textContent = "Board of Trustee Members";
+    			attr_dev(h1, "class", "sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900");
+    			attr_dev(h1, "slot", "gallery-heading");
+    			add_location(h1, file$b, 23, 4, 1171);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, h1, anchor);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(h1);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_gallery_heading_slot_1.name,
+    		type: "slot",
+    		source: "(24:4) <h1 class=\\\"sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900\\\" slot=\\\"gallery-heading\\\">",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (25:4) <p class="lg:w-2/3 mx-auto leading-relaxed text-base" slot="gallery-subtitle">
+    function create_gallery_subtitle_slot_1(ctx) {
+    	let p;
+
+    	const block = {
+    		c: function create() {
+    			p = element("p");
+    			p.textContent = "Whatever cardigan tote bag tumblr The ADP Board of Trustee (BoT) is a constitutionally mandated body with the Action Democratic Party of Nigeria that provides advice and cousel to the leadership of the National Working Committee and stuff. It is regarded by the party's constitution as the conscience of the party.";
+    			attr_dev(p, "class", "lg:w-2/3 mx-auto leading-relaxed text-base");
+    			attr_dev(p, "slot", "gallery-subtitle");
+    			add_location(p, file$b, 24, 4, 1303);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, p, anchor);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(p);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_gallery_subtitle_slot_1.name,
+    		type: "slot",
+    		source: "(25:4) <p class=\\\"lg:w-2/3 mx-auto leading-relaxed text-base\\\" slot=\\\"gallery-subtitle\\\">",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (23:0) <GalleryBlock>
+    function create_default_slot_1(ctx) {
+    	let t;
+
+    	const block = {
+    		c: function create() {
+    			t = space();
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, t, anchor);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(t);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_1.name,
+    		type: "slot",
+    		source: "(23:0) <GalleryBlock>",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (31:4) <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900" slot="gallery-heading">
+    function create_gallery_heading_slot(ctx) {
+    	let h1;
+
+    	const block = {
+    		c: function create() {
+    			h1 = element("h1");
+    			h1.textContent = "National Working Committee Members";
+    			attr_dev(h1, "class", "sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900");
+    			attr_dev(h1, "slot", "gallery-heading");
+    			add_location(h1, file$b, 30, 4, 1741);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, h1, anchor);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(h1);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_gallery_heading_slot.name,
+    		type: "slot",
+    		source: "(31:4) <h1 class=\\\"sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900\\\" slot=\\\"gallery-heading\\\">",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (32:4) <p class="lg:w-2/3 mx-auto leading-relaxed text-base" slot="gallery-subtitle">
+    function create_gallery_subtitle_slot(ctx) {
+    	let p;
+
+    	const block = {
+    		c: function create() {
+    			p = element("p");
+    			p.textContent = "The ADP National Working Committee Members also known as NWC, is the executive committee of the Action Democratic Party in Nigeria. The NWC is composed of 12 party members, all of which are elected to a four year term at the party's National Convention, The NWC is headed by the Chairman who also functions as the party's National Chairman. The NWC has the responsibility for the day-to-day governance of the party as well as oversight of its national activities.";
+    			attr_dev(p, "class", "lg:w-2/3 mx-auto leading-relaxed text-base");
+    			attr_dev(p, "slot", "gallery-subtitle");
+    			add_location(p, file$b, 31, 4, 1883);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, p, anchor);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(p);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_gallery_subtitle_slot.name,
+    		type: "slot",
+    		source: "(32:4) <p class=\\\"lg:w-2/3 mx-auto leading-relaxed text-base\\\" slot=\\\"gallery-subtitle\\\">",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (30:0) <GalleryBlock>
+    function create_default_slot$1(ctx) {
+    	let t;
+
+    	const block = {
+    		c: function create() {
+    			t = space();
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, t, anchor);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(t);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot$1.name,
+    		type: "slot",
+    		source: "(30:0) <GalleryBlock>",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$b(ctx) {
+    	let hero;
+    	let t0;
+    	let galleryblock0;
+    	let t1;
+    	let galleryblock1;
+    	let current;
+
+    	hero = new Hero({
+    			props: {
+    				$$slots: {
+    					default: [create_default_slot_2],
+    					"hero-texts": [create_hero_texts_slot$1],
+    					"hero-image": [create_hero_image_slot$1]
+    				},
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	galleryblock0 = new Gallery_Block({
+    			props: {
+    				$$slots: {
+    					default: [create_default_slot_1],
+    					"gallery-subtitle": [create_gallery_subtitle_slot_1],
+    					"gallery-heading": [create_gallery_heading_slot_1]
+    				},
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	galleryblock1 = new Gallery_Block({
+    			props: {
+    				$$slots: {
+    					default: [create_default_slot$1],
+    					"gallery-subtitle": [create_gallery_subtitle_slot],
+    					"gallery-heading": [create_gallery_heading_slot]
+    				},
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			create_component(hero.$$.fragment);
+    			t0 = space();
+    			create_component(galleryblock0.$$.fragment);
+    			t1 = space();
+    			create_component(galleryblock1.$$.fragment);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(hero, target, anchor);
+    			insert_dev(target, t0, anchor);
+    			mount_component(galleryblock0, target, anchor);
+    			insert_dev(target, t1, anchor);
+    			mount_component(galleryblock1, target, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, [dirty]) {
+    			const hero_changes = {};
+
+    			if (dirty & /*$$scope*/ 1) {
+    				hero_changes.$$scope = { dirty, ctx };
+    			}
+
+    			hero.$set(hero_changes);
+    			const galleryblock0_changes = {};
+
+    			if (dirty & /*$$scope*/ 1) {
+    				galleryblock0_changes.$$scope = { dirty, ctx };
+    			}
+
+    			galleryblock0.$set(galleryblock0_changes);
+    			const galleryblock1_changes = {};
+
+    			if (dirty & /*$$scope*/ 1) {
+    				galleryblock1_changes.$$scope = { dirty, ctx };
+    			}
+
+    			galleryblock1.$set(galleryblock1_changes);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(hero.$$.fragment, local);
+    			transition_in(galleryblock0.$$.fragment, local);
+    			transition_in(galleryblock1.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(hero.$$.fragment, local);
+    			transition_out(galleryblock0.$$.fragment, local);
+    			transition_out(galleryblock1.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(hero, detaching);
+    			if (detaching) detach_dev(t0);
+    			destroy_component(galleryblock0, detaching);
+    			if (detaching) detach_dev(t1);
+    			destroy_component(galleryblock1, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$b.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$b($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("Structure", slots, []);
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Structure> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$capture_state = () => ({ GalleryBlock: Gallery_Block, Hero });
+    	return [];
+    }
+
+    class Structure extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$b, create_fragment$b, safe_not_equal, {});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "Structure",
+    			options,
+    			id: create_fragment$b.name
+    		});
+    	}
+    }
+
+    var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
+
+    function createCommonjsModule(fn, basedir, module) {
+    	return module = {
+    		path: basedir,
+    		exports: {},
+    		require: function (path, base) {
+    			return commonjsRequire(path, (base === undefined || base === null) ? module.path : base);
+    		}
+    	}, fn(module, module.exports), module.exports;
+    }
+
+    function commonjsRequire () {
+    	throw new Error('Dynamic requires are not currently supported by @rollup/plugin-commonjs');
+    }
+
+    var page = createCommonjsModule(function (module, exports) {
+    (function (global, factory) {
+    	 module.exports = factory() ;
+    }(commonjsGlobal, (function () {
+    var isarray = Array.isArray || function (arr) {
+      return Object.prototype.toString.call(arr) == '[object Array]';
+    };
+
+    /**
+     * Expose `pathToRegexp`.
+     */
+    var pathToRegexp_1 = pathToRegexp;
+    var parse_1 = parse;
+    var compile_1 = compile;
+    var tokensToFunction_1 = tokensToFunction;
+    var tokensToRegExp_1 = tokensToRegExp;
+
+    /**
+     * The main path matching regexp utility.
+     *
+     * @type {RegExp}
+     */
+    var PATH_REGEXP = new RegExp([
+      // Match escaped characters that would otherwise appear in future matches.
+      // This allows the user to escape special characters that won't transform.
+      '(\\\\.)',
+      // Match Express-style parameters and un-named parameters with a prefix
+      // and optional suffixes. Matches appear as:
+      //
+      // "/:test(\\d+)?" => ["/", "test", "\d+", undefined, "?", undefined]
+      // "/route(\\d+)"  => [undefined, undefined, undefined, "\d+", undefined, undefined]
+      // "/*"            => ["/", undefined, undefined, undefined, undefined, "*"]
+      '([\\/.])?(?:(?:\\:(\\w+)(?:\\(((?:\\\\.|[^()])+)\\))?|\\(((?:\\\\.|[^()])+)\\))([+*?])?|(\\*))'
+    ].join('|'), 'g');
+
+    /**
+     * Parse a string for the raw tokens.
+     *
+     * @param  {String} str
+     * @return {Array}
+     */
+    function parse (str) {
+      var tokens = [];
+      var key = 0;
+      var index = 0;
+      var path = '';
+      var res;
+
+      while ((res = PATH_REGEXP.exec(str)) != null) {
+        var m = res[0];
+        var escaped = res[1];
+        var offset = res.index;
+        path += str.slice(index, offset);
+        index = offset + m.length;
+
+        // Ignore already escaped sequences.
+        if (escaped) {
+          path += escaped[1];
+          continue
+        }
+
+        // Push the current path onto the tokens.
+        if (path) {
+          tokens.push(path);
+          path = '';
+        }
+
+        var prefix = res[2];
+        var name = res[3];
+        var capture = res[4];
+        var group = res[5];
+        var suffix = res[6];
+        var asterisk = res[7];
+
+        var repeat = suffix === '+' || suffix === '*';
+        var optional = suffix === '?' || suffix === '*';
+        var delimiter = prefix || '/';
+        var pattern = capture || group || (asterisk ? '.*' : '[^' + delimiter + ']+?');
+
+        tokens.push({
+          name: name || key++,
+          prefix: prefix || '',
+          delimiter: delimiter,
+          optional: optional,
+          repeat: repeat,
+          pattern: escapeGroup(pattern)
+        });
+      }
+
+      // Match any characters still remaining.
+      if (index < str.length) {
+        path += str.substr(index);
+      }
+
+      // If the path exists, push it onto the end.
+      if (path) {
+        tokens.push(path);
+      }
+
+      return tokens
+    }
+
+    /**
+     * Compile a string to a template function for the path.
+     *
+     * @param  {String}   str
+     * @return {Function}
+     */
+    function compile (str) {
+      return tokensToFunction(parse(str))
+    }
+
+    /**
+     * Expose a method for transforming tokens into the path function.
+     */
+    function tokensToFunction (tokens) {
+      // Compile all the tokens into regexps.
+      var matches = new Array(tokens.length);
+
+      // Compile all the patterns before compilation.
+      for (var i = 0; i < tokens.length; i++) {
+        if (typeof tokens[i] === 'object') {
+          matches[i] = new RegExp('^' + tokens[i].pattern + '$');
+        }
+      }
+
+      return function (obj) {
+        var path = '';
+        var data = obj || {};
+
+        for (var i = 0; i < tokens.length; i++) {
+          var token = tokens[i];
+
+          if (typeof token === 'string') {
+            path += token;
+
+            continue
+          }
+
+          var value = data[token.name];
+          var segment;
+
+          if (value == null) {
+            if (token.optional) {
+              continue
+            } else {
+              throw new TypeError('Expected "' + token.name + '" to be defined')
+            }
+          }
+
+          if (isarray(value)) {
+            if (!token.repeat) {
+              throw new TypeError('Expected "' + token.name + '" to not repeat, but received "' + value + '"')
+            }
+
+            if (value.length === 0) {
+              if (token.optional) {
+                continue
+              } else {
+                throw new TypeError('Expected "' + token.name + '" to not be empty')
+              }
+            }
+
+            for (var j = 0; j < value.length; j++) {
+              segment = encodeURIComponent(value[j]);
+
+              if (!matches[i].test(segment)) {
+                throw new TypeError('Expected all "' + token.name + '" to match "' + token.pattern + '", but received "' + segment + '"')
+              }
+
+              path += (j === 0 ? token.prefix : token.delimiter) + segment;
+            }
+
+            continue
+          }
+
+          segment = encodeURIComponent(value);
+
+          if (!matches[i].test(segment)) {
+            throw new TypeError('Expected "' + token.name + '" to match "' + token.pattern + '", but received "' + segment + '"')
+          }
+
+          path += token.prefix + segment;
+        }
+
+        return path
+      }
+    }
+
+    /**
+     * Escape a regular expression string.
+     *
+     * @param  {String} str
+     * @return {String}
+     */
+    function escapeString (str) {
+      return str.replace(/([.+*?=^!:${}()[\]|\/])/g, '\\$1')
+    }
+
+    /**
+     * Escape the capturing group by escaping special characters and meaning.
+     *
+     * @param  {String} group
+     * @return {String}
+     */
+    function escapeGroup (group) {
+      return group.replace(/([=!:$\/()])/g, '\\$1')
+    }
+
+    /**
+     * Attach the keys as a property of the regexp.
+     *
+     * @param  {RegExp} re
+     * @param  {Array}  keys
+     * @return {RegExp}
+     */
+    function attachKeys (re, keys) {
+      re.keys = keys;
+      return re
+    }
+
+    /**
+     * Get the flags for a regexp from the options.
+     *
+     * @param  {Object} options
+     * @return {String}
+     */
+    function flags (options) {
+      return options.sensitive ? '' : 'i'
+    }
+
+    /**
+     * Pull out keys from a regexp.
+     *
+     * @param  {RegExp} path
+     * @param  {Array}  keys
+     * @return {RegExp}
+     */
+    function regexpToRegexp (path, keys) {
+      // Use a negative lookahead to match only capturing groups.
+      var groups = path.source.match(/\((?!\?)/g);
+
+      if (groups) {
+        for (var i = 0; i < groups.length; i++) {
+          keys.push({
+            name: i,
+            prefix: null,
+            delimiter: null,
+            optional: false,
+            repeat: false,
+            pattern: null
+          });
+        }
+      }
+
+      return attachKeys(path, keys)
+    }
+
+    /**
+     * Transform an array into a regexp.
+     *
+     * @param  {Array}  path
+     * @param  {Array}  keys
+     * @param  {Object} options
+     * @return {RegExp}
+     */
+    function arrayToRegexp (path, keys, options) {
+      var parts = [];
+
+      for (var i = 0; i < path.length; i++) {
+        parts.push(pathToRegexp(path[i], keys, options).source);
+      }
+
+      var regexp = new RegExp('(?:' + parts.join('|') + ')', flags(options));
+
+      return attachKeys(regexp, keys)
+    }
+
+    /**
+     * Create a path regexp from string input.
+     *
+     * @param  {String} path
+     * @param  {Array}  keys
+     * @param  {Object} options
+     * @return {RegExp}
+     */
+    function stringToRegexp (path, keys, options) {
+      var tokens = parse(path);
+      var re = tokensToRegExp(tokens, options);
+
+      // Attach keys back to the regexp.
+      for (var i = 0; i < tokens.length; i++) {
+        if (typeof tokens[i] !== 'string') {
+          keys.push(tokens[i]);
+        }
+      }
+
+      return attachKeys(re, keys)
+    }
+
+    /**
+     * Expose a function for taking tokens and returning a RegExp.
+     *
+     * @param  {Array}  tokens
+     * @param  {Array}  keys
+     * @param  {Object} options
+     * @return {RegExp}
+     */
+    function tokensToRegExp (tokens, options) {
+      options = options || {};
+
+      var strict = options.strict;
+      var end = options.end !== false;
+      var route = '';
+      var lastToken = tokens[tokens.length - 1];
+      var endsWithSlash = typeof lastToken === 'string' && /\/$/.test(lastToken);
+
+      // Iterate over the tokens and create our regexp string.
+      for (var i = 0; i < tokens.length; i++) {
+        var token = tokens[i];
+
+        if (typeof token === 'string') {
+          route += escapeString(token);
+        } else {
+          var prefix = escapeString(token.prefix);
+          var capture = token.pattern;
+
+          if (token.repeat) {
+            capture += '(?:' + prefix + capture + ')*';
+          }
+
+          if (token.optional) {
+            if (prefix) {
+              capture = '(?:' + prefix + '(' + capture + '))?';
+            } else {
+              capture = '(' + capture + ')?';
+            }
+          } else {
+            capture = prefix + '(' + capture + ')';
+          }
+
+          route += capture;
+        }
+      }
+
+      // In non-strict mode we allow a slash at the end of match. If the path to
+      // match already ends with a slash, we remove it for consistency. The slash
+      // is valid at the end of a path match, not in the middle. This is important
+      // in non-ending mode, where "/test/" shouldn't match "/test//route".
+      if (!strict) {
+        route = (endsWithSlash ? route.slice(0, -2) : route) + '(?:\\/(?=$))?';
+      }
+
+      if (end) {
+        route += '$';
+      } else {
+        // In non-ending mode, we need the capturing groups to match as much as
+        // possible by using a positive lookahead to the end or next path segment.
+        route += strict && endsWithSlash ? '' : '(?=\\/|$)';
+      }
+
+      return new RegExp('^' + route, flags(options))
+    }
+
+    /**
+     * Normalize the given path string, returning a regular expression.
+     *
+     * An empty array can be passed in for the keys, which will hold the
+     * placeholder key descriptions. For example, using `/user/:id`, `keys` will
+     * contain `[{ name: 'id', delimiter: '/', optional: false, repeat: false }]`.
+     *
+     * @param  {(String|RegExp|Array)} path
+     * @param  {Array}                 [keys]
+     * @param  {Object}                [options]
+     * @return {RegExp}
+     */
+    function pathToRegexp (path, keys, options) {
+      keys = keys || [];
+
+      if (!isarray(keys)) {
+        options = keys;
+        keys = [];
+      } else if (!options) {
+        options = {};
+      }
+
+      if (path instanceof RegExp) {
+        return regexpToRegexp(path, keys)
+      }
+
+      if (isarray(path)) {
+        return arrayToRegexp(path, keys, options)
+      }
+
+      return stringToRegexp(path, keys, options)
+    }
+
+    pathToRegexp_1.parse = parse_1;
+    pathToRegexp_1.compile = compile_1;
+    pathToRegexp_1.tokensToFunction = tokensToFunction_1;
+    pathToRegexp_1.tokensToRegExp = tokensToRegExp_1;
+
+    /**
+       * Module dependencies.
+       */
+
+      
+
+      /**
+       * Short-cuts for global-object checks
+       */
+
+      var hasDocument = ('undefined' !== typeof document);
+      var hasWindow = ('undefined' !== typeof window);
+      var hasHistory = ('undefined' !== typeof history);
+      var hasProcess = typeof process !== 'undefined';
+
+      /**
+       * Detect click event
+       */
+      var clickEvent = hasDocument && document.ontouchstart ? 'touchstart' : 'click';
+
+      /**
+       * To work properly with the URL
+       * history.location generated polyfill in https://github.com/devote/HTML5-History-API
+       */
+
+      var isLocation = hasWindow && !!(window.history.location || window.location);
+
+      /**
+       * The page instance
+       * @api private
+       */
+      function Page() {
+        // public things
+        this.callbacks = [];
+        this.exits = [];
+        this.current = '';
+        this.len = 0;
+
+        // private things
+        this._decodeURLComponents = true;
+        this._base = '';
+        this._strict = false;
+        this._running = false;
+        this._hashbang = false;
+
+        // bound functions
+        this.clickHandler = this.clickHandler.bind(this);
+        this._onpopstate = this._onpopstate.bind(this);
+      }
+
+      /**
+       * Configure the instance of page. This can be called multiple times.
+       *
+       * @param {Object} options
+       * @api public
+       */
+
+      Page.prototype.configure = function(options) {
+        var opts = options || {};
+
+        this._window = opts.window || (hasWindow && window);
+        this._decodeURLComponents = opts.decodeURLComponents !== false;
+        this._popstate = opts.popstate !== false && hasWindow;
+        this._click = opts.click !== false && hasDocument;
+        this._hashbang = !!opts.hashbang;
+
+        var _window = this._window;
+        if(this._popstate) {
+          _window.addEventListener('popstate', this._onpopstate, false);
+        } else if(hasWindow) {
+          _window.removeEventListener('popstate', this._onpopstate, false);
+        }
+
+        if (this._click) {
+          _window.document.addEventListener(clickEvent, this.clickHandler, false);
+        } else if(hasDocument) {
+          _window.document.removeEventListener(clickEvent, this.clickHandler, false);
+        }
+
+        if(this._hashbang && hasWindow && !hasHistory) {
+          _window.addEventListener('hashchange', this._onpopstate, false);
+        } else if(hasWindow) {
+          _window.removeEventListener('hashchange', this._onpopstate, false);
+        }
+      };
+
+      /**
+       * Get or set basepath to `path`.
+       *
+       * @param {string} path
+       * @api public
+       */
+
+      Page.prototype.base = function(path) {
+        if (0 === arguments.length) return this._base;
+        this._base = path;
+      };
+
+      /**
+       * Gets the `base`, which depends on whether we are using History or
+       * hashbang routing.
+
+       * @api private
+       */
+      Page.prototype._getBase = function() {
+        var base = this._base;
+        if(!!base) return base;
+        var loc = hasWindow && this._window && this._window.location;
+
+        if(hasWindow && this._hashbang && loc && loc.protocol === 'file:') {
+          base = loc.pathname;
+        }
+
+        return base;
+      };
+
+      /**
+       * Get or set strict path matching to `enable`
+       *
+       * @param {boolean} enable
+       * @api public
+       */
+
+      Page.prototype.strict = function(enable) {
+        if (0 === arguments.length) return this._strict;
+        this._strict = enable;
+      };
+
+
+      /**
+       * Bind with the given `options`.
+       *
+       * Options:
+       *
+       *    - `click` bind to click events [true]
+       *    - `popstate` bind to popstate [true]
+       *    - `dispatch` perform initial dispatch [true]
+       *
+       * @param {Object} options
+       * @api public
+       */
+
+      Page.prototype.start = function(options) {
+        var opts = options || {};
+        this.configure(opts);
+
+        if (false === opts.dispatch) return;
+        this._running = true;
+
+        var url;
+        if(isLocation) {
+          var window = this._window;
+          var loc = window.location;
+
+          if(this._hashbang && ~loc.hash.indexOf('#!')) {
+            url = loc.hash.substr(2) + loc.search;
+          } else if (this._hashbang) {
+            url = loc.search + loc.hash;
+          } else {
+            url = loc.pathname + loc.search + loc.hash;
+          }
+        }
+
+        this.replace(url, null, true, opts.dispatch);
+      };
+
+      /**
+       * Unbind click and popstate event handlers.
+       *
+       * @api public
+       */
+
+      Page.prototype.stop = function() {
+        if (!this._running) return;
+        this.current = '';
+        this.len = 0;
+        this._running = false;
+
+        var window = this._window;
+        this._click && window.document.removeEventListener(clickEvent, this.clickHandler, false);
+        hasWindow && window.removeEventListener('popstate', this._onpopstate, false);
+        hasWindow && window.removeEventListener('hashchange', this._onpopstate, false);
+      };
+
+      /**
+       * Show `path` with optional `state` object.
+       *
+       * @param {string} path
+       * @param {Object=} state
+       * @param {boolean=} dispatch
+       * @param {boolean=} push
+       * @return {!Context}
+       * @api public
+       */
+
+      Page.prototype.show = function(path, state, dispatch, push) {
+        var ctx = new Context(path, state, this),
+          prev = this.prevContext;
+        this.prevContext = ctx;
+        this.current = ctx.path;
+        if (false !== dispatch) this.dispatch(ctx, prev);
+        if (false !== ctx.handled && false !== push) ctx.pushState();
+        return ctx;
+      };
+
+      /**
+       * Goes back in the history
+       * Back should always let the current route push state and then go back.
+       *
+       * @param {string} path - fallback path to go back if no more history exists, if undefined defaults to page.base
+       * @param {Object=} state
+       * @api public
+       */
+
+      Page.prototype.back = function(path, state) {
+        var page = this;
+        if (this.len > 0) {
+          var window = this._window;
+          // this may need more testing to see if all browsers
+          // wait for the next tick to go back in history
+          hasHistory && window.history.back();
+          this.len--;
+        } else if (path) {
+          setTimeout(function() {
+            page.show(path, state);
+          });
+        } else {
+          setTimeout(function() {
+            page.show(page._getBase(), state);
+          });
+        }
+      };
+
+      /**
+       * Register route to redirect from one path to other
+       * or just redirect to another route
+       *
+       * @param {string} from - if param 'to' is undefined redirects to 'from'
+       * @param {string=} to
+       * @api public
+       */
+      Page.prototype.redirect = function(from, to) {
+        var inst = this;
+
+        // Define route from a path to another
+        if ('string' === typeof from && 'string' === typeof to) {
+          page.call(this, from, function(e) {
+            setTimeout(function() {
+              inst.replace(/** @type {!string} */ (to));
+            }, 0);
+          });
+        }
+
+        // Wait for the push state and replace it with another
+        if ('string' === typeof from && 'undefined' === typeof to) {
+          setTimeout(function() {
+            inst.replace(from);
+          }, 0);
+        }
+      };
+
+      /**
+       * Replace `path` with optional `state` object.
+       *
+       * @param {string} path
+       * @param {Object=} state
+       * @param {boolean=} init
+       * @param {boolean=} dispatch
+       * @return {!Context}
+       * @api public
+       */
+
+
+      Page.prototype.replace = function(path, state, init, dispatch) {
+        var ctx = new Context(path, state, this),
+          prev = this.prevContext;
+        this.prevContext = ctx;
+        this.current = ctx.path;
+        ctx.init = init;
+        ctx.save(); // save before dispatching, which may redirect
+        if (false !== dispatch) this.dispatch(ctx, prev);
+        return ctx;
+      };
+
+      /**
+       * Dispatch the given `ctx`.
+       *
+       * @param {Context} ctx
+       * @api private
+       */
+
+      Page.prototype.dispatch = function(ctx, prev) {
+        var i = 0, j = 0, page = this;
+
+        function nextExit() {
+          var fn = page.exits[j++];
+          if (!fn) return nextEnter();
+          fn(prev, nextExit);
+        }
+
+        function nextEnter() {
+          var fn = page.callbacks[i++];
+
+          if (ctx.path !== page.current) {
+            ctx.handled = false;
+            return;
+          }
+          if (!fn) return unhandled.call(page, ctx);
+          fn(ctx, nextEnter);
+        }
+
+        if (prev) {
+          nextExit();
+        } else {
+          nextEnter();
+        }
+      };
+
+      /**
+       * Register an exit route on `path` with
+       * callback `fn()`, which will be called
+       * on the previous context when a new
+       * page is visited.
+       */
+      Page.prototype.exit = function(path, fn) {
+        if (typeof path === 'function') {
+          return this.exit('*', path);
+        }
+
+        var route = new Route(path, null, this);
+        for (var i = 1; i < arguments.length; ++i) {
+          this.exits.push(route.middleware(arguments[i]));
+        }
+      };
+
+      /**
+       * Handle "click" events.
+       */
+
+      /* jshint +W054 */
+      Page.prototype.clickHandler = function(e) {
+        if (1 !== this._which(e)) return;
+
+        if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+        if (e.defaultPrevented) return;
+
+        // ensure link
+        // use shadow dom when available if not, fall back to composedPath()
+        // for browsers that only have shady
+        var el = e.target;
+        var eventPath = e.path || (e.composedPath ? e.composedPath() : null);
+
+        if(eventPath) {
+          for (var i = 0; i < eventPath.length; i++) {
+            if (!eventPath[i].nodeName) continue;
+            if (eventPath[i].nodeName.toUpperCase() !== 'A') continue;
+            if (!eventPath[i].href) continue;
+
+            el = eventPath[i];
+            break;
+          }
+        }
+
+        // continue ensure link
+        // el.nodeName for svg links are 'a' instead of 'A'
+        while (el && 'A' !== el.nodeName.toUpperCase()) el = el.parentNode;
+        if (!el || 'A' !== el.nodeName.toUpperCase()) return;
+
+        // check if link is inside an svg
+        // in this case, both href and target are always inside an object
+        var svg = (typeof el.href === 'object') && el.href.constructor.name === 'SVGAnimatedString';
+
+        // Ignore if tag has
+        // 1. "download" attribute
+        // 2. rel="external" attribute
+        if (el.hasAttribute('download') || el.getAttribute('rel') === 'external') return;
+
+        // ensure non-hash for the same path
+        var link = el.getAttribute('href');
+        if(!this._hashbang && this._samePath(el) && (el.hash || '#' === link)) return;
+
+        // Check for mailto: in the href
+        if (link && link.indexOf('mailto:') > -1) return;
+
+        // check target
+        // svg target is an object and its desired value is in .baseVal property
+        if (svg ? el.target.baseVal : el.target) return;
+
+        // x-origin
+        // note: svg links that are not relative don't call click events (and skip page.js)
+        // consequently, all svg links tested inside page.js are relative and in the same origin
+        if (!svg && !this.sameOrigin(el.href)) return;
+
+        // rebuild path
+        // There aren't .pathname and .search properties in svg links, so we use href
+        // Also, svg href is an object and its desired value is in .baseVal property
+        var path = svg ? el.href.baseVal : (el.pathname + el.search + (el.hash || ''));
+
+        path = path[0] !== '/' ? '/' + path : path;
+
+        // strip leading "/[drive letter]:" on NW.js on Windows
+        if (hasProcess && path.match(/^\/[a-zA-Z]:\//)) {
+          path = path.replace(/^\/[a-zA-Z]:\//, '/');
+        }
+
+        // same page
+        var orig = path;
+        var pageBase = this._getBase();
+
+        if (path.indexOf(pageBase) === 0) {
+          path = path.substr(pageBase.length);
+        }
+
+        if (this._hashbang) path = path.replace('#!', '');
+
+        if (pageBase && orig === path && (!isLocation || this._window.location.protocol !== 'file:')) {
+          return;
+        }
+
+        e.preventDefault();
+        this.show(orig);
+      };
+
+      /**
+       * Handle "populate" events.
+       * @api private
+       */
+
+      Page.prototype._onpopstate = (function () {
+        var loaded = false;
+        if ( ! hasWindow ) {
+          return function () {};
+        }
+        if (hasDocument && document.readyState === 'complete') {
+          loaded = true;
+        } else {
+          window.addEventListener('load', function() {
+            setTimeout(function() {
+              loaded = true;
+            }, 0);
+          });
+        }
+        return function onpopstate(e) {
+          if (!loaded) return;
+          var page = this;
+          if (e.state) {
+            var path = e.state.path;
+            page.replace(path, e.state);
+          } else if (isLocation) {
+            var loc = page._window.location;
+            page.show(loc.pathname + loc.search + loc.hash, undefined, undefined, false);
+          }
+        };
+      })();
+
+      /**
+       * Event button.
+       */
+      Page.prototype._which = function(e) {
+        e = e || (hasWindow && this._window.event);
+        return null == e.which ? e.button : e.which;
+      };
+
+      /**
+       * Convert to a URL object
+       * @api private
+       */
+      Page.prototype._toURL = function(href) {
+        var window = this._window;
+        if(typeof URL === 'function' && isLocation) {
+          return new URL(href, window.location.toString());
+        } else if (hasDocument) {
+          var anc = window.document.createElement('a');
+          anc.href = href;
+          return anc;
+        }
+      };
+
+      /**
+       * Check if `href` is the same origin.
+       * @param {string} href
+       * @api public
+       */
+      Page.prototype.sameOrigin = function(href) {
+        if(!href || !isLocation) return false;
+
+        var url = this._toURL(href);
+        var window = this._window;
+
+        var loc = window.location;
+
+        /*
+           When the port is the default http port 80 for http, or 443 for
+           https, internet explorer 11 returns an empty string for loc.port,
+           so we need to compare loc.port with an empty string if url.port
+           is the default port 80 or 443.
+           Also the comparition with `port` is changed from `===` to `==` because
+           `port` can be a string sometimes. This only applies to ie11.
+        */
+        return loc.protocol === url.protocol &&
+          loc.hostname === url.hostname &&
+          (loc.port === url.port || loc.port === '' && (url.port == 80 || url.port == 443)); // jshint ignore:line
+      };
+
+      /**
+       * @api private
+       */
+      Page.prototype._samePath = function(url) {
+        if(!isLocation) return false;
+        var window = this._window;
+        var loc = window.location;
+        return url.pathname === loc.pathname &&
+          url.search === loc.search;
+      };
+
+      /**
+       * Remove URL encoding from the given `str`.
+       * Accommodates whitespace in both x-www-form-urlencoded
+       * and regular percent-encoded form.
+       *
+       * @param {string} val - URL component to decode
+       * @api private
+       */
+      Page.prototype._decodeURLEncodedURIComponent = function(val) {
+        if (typeof val !== 'string') { return val; }
+        return this._decodeURLComponents ? decodeURIComponent(val.replace(/\+/g, ' ')) : val;
+      };
+
+      /**
+       * Create a new `page` instance and function
+       */
+      function createPage() {
+        var pageInstance = new Page();
+
+        function pageFn(/* args */) {
+          return page.apply(pageInstance, arguments);
+        }
+
+        // Copy all of the things over. In 2.0 maybe we use setPrototypeOf
+        pageFn.callbacks = pageInstance.callbacks;
+        pageFn.exits = pageInstance.exits;
+        pageFn.base = pageInstance.base.bind(pageInstance);
+        pageFn.strict = pageInstance.strict.bind(pageInstance);
+        pageFn.start = pageInstance.start.bind(pageInstance);
+        pageFn.stop = pageInstance.stop.bind(pageInstance);
+        pageFn.show = pageInstance.show.bind(pageInstance);
+        pageFn.back = pageInstance.back.bind(pageInstance);
+        pageFn.redirect = pageInstance.redirect.bind(pageInstance);
+        pageFn.replace = pageInstance.replace.bind(pageInstance);
+        pageFn.dispatch = pageInstance.dispatch.bind(pageInstance);
+        pageFn.exit = pageInstance.exit.bind(pageInstance);
+        pageFn.configure = pageInstance.configure.bind(pageInstance);
+        pageFn.sameOrigin = pageInstance.sameOrigin.bind(pageInstance);
+        pageFn.clickHandler = pageInstance.clickHandler.bind(pageInstance);
+
+        pageFn.create = createPage;
+
+        Object.defineProperty(pageFn, 'len', {
+          get: function(){
+            return pageInstance.len;
+          },
+          set: function(val) {
+            pageInstance.len = val;
+          }
+        });
+
+        Object.defineProperty(pageFn, 'current', {
+          get: function(){
+            return pageInstance.current;
+          },
+          set: function(val) {
+            pageInstance.current = val;
+          }
+        });
+
+        // In 2.0 these can be named exports
+        pageFn.Context = Context;
+        pageFn.Route = Route;
+
+        return pageFn;
+      }
+
+      /**
+       * Register `path` with callback `fn()`,
+       * or route `path`, or redirection,
+       * or `page.start()`.
+       *
+       *   page(fn);
+       *   page('*', fn);
+       *   page('/user/:id', load, user);
+       *   page('/user/' + user.id, { some: 'thing' });
+       *   page('/user/' + user.id);
+       *   page('/from', '/to')
+       *   page();
+       *
+       * @param {string|!Function|!Object} path
+       * @param {Function=} fn
+       * @api public
+       */
+
+      function page(path, fn) {
+        // <callback>
+        if ('function' === typeof path) {
+          return page.call(this, '*', path);
+        }
+
+        // route <path> to <callback ...>
+        if ('function' === typeof fn) {
+          var route = new Route(/** @type {string} */ (path), null, this);
+          for (var i = 1; i < arguments.length; ++i) {
+            this.callbacks.push(route.middleware(arguments[i]));
+          }
+          // show <path> with [state]
+        } else if ('string' === typeof path) {
+          this['string' === typeof fn ? 'redirect' : 'show'](path, fn);
+          // start [options]
+        } else {
+          this.start(path);
+        }
+      }
+
+      /**
+       * Unhandled `ctx`. When it's not the initial
+       * popstate then redirect. If you wish to handle
+       * 404s on your own use `page('*', callback)`.
+       *
+       * @param {Context} ctx
+       * @api private
+       */
+      function unhandled(ctx) {
+        if (ctx.handled) return;
+        var current;
+        var page = this;
+        var window = page._window;
+
+        if (page._hashbang) {
+          current = isLocation && this._getBase() + window.location.hash.replace('#!', '');
+        } else {
+          current = isLocation && window.location.pathname + window.location.search;
+        }
+
+        if (current === ctx.canonicalPath) return;
+        page.stop();
+        ctx.handled = false;
+        isLocation && (window.location.href = ctx.canonicalPath);
+      }
+
+      /**
+       * Escapes RegExp characters in the given string.
+       *
+       * @param {string} s
+       * @api private
+       */
+      function escapeRegExp(s) {
+        return s.replace(/([.+*?=^!:${}()[\]|/\\])/g, '\\$1');
+      }
+
+      /**
+       * Initialize a new "request" `Context`
+       * with the given `path` and optional initial `state`.
+       *
+       * @constructor
+       * @param {string} path
+       * @param {Object=} state
+       * @api public
+       */
+
+      function Context(path, state, pageInstance) {
+        var _page = this.page = pageInstance || page;
+        var window = _page._window;
+        var hashbang = _page._hashbang;
+
+        var pageBase = _page._getBase();
+        if ('/' === path[0] && 0 !== path.indexOf(pageBase)) path = pageBase + (hashbang ? '#!' : '') + path;
+        var i = path.indexOf('?');
+
+        this.canonicalPath = path;
+        var re = new RegExp('^' + escapeRegExp(pageBase));
+        this.path = path.replace(re, '') || '/';
+        if (hashbang) this.path = this.path.replace('#!', '') || '/';
+
+        this.title = (hasDocument && window.document.title);
+        this.state = state || {};
+        this.state.path = path;
+        this.querystring = ~i ? _page._decodeURLEncodedURIComponent(path.slice(i + 1)) : '';
+        this.pathname = _page._decodeURLEncodedURIComponent(~i ? path.slice(0, i) : path);
+        this.params = {};
+
+        // fragment
+        this.hash = '';
+        if (!hashbang) {
+          if (!~this.path.indexOf('#')) return;
+          var parts = this.path.split('#');
+          this.path = this.pathname = parts[0];
+          this.hash = _page._decodeURLEncodedURIComponent(parts[1]) || '';
+          this.querystring = this.querystring.split('#')[0];
+        }
+      }
+
+      /**
+       * Push state.
+       *
+       * @api private
+       */
+
+      Context.prototype.pushState = function() {
+        var page = this.page;
+        var window = page._window;
+        var hashbang = page._hashbang;
+
+        page.len++;
+        if (hasHistory) {
+            window.history.pushState(this.state, this.title,
+              hashbang && this.path !== '/' ? '#!' + this.path : this.canonicalPath);
+        }
+      };
+
+      /**
+       * Save the context state.
+       *
+       * @api public
+       */
+
+      Context.prototype.save = function() {
+        var page = this.page;
+        if (hasHistory) {
+            page._window.history.replaceState(this.state, this.title,
+              page._hashbang && this.path !== '/' ? '#!' + this.path : this.canonicalPath);
+        }
+      };
+
+      /**
+       * Initialize `Route` with the given HTTP `path`,
+       * and an array of `callbacks` and `options`.
+       *
+       * Options:
+       *
+       *   - `sensitive`    enable case-sensitive routes
+       *   - `strict`       enable strict matching for trailing slashes
+       *
+       * @constructor
+       * @param {string} path
+       * @param {Object=} options
+       * @api private
+       */
+
+      function Route(path, options, page) {
+        var _page = this.page = page || globalPage;
+        var opts = options || {};
+        opts.strict = opts.strict || _page._strict;
+        this.path = (path === '*') ? '(.*)' : path;
+        this.method = 'GET';
+        this.regexp = pathToRegexp_1(this.path, this.keys = [], opts);
+      }
+
+      /**
+       * Return route middleware with
+       * the given callback `fn()`.
+       *
+       * @param {Function} fn
+       * @return {Function}
+       * @api public
+       */
+
+      Route.prototype.middleware = function(fn) {
+        var self = this;
+        return function(ctx, next) {
+          if (self.match(ctx.path, ctx.params)) {
+            ctx.routePath = self.path;
+            return fn(ctx, next);
+          }
+          next();
+        };
+      };
+
+      /**
+       * Check if this route matches `path`, if so
+       * populate `params`.
+       *
+       * @param {string} path
+       * @param {Object} params
+       * @return {boolean}
+       * @api private
+       */
+
+      Route.prototype.match = function(path, params) {
+        var keys = this.keys,
+          qsIndex = path.indexOf('?'),
+          pathname = ~qsIndex ? path.slice(0, qsIndex) : path,
+          m = this.regexp.exec(decodeURIComponent(pathname));
+
+        if (!m) return false;
+
+        delete params[0];
+
+        for (var i = 1, len = m.length; i < len; ++i) {
+          var key = keys[i - 1];
+          var val = this.page._decodeURLEncodedURIComponent(m[i]);
+          if (val !== undefined || !(hasOwnProperty.call(params, key.name))) {
+            params[key.name] = val;
+          }
+        }
+
+        return true;
+      };
+
+
+      /**
+       * Module exports.
+       */
+
+      var globalPage = createPage();
+      var page_js = globalPage;
+      var default_1 = globalPage;
+
+    page_js.default = default_1;
+
+    return page_js;
+
+    })));
+    });
+
+    /* src/pages/Constitution.svelte generated by Svelte v3.31.2 */
+
+    const file$c = "src/pages/Constitution.svelte";
+
+    function create_fragment$c(ctx) {
+    	let h1;
+
+    	const block = {
+    		c: function create() {
+    			h1 = element("h1");
+    			h1.textContent = "Constitution Page";
+    			add_location(h1, file$c, 0, 0, 0);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, h1, anchor);
+    		},
+    		p: noop,
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(h1);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$c.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$c($$self, $$props) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("Constitution", slots, []);
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Constitution> was created with unknown prop '${key}'`);
+    	});
+
+    	return [];
+    }
+
+    class Constitution extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$c, create_fragment$c, safe_not_equal, {});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "Constitution",
+    			options,
+    			id: create_fragment$c.name
+    		});
+    	}
+    }
+
+    /* src/pages/About.svelte generated by Svelte v3.31.2 */
+
+    function create_fragment$d(ctx) {
+    	let missionbar;
+    	let current;
+    	missionbar = new Mission_Bar({ $$inline: true });
+
+    	const block = {
+    		c: function create() {
+    			create_component(missionbar.$$.fragment);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(missionbar, target, anchor);
+    			current = true;
+    		},
+    		p: noop,
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(missionbar.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(missionbar.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(missionbar, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$d.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$d($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("About", slots, []);
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<About> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$capture_state = () => ({ MissionBar: Mission_Bar });
+    	return [];
+    }
+
+    class About extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$d, create_fragment$d, safe_not_equal, {});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "About",
+    			options,
+    			id: create_fragment$d.name
+    		});
+    	}
+    }
+
+    /* src/pages/Register.svelte generated by Svelte v3.31.2 */
+
+    const file$d = "src/pages/Register.svelte";
+
+    function create_fragment$e(ctx) {
+    	let section1;
+    	let div22;
+    	let div5;
+    	let h1;
+    	let t1;
+    	let section0;
+    	let div4;
+    	let div0;
+    	let p;
+    	let t2;
+    	let span0;
+    	let t4;
+    	let t5;
+    	let ul;
+    	let li0;
+    	let t7;
+    	let li1;
+    	let t9;
+    	let div3;
+    	let h2;
+    	let t11;
+    	let div2;
+    	let div1;
+    	let input0;
+    	let t12;
+    	let div20;
+    	let div12;
+    	let div6;
+    	let label0;
+    	let t13;
+    	let span1;
+    	let t15;
+    	let input1;
+    	let t16;
+    	let div7;
+    	let label1;
+    	let t17;
+    	let span2;
+    	let t19;
+    	let input2;
+    	let t20;
+    	let div8;
+    	let label2;
+    	let t21;
+    	let span3;
+    	let t23;
+    	let input3;
+    	let t24;
+    	let div9;
+    	let label3;
+    	let t25;
+    	let span4;
+    	let t27;
+    	let select0;
+    	let option0;
+    	let option1;
+    	let t30;
+    	let div10;
+    	let label4;
+    	let t31;
+    	let span5;
+    	let t33;
+    	let select1;
+    	let option2;
+    	let t35;
+    	let div11;
+    	let label5;
+    	let t36;
+    	let span6;
+    	let t38;
+    	let select2;
+    	let option3;
+    	let t40;
+    	let div19;
+    	let div13;
+    	let label6;
+    	let t41;
+    	let span7;
+    	let t43;
+    	let input4;
+    	let t44;
+    	let div14;
+    	let label7;
+    	let t45;
+    	let span8;
+    	let t47;
+    	let input5;
+    	let t48;
+    	let div15;
+    	let label8;
+    	let t49;
+    	let span9;
+    	let t51;
+    	let input6;
+    	let t52;
+    	let div16;
+    	let label9;
+    	let t53;
+    	let span10;
+    	let t55;
+    	let input7;
+    	let t56;
+    	let div17;
+    	let label10;
+    	let t57;
+    	let span11;
+    	let t59;
+    	let select3;
+    	let option4;
+    	let t61;
+    	let div18;
+    	let label11;
+    	let t62;
+    	let span12;
+    	let t64;
+    	let select4;
+    	let option5;
+    	let t66;
+    	let div21;
+    	let button;
+
+    	const block = {
+    		c: function create() {
+    			section1 = element("section");
+    			div22 = element("div");
+    			div5 = element("div");
+    			h1 = element("h1");
+    			h1.textContent = "Register";
+    			t1 = space();
+    			section0 = element("section");
+    			div4 = element("div");
+    			div0 = element("div");
+    			p = element("p");
+    			t2 = text("All fields marked ");
+    			span0 = element("span");
+    			span0.textContent = "*";
+    			t4 = text(" are all important");
+    			t5 = space();
+    			ul = element("ul");
+    			li0 = element("li");
+    			li0.textContent = "Please note that Full Name must contain at least First and Last Name preferably, a third name may be added.";
+    			t7 = space();
+    			li1 = element("li");
+    			li1.textContent = "Please provide at least a phone number and/or email address";
+    			t9 = space();
+    			div3 = element("div");
+    			h2 = element("h2");
+    			h2.textContent = "Upload Profile Picture";
+    			t11 = space();
+    			div2 = element("div");
+    			div1 = element("div");
+    			input0 = element("input");
+    			t12 = space();
+    			div20 = element("div");
+    			div12 = element("div");
+    			div6 = element("div");
+    			label0 = element("label");
+    			t13 = text("Full Name ");
+    			span1 = element("span");
+    			span1.textContent = "*";
+    			t15 = space();
+    			input1 = element("input");
+    			t16 = space();
+    			div7 = element("div");
+    			label1 = element("label");
+    			t17 = text("Password ");
+    			span2 = element("span");
+    			span2.textContent = "*";
+    			t19 = space();
+    			input2 = element("input");
+    			t20 = space();
+    			div8 = element("div");
+    			label2 = element("label");
+    			t21 = text("Telephone Number ");
+    			span3 = element("span");
+    			span3.textContent = "*";
+    			t23 = space();
+    			input3 = element("input");
+    			t24 = space();
+    			div9 = element("div");
+    			label3 = element("label");
+    			t25 = text("Gender");
+    			span4 = element("span");
+    			span4.textContent = "*";
+    			t27 = space();
+    			select0 = element("select");
+    			option0 = element("option");
+    			option0.textContent = "Male";
+    			option1 = element("option");
+    			option1.textContent = "Female";
+    			t30 = space();
+    			div10 = element("div");
+    			label4 = element("label");
+    			t31 = text("State");
+    			span5 = element("span");
+    			span5.textContent = "*";
+    			t33 = space();
+    			select1 = element("select");
+    			option2 = element("option");
+    			option2.textContent = "select state";
+    			t35 = space();
+    			div11 = element("div");
+    			label5 = element("label");
+    			t36 = text("Ward");
+    			span6 = element("span");
+    			span6.textContent = "*";
+    			t38 = space();
+    			select2 = element("select");
+    			option3 = element("option");
+    			option3.textContent = "select ward";
+    			t40 = space();
+    			div19 = element("div");
+    			div13 = element("div");
+    			label6 = element("label");
+    			t41 = text("PVC Number ");
+    			span7 = element("span");
+    			span7.textContent = "*";
+    			t43 = space();
+    			input4 = element("input");
+    			t44 = space();
+    			div14 = element("div");
+    			label7 = element("label");
+    			t45 = text("Confirm Password ");
+    			span8 = element("span");
+    			span8.textContent = "*";
+    			t47 = space();
+    			input5 = element("input");
+    			t48 = space();
+    			div15 = element("div");
+    			label8 = element("label");
+    			t49 = text("Email Address ");
+    			span9 = element("span");
+    			span9.textContent = "*";
+    			t51 = space();
+    			input6 = element("input");
+    			t52 = space();
+    			div16 = element("div");
+    			label9 = element("label");
+    			t53 = text("Date of Birth ");
+    			span10 = element("span");
+    			span10.textContent = "*";
+    			t55 = space();
+    			input7 = element("input");
+    			t56 = space();
+    			div17 = element("div");
+    			label10 = element("label");
+    			t57 = text("Local Goverment Area ");
+    			span11 = element("span");
+    			span11.textContent = "*";
+    			t59 = space();
+    			select3 = element("select");
+    			option4 = element("option");
+    			option4.textContent = "select LGA";
+    			t61 = space();
+    			div18 = element("div");
+    			label11 = element("label");
+    			t62 = text("Voting Unit ");
+    			span12 = element("span");
+    			span12.textContent = "*";
+    			t64 = space();
+    			select4 = element("select");
+    			option5 = element("option");
+    			option5.textContent = "select voting unit";
+    			t66 = space();
+    			div21 = element("div");
+    			button = element("button");
+    			button.textContent = "Sign Up";
+    			attr_dev(h1, "class", "sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900");
+    			add_location(h1, file$d, 5, 8, 161);
+    			attr_dev(span0, "class", "text-red-500");
+    			add_location(span0, file$d, 9, 76, 583);
+    			attr_dev(p, "class", "leading-relaxed text-base mb-3");
+    			add_location(p, file$d, 9, 16, 523);
+    			attr_dev(li0, "class", "mb-4");
+    			add_location(li0, file$d, 11, 20, 700);
+    			attr_dev(li1, "class", "mb-4");
+    			add_location(li1, file$d, 12, 20, 850);
+    			attr_dev(ul, "class", "list-disc");
+    			add_location(ul, file$d, 10, 16, 657);
+    			attr_dev(div0, "class", "md:w-1/2 md:pr-12 md:py-8 md:border-r md:border-b-0 mb-10 md:mb-0 pb-10 border-b border-gray-200");
+    			add_location(div0, file$d, 8, 14, 396);
+    			attr_dev(h2, "class", "title-font font-semibold text-gray-800 tracking-wider text-sm mb-3");
+    			add_location(h2, file$d, 16, 16, 1051);
+    			attr_dev(input0, "type", "file");
+    			attr_dev(input0, "name", "ppics");
+    			attr_dev(input0, "id", "fileupload");
+    			attr_dev(input0, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out");
+    			add_location(input0, file$d, 20, 22, 1280);
+    			attr_dev(div1, "class", "mt-2 flex items-center");
+    			add_location(div1, file$d, 19, 20, 1221);
+    			add_location(div2, file$d, 17, 16, 1174);
+    			attr_dev(div3, "class", "flex flex-col md:w-1/2 md:pl-12");
+    			add_location(div3, file$d, 15, 14, 989);
+    			attr_dev(div4, "class", "container flex flex-wrap px-5 py-5 mx-auto items-center");
+    			add_location(div4, file$d, 7, 12, 312);
+    			attr_dev(section0, "class", "text-gray-600 body-font");
+    			add_location(section0, file$d, 6, 8, 258);
+    			attr_dev(div5, "class", "flex flex-col text-justify w-full mb-12");
+    			add_location(div5, file$d, 4, 6, 99);
+    			attr_dev(span1, "class", "text-red-500");
+    			add_location(span1, file$d, 33, 76, 1985);
+    			attr_dev(label0, "for", "fullname");
+    			attr_dev(label0, "class", "leading-7 text-sm text-gray-600");
+    			add_location(label0, file$d, 33, 4, 1913);
+    			attr_dev(input1, "type", "text");
+    			attr_dev(input1, "id", "fullname");
+    			attr_dev(input1, "name", "fullname");
+    			attr_dev(input1, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out");
+    			add_location(input1, file$d, 34, 4, 2033);
+    			attr_dev(div6, "class", "relative mb-4");
+    			add_location(div6, file$d, 32, 0, 1881);
+    			attr_dev(span2, "class", "text-red-500");
+    			add_location(span2, file$d, 37, 75, 2401);
+    			attr_dev(label1, "for", "fullname");
+    			attr_dev(label1, "class", "leading-7 text-sm text-gray-600");
+    			add_location(label1, file$d, 37, 4, 2330);
+    			attr_dev(input2, "type", "text");
+    			attr_dev(input2, "id", "fullname");
+    			attr_dev(input2, "name", "fullname");
+    			attr_dev(input2, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out");
+    			add_location(input2, file$d, 38, 4, 2449);
+    			attr_dev(div7, "class", "relative mb-4");
+    			add_location(div7, file$d, 36, 0, 2298);
+    			attr_dev(span3, "class", "text-red-500");
+    			add_location(span3, file$d, 41, 83, 2827);
+    			attr_dev(label2, "for", "fullname");
+    			attr_dev(label2, "class", "leading-7 text-sm text-gray-600");
+    			add_location(label2, file$d, 41, 4, 2748);
+    			attr_dev(input3, "type", "text");
+    			attr_dev(input3, "id", "fullname");
+    			attr_dev(input3, "name", "fullname");
+    			attr_dev(input3, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out");
+    			add_location(input3, file$d, 42, 4, 2875);
+    			attr_dev(div8, "class", "relative mb-4");
+    			add_location(div8, file$d, 40, 0, 2716);
+    			attr_dev(span4, "class", "text-red-500");
+    			add_location(span4, file$d, 45, 72, 3242);
+    			attr_dev(label3, "for", "fullname");
+    			attr_dev(label3, "class", "leading-7 text-sm text-gray-600");
+    			add_location(label3, file$d, 45, 4, 3174);
+    			option0.__value = "male";
+    			option0.value = option0.__value;
+    			add_location(option0, file$d, 47, 8, 3545);
+    			option1.__value = "female";
+    			option1.value = option1.__value;
+    			add_location(option1, file$d, 48, 8, 3589);
+    			attr_dev(select0, "id", "fullname");
+    			attr_dev(select0, "name", "fullname");
+    			attr_dev(select0, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out");
+    			add_location(select0, file$d, 46, 4, 3290);
+    			attr_dev(div9, "class", "relative mb-4");
+    			add_location(div9, file$d, 44, 0, 3142);
+    			attr_dev(span5, "class", "text-red-500");
+    			add_location(span5, file$d, 52, 71, 3751);
+    			attr_dev(label4, "for", "fullname");
+    			attr_dev(label4, "class", "leading-7 text-sm text-gray-600");
+    			add_location(label4, file$d, 52, 4, 3684);
+    			option2.__value = "";
+    			option2.value = option2.__value;
+    			add_location(option2, file$d, 54, 8, 4054);
+    			attr_dev(select1, "id", "fullname");
+    			attr_dev(select1, "name", "fullname");
+    			attr_dev(select1, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out");
+    			add_location(select1, file$d, 53, 4, 3799);
+    			attr_dev(div10, "class", "relative mb-4");
+    			add_location(div10, file$d, 51, 0, 3652);
+    			attr_dev(span6, "class", "text-red-500");
+    			add_location(span6, file$d, 59, 70, 4223);
+    			attr_dev(label5, "for", "fullname");
+    			attr_dev(label5, "class", "leading-7 text-sm text-gray-600");
+    			add_location(label5, file$d, 59, 4, 4157);
+    			option3.__value = "";
+    			option3.value = option3.__value;
+    			add_location(option3, file$d, 61, 8, 4526);
+    			attr_dev(select2, "id", "fullname");
+    			attr_dev(select2, "name", "fullname");
+    			attr_dev(select2, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out");
+    			add_location(select2, file$d, 60, 4, 4271);
+    			attr_dev(div11, "class", "relative mb-4");
+    			add_location(div11, file$d, 58, 0, 4125);
+    			attr_dev(div12, "class", "relative flex-grow w-full");
+    			add_location(div12, file$d, 30, 0, 1817);
+    			attr_dev(span7, "class", "text-red-500");
+    			add_location(span7, file$d, 72, 82, 4801);
+    			attr_dev(label6, "for", "email");
+    			attr_dev(label6, "class", "leading-7 text-sm text-gray-600");
+    			add_location(label6, file$d, 72, 12, 4731);
+    			attr_dev(input4, "type", "email");
+    			attr_dev(input4, "id", "email");
+    			attr_dev(input4, "name", "email");
+    			attr_dev(input4, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out");
+    			add_location(input4, file$d, 73, 12, 4859);
+    			attr_dev(div13, "class", "relative mb-4");
+    			add_location(div13, file$d, 71, 9, 4691);
+    			attr_dev(span8, "class", "text-red-500");
+    			add_location(span8, file$d, 77, 88, 5263);
+    			attr_dev(label7, "for", "email");
+    			attr_dev(label7, "class", "leading-7 text-sm text-gray-600");
+    			add_location(label7, file$d, 77, 12, 5187);
+    			attr_dev(input5, "type", "email");
+    			attr_dev(input5, "id", "email");
+    			attr_dev(input5, "name", "email");
+    			attr_dev(input5, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out");
+    			add_location(input5, file$d, 78, 12, 5320);
+    			attr_dev(div14, "class", "relative mb-4");
+    			add_location(div14, file$d, 76, 10, 5147);
+    			attr_dev(span9, "class", "text-red-500");
+    			add_location(span9, file$d, 81, 85, 5714);
+    			attr_dev(label8, "for", "email");
+    			attr_dev(label8, "class", "leading-7 text-sm text-gray-600");
+    			add_location(label8, file$d, 81, 12, 5641);
+    			attr_dev(input6, "type", "email");
+    			attr_dev(input6, "id", "email");
+    			attr_dev(input6, "name", "email");
+    			attr_dev(input6, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out");
+    			add_location(input6, file$d, 82, 12, 5771);
+    			attr_dev(div15, "class", "relative mb-4");
+    			add_location(div15, file$d, 80, 10, 5601);
+    			attr_dev(span10, "class", "text-red-500");
+    			add_location(span10, file$d, 85, 85, 6165);
+    			attr_dev(label9, "for", "email");
+    			attr_dev(label9, "class", "leading-7 text-sm text-gray-600");
+    			add_location(label9, file$d, 85, 12, 6092);
+    			attr_dev(input7, "type", "date");
+    			attr_dev(input7, "id", "email");
+    			attr_dev(input7, "name", "email");
+    			attr_dev(input7, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out");
+    			add_location(input7, file$d, 86, 12, 6222);
+    			attr_dev(div16, "class", "relative mb-4");
+    			add_location(div16, file$d, 84, 10, 6052);
+    			attr_dev(span11, "class", "text-red-500");
+    			add_location(span11, file$d, 89, 92, 6622);
+    			attr_dev(label10, "for", "email");
+    			attr_dev(label10, "class", "leading-7 text-sm text-gray-600");
+    			add_location(label10, file$d, 89, 12, 6542);
+    			option4.__value = "";
+    			option4.value = option4.__value;
+    			add_location(option4, file$d, 91, 16, 6942);
+    			attr_dev(select3, "id", "fullname");
+    			attr_dev(select3, "name", "fullname");
+    			attr_dev(select3, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out");
+    			add_location(select3, file$d, 90, 12, 6679);
+    			attr_dev(div17, "class", "relative mb-4");
+    			add_location(div17, file$d, 88, 10, 6502);
+    			attr_dev(span12, "class", "text-red-500");
+    			add_location(span12, file$d, 96, 83, 7157);
+    			attr_dev(label11, "for", "email");
+    			attr_dev(label11, "class", "leading-7 text-sm text-gray-600");
+    			add_location(label11, file$d, 96, 12, 7086);
+    			option5.__value = "";
+    			option5.value = option5.__value;
+    			add_location(option5, file$d, 98, 16, 7477);
+    			attr_dev(select4, "id", "fullname");
+    			attr_dev(select4, "name", "fullname");
+    			attr_dev(select4, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out");
+    			add_location(select4, file$d, 97, 12, 7214);
+    			attr_dev(div18, "class", "relative mb-4");
+    			add_location(div18, file$d, 95, 10, 7046);
+    			attr_dev(div19, "class", "relative flex-grow w-full");
+    			add_location(div19, file$d, 69, 0, 4609);
+    			attr_dev(div20, "class", "flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end");
+    			add_location(div20, file$d, 28, 6, 1693);
+    			attr_dev(button, "class", "text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg mx-auto my-3");
+    			add_location(button, file$d, 105, 43, 7659);
+    			attr_dev(div21, "class", "container mx-auto w-32");
+    			add_location(div21, file$d, 105, 6, 7622);
+    			attr_dev(div22, "class", "container px-5 py-24 mx-auto");
+    			add_location(div22, file$d, 3, 4, 50);
+    			attr_dev(section1, "class", "text-gray-600 body-font");
+    			add_location(section1, file$d, 2, 2, 4);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, section1, anchor);
+    			append_dev(section1, div22);
+    			append_dev(div22, div5);
+    			append_dev(div5, h1);
+    			append_dev(div5, t1);
+    			append_dev(div5, section0);
+    			append_dev(section0, div4);
+    			append_dev(div4, div0);
+    			append_dev(div0, p);
+    			append_dev(p, t2);
+    			append_dev(p, span0);
+    			append_dev(p, t4);
+    			append_dev(div0, t5);
+    			append_dev(div0, ul);
+    			append_dev(ul, li0);
+    			append_dev(ul, t7);
+    			append_dev(ul, li1);
+    			append_dev(div4, t9);
+    			append_dev(div4, div3);
+    			append_dev(div3, h2);
+    			append_dev(div3, t11);
+    			append_dev(div3, div2);
+    			append_dev(div2, div1);
+    			append_dev(div1, input0);
+    			append_dev(div22, t12);
+    			append_dev(div22, div20);
+    			append_dev(div20, div12);
+    			append_dev(div12, div6);
+    			append_dev(div6, label0);
+    			append_dev(label0, t13);
+    			append_dev(label0, span1);
+    			append_dev(div6, t15);
+    			append_dev(div6, input1);
+    			append_dev(div12, t16);
+    			append_dev(div12, div7);
+    			append_dev(div7, label1);
+    			append_dev(label1, t17);
+    			append_dev(label1, span2);
+    			append_dev(div7, t19);
+    			append_dev(div7, input2);
+    			append_dev(div12, t20);
+    			append_dev(div12, div8);
+    			append_dev(div8, label2);
+    			append_dev(label2, t21);
+    			append_dev(label2, span3);
+    			append_dev(div8, t23);
+    			append_dev(div8, input3);
+    			append_dev(div12, t24);
+    			append_dev(div12, div9);
+    			append_dev(div9, label3);
+    			append_dev(label3, t25);
+    			append_dev(label3, span4);
+    			append_dev(div9, t27);
+    			append_dev(div9, select0);
+    			append_dev(select0, option0);
+    			append_dev(select0, option1);
+    			append_dev(div12, t30);
+    			append_dev(div12, div10);
+    			append_dev(div10, label4);
+    			append_dev(label4, t31);
+    			append_dev(label4, span5);
+    			append_dev(div10, t33);
+    			append_dev(div10, select1);
+    			append_dev(select1, option2);
+    			append_dev(div12, t35);
+    			append_dev(div12, div11);
+    			append_dev(div11, label5);
+    			append_dev(label5, t36);
+    			append_dev(label5, span6);
+    			append_dev(div11, t38);
+    			append_dev(div11, select2);
+    			append_dev(select2, option3);
+    			append_dev(div20, t40);
+    			append_dev(div20, div19);
+    			append_dev(div19, div13);
+    			append_dev(div13, label6);
+    			append_dev(label6, t41);
+    			append_dev(label6, span7);
+    			append_dev(div13, t43);
+    			append_dev(div13, input4);
+    			append_dev(div19, t44);
+    			append_dev(div19, div14);
+    			append_dev(div14, label7);
+    			append_dev(label7, t45);
+    			append_dev(label7, span8);
+    			append_dev(div14, t47);
+    			append_dev(div14, input5);
+    			append_dev(div19, t48);
+    			append_dev(div19, div15);
+    			append_dev(div15, label8);
+    			append_dev(label8, t49);
+    			append_dev(label8, span9);
+    			append_dev(div15, t51);
+    			append_dev(div15, input6);
+    			append_dev(div19, t52);
+    			append_dev(div19, div16);
+    			append_dev(div16, label9);
+    			append_dev(label9, t53);
+    			append_dev(label9, span10);
+    			append_dev(div16, t55);
+    			append_dev(div16, input7);
+    			append_dev(div19, t56);
+    			append_dev(div19, div17);
+    			append_dev(div17, label10);
+    			append_dev(label10, t57);
+    			append_dev(label10, span11);
+    			append_dev(div17, t59);
+    			append_dev(div17, select3);
+    			append_dev(select3, option4);
+    			append_dev(div19, t61);
+    			append_dev(div19, div18);
+    			append_dev(div18, label11);
+    			append_dev(label11, t62);
+    			append_dev(label11, span12);
+    			append_dev(div18, t64);
+    			append_dev(div18, select4);
+    			append_dev(select4, option5);
+    			append_dev(div22, t66);
+    			append_dev(div22, div21);
+    			append_dev(div21, button);
+    		},
+    		p: noop,
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(section1);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$e.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$e($$self, $$props) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("Register", slots, []);
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Register> was created with unknown prop '${key}'`);
+    	});
+
+    	return [];
+    }
+
+    class Register extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$e, create_fragment$e, safe_not_equal, {});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "Register",
+    			options,
+    			id: create_fragment$e.name
+    		});
+    	}
+    }
+
+    /* src/pages/Candidates.svelte generated by Svelte v3.31.2 */
+
+    const file$e = "src/pages/Candidates.svelte";
+
+    function get_each_context$2(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[1] = list[i];
+    	return child_ctx;
+    }
+
+    // (23:8) {#each biographies as bio}
+    function create_each_block$2(ctx) {
+    	let div2;
+    	let div0;
+    	let span;
+    	let img;
+    	let img_src_value;
+    	let t0;
+    	let div1;
+    	let h1;
+    	let t1_value = /*bio*/ ctx[1].name + "";
+    	let t1;
+    	let t2;
+    	let h3;
+    	let t3_value = /*bio*/ ctx[1].position + "";
+    	let t3;
+    	let t4;
+    	let p;
+    	let t5_value = /*bio*/ ctx[1].bio + "";
+    	let t5;
+    	let t6;
+
+    	const block = {
+    		c: function create() {
+    			div2 = element("div");
+    			div0 = element("div");
+    			span = element("span");
+    			img = element("img");
+    			t0 = space();
+    			div1 = element("div");
+    			h1 = element("h1");
+    			t1 = text(t1_value);
+    			t2 = space();
+    			h3 = element("h3");
+    			t3 = text(t3_value);
+    			t4 = space();
+    			p = element("p");
+    			t5 = text(t5_value);
+    			t6 = space();
+    			if (img.src !== (img_src_value = /*bio*/ ctx[1].image)) attr_dev(img, "src", img_src_value);
+    			attr_dev(img, "alt", "");
+    			add_location(img, file$e, 25, 66, 3165);
+    			attr_dev(span, "class", "font-semibold title-font text-gray-700");
+    			add_location(span, file$e, 25, 12, 3111);
+    			attr_dev(div0, "class", "md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col");
+    			add_location(div0, file$e, 24, 10, 3036);
+    			attr_dev(h1, "class", "text-2xl font-medium text-red-900 title-font mb-2");
+    			add_location(h1, file$e, 29, 12, 3280);
+    			attr_dev(h3, "class", "text-2xl font-medium text-blue-900 title-font mb-2");
+    			add_location(h3, file$e, 30, 12, 3370);
+    			attr_dev(p, "class", "leading-relaxed");
+    			add_location(p, file$e, 31, 12, 3465);
+    			attr_dev(div1, "class", "md:flex-grow");
+    			add_location(div1, file$e, 28, 10, 3241);
+    			attr_dev(div2, "class", "py-8 flex flex-wrap md:flex-nowrap");
+    			add_location(div2, file$e, 23, 8, 2977);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div2, anchor);
+    			append_dev(div2, div0);
+    			append_dev(div0, span);
+    			append_dev(span, img);
+    			append_dev(div2, t0);
+    			append_dev(div2, div1);
+    			append_dev(div1, h1);
+    			append_dev(h1, t1);
+    			append_dev(div1, t2);
+    			append_dev(div1, h3);
+    			append_dev(h3, t3);
+    			append_dev(div1, t4);
+    			append_dev(div1, p);
+    			append_dev(p, t5);
+    			append_dev(div2, t6);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div2);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block$2.name,
+    		type: "each",
+    		source: "(23:8) {#each biographies as bio}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$f(ctx) {
+    	let section;
+    	let div1;
+    	let div0;
+    	let each_value = /*biographies*/ ctx[0];
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$2(get_each_context$2(ctx, each_value, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			section = element("section");
+    			div1 = element("div");
+    			div0 = element("div");
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			attr_dev(div0, "class", "-my-8 divide-y-2 divide-gray-100");
+    			add_location(div0, file$e, 21, 6, 2887);
+    			attr_dev(div1, "class", "container px-5 py-24 mx-auto");
+    			add_location(div1, file$e, 20, 4, 2838);
+    			attr_dev(section, "class", "text-gray-600 body-font overflow-hidden");
+    			add_location(section, file$e, 19, 0, 2776);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, section, anchor);
+    			append_dev(section, div1);
+    			append_dev(div1, div0);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(div0, null);
+    			}
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*biographies*/ 1) {
+    				each_value = /*biographies*/ ctx[0];
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$2(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block$2(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(div0, null);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(section);
+    			destroy_each(each_blocks, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$f.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$f($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("Candidates", slots, []);
+
+    	const biographies = [
+    		{
+    			name: "Engr. Yabagi Y. Sani",
+    			image: "../nChairman.jpg",
+    			position: "ADP Presidential Candidate",
+    			bio: "Engr. Yabagi Yusuf Sani is one of the leading lights in Nigerian Politics and Corporate Business World. Born on July 1, 1954 Yabagi Yusuf Sani attended East Primary School, Bida and Technical Secondary School, Kotangora, Niger State, Nigeria. He later proceeded to the Institute of Technology, New York, USA. Yabagi is also a product of Colombia University, New York, USA where he studied Industrial and Management Engineering with emphasis in Operations Research. Yabagi also attended an Executive Management Program in Havard Business School in Boston Massachusetts. Since his graduation and completion of the mandatory one - year National Youth Service (NYSC) in Nigeria, Engr. Yabagi has been a key player in Nigeria's Oil and Gas sector where he has helped the Government of Nigeria in the development of innovative schemes and strategies to block leakages in the ever porous sector.  "
+    		},
+    		{
+    			name: "Martin Kunle Olateru-Olagbegi",
+    			image: "../nChairman.jpg",
+    			position: "ADP Vice Presidential Candidate",
+    			bio: "Martin Kunle Olateru-Olagbegi, was born in Owo, Ondo State, Nigeria. Educated at Owo Government School and Olivet Baptist High School in Oyo, Martin's exceptional academic and athletic accomplishments opened numerous doors for him. As a teenager, Martin received a variety of admission and scholarship offers from colleges and universities throughout the United States, and ultimately decided to study architecture at Prairie View A & M University in Texas As a degreed architect, Martin quickly secured a position at ATTI in Baltimore, Maryland where he worked for two years before moving to Atlanta in 1986. For the next ten years, he served as the architectural program coordinator for the City of Atlanta overseeing complex projects such as the municipal court, firehouses, the city jail, traffic court, and the City Halt Annex. He had oversight of twenty-seven buildings, numerous employees, and an operational budget of over a $100,000,000. In 1996, Martin, recognized for his acute business acumen, founded Nite, Inc., a design, construction and environmental management firm where he served as president and chief executive officer. Headquartered in Atlanta, Georgia, Nile, Inc, had offices in Corpus Christi, Texas and Barnwell, South Carolina. Other locations included Alabama, Mississippi, Kissmmee, Florida and Washington, D.C. These outfits provided viable employment opportunities to numerous individuals, subcontractors and suppliers throughout the northeast and southeast regions of the United States."
+    		}
+    	];
+
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Candidates> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$capture_state = () => ({ biographies });
+    	return [biographies];
+    }
+
+    class Candidates extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$f, create_fragment$f, safe_not_equal, {});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "Candidates",
+    			options,
+    			id: create_fragment$f.name
+    		});
+    	}
+    }
+
+    /* src/pages/Contact.svelte generated by Svelte v3.31.2 */
+
+    const file$f = "src/pages/Contact.svelte";
+
+    function create_fragment$g(ctx) {
+    	let section;
+    	let div0;
+    	let iframe;
+    	let iframe_src_value;
+    	let t0;
+    	let div4;
+    	let div3;
+    	let h2;
+    	let t2;
+    	let p;
+    	let t4;
+    	let div1;
+    	let label0;
+    	let t6;
+    	let input;
+    	let t7;
+    	let div2;
+    	let label1;
+    	let t9;
+    	let textarea;
+    	let t10;
+    	let button;
+
+    	const block = {
+    		c: function create() {
+    			section = element("section");
+    			div0 = element("div");
+    			iframe = element("iframe");
+    			t0 = space();
+    			div4 = element("div");
+    			div3 = element("div");
+    			h2 = element("h2");
+    			h2.textContent = "Feedback";
+    			t2 = space();
+    			p = element("p");
+    			p.textContent = "You can always send us a feedback";
+    			t4 = space();
+    			div1 = element("div");
+    			label0 = element("label");
+    			label0.textContent = "Email";
+    			t6 = space();
+    			input = element("input");
+    			t7 = space();
+    			div2 = element("div");
+    			label1 = element("label");
+    			label1.textContent = "Message";
+    			t9 = space();
+    			textarea = element("textarea");
+    			t10 = space();
+    			button = element("button");
+    			button.textContent = "send";
+    			if (iframe.src !== (iframe_src_value = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.2139260587282!2d7.507858714214417!3d9.04424109124171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0be9bcd5569d%3A0x7eef065db100e1f8!2sAction%20Democratic%20Party!5e0!3m2!1sen!2sng!4v1610724214291!5m2!1sen!2sng")) attr_dev(iframe, "src", iframe_src_value);
+    			attr_dev(iframe, "width", "600");
+    			attr_dev(iframe, "height", "450");
+    			attr_dev(iframe, "frameborder", "0");
+    			set_style(iframe, "border", "0");
+    			iframe.allowFullscreen = "";
+    			attr_dev(iframe, "aria-hidden", "false");
+    			attr_dev(iframe, "tabindex", "0");
+    			add_location(iframe, file$f, 2, 8, 106);
+    			attr_dev(div0, "class", "absolute inset-0 bg-gray-300");
+    			add_location(div0, file$f, 1, 4, 55);
+    			attr_dev(h2, "class", "text-white text-lg mb-1 font-medium title-font");
+    			add_location(h2, file$f, 6, 8, 727);
+    			attr_dev(p, "class", "leading-relaxed mb-5 text-gray-600");
+    			add_location(p, file$f, 7, 8, 808);
+    			attr_dev(label0, "for", "email");
+    			attr_dev(label0, "class", "leading-7 text-sm text-gray-600");
+    			add_location(label0, file$f, 9, 10, 938);
+    			attr_dev(input, "type", "email");
+    			attr_dev(input, "id", "email");
+    			attr_dev(input, "name", "email");
+    			attr_dev(input, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out");
+    			add_location(input, file$f, 10, 10, 1021);
+    			attr_dev(div1, "class", "relative mb-4");
+    			add_location(div1, file$f, 8, 8, 900);
+    			attr_dev(label1, "for", "message");
+    			attr_dev(label1, "class", "leading-7 text-sm text-gray-600");
+    			add_location(label1, file$f, 13, 10, 1335);
+    			attr_dev(textarea, "id", "message");
+    			attr_dev(textarea, "name", "message");
+    			attr_dev(textarea, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out");
+    			add_location(textarea, file$f, 14, 10, 1422);
+    			attr_dev(div2, "class", "relative mb-4");
+    			add_location(div2, file$f, 12, 8, 1297);
+    			attr_dev(button, "class", "text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg");
+    			add_location(button, file$f, 16, 8, 1720);
+    			attr_dev(div3, "class", "lg:w-1/3 md:w-1/2 bg-gray-900 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0 relative z-10 shadow-md");
+    			add_location(div3, file$f, 5, 6, 590);
+    			attr_dev(div4, "class", "container px-5 py-24 mx-auto flex");
+    			add_location(div4, file$f, 4, 4, 536);
+    			attr_dev(section, "class", "text-gray-600 body-font relative");
+    			add_location(section, file$f, 0, 0, 0);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, section, anchor);
+    			append_dev(section, div0);
+    			append_dev(div0, iframe);
+    			append_dev(section, t0);
+    			append_dev(section, div4);
+    			append_dev(div4, div3);
+    			append_dev(div3, h2);
+    			append_dev(div3, t2);
+    			append_dev(div3, p);
+    			append_dev(div3, t4);
+    			append_dev(div3, div1);
+    			append_dev(div1, label0);
+    			append_dev(div1, t6);
+    			append_dev(div1, input);
+    			append_dev(div3, t7);
+    			append_dev(div3, div2);
+    			append_dev(div2, label1);
+    			append_dev(div2, t9);
+    			append_dev(div2, textarea);
+    			append_dev(div3, t10);
+    			append_dev(div3, button);
+    		},
+    		p: noop,
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(section);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$g.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$g($$self, $$props) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("Contact", slots, []);
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Contact> was created with unknown prop '${key}'`);
+    	});
+
+    	return [];
+    }
+
+    class Contact extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$g, create_fragment$g, safe_not_equal, {});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "Contact",
+    			options,
+    			id: create_fragment$g.name
+    		});
+    	}
+    }
+
+    /* src/App.svelte generated by Svelte v3.31.2 */
+    const file$g = "src/App.svelte";
+
+    function create_fragment$h(ctx) {
+    	let navbar;
+    	let t0;
+    	let main;
+    	let switch_instance;
+    	let t1;
+    	let footer;
+    	let current;
+    	navbar = new Navbar({ $$inline: true });
+    	var switch_value = /*page*/ ctx[0];
+
+    	function switch_props(ctx) {
+    		return { $$inline: true };
+    	}
+
+    	if (switch_value) {
+    		switch_instance = new switch_value(switch_props());
+    	}
+
+    	footer = new Footer({ $$inline: true });
+
+    	const block = {
+    		c: function create() {
+    			create_component(navbar.$$.fragment);
+    			t0 = space();
+    			main = element("main");
+    			if (switch_instance) create_component(switch_instance.$$.fragment);
+    			t1 = space();
+    			create_component(footer.$$.fragment);
+    			add_location(main, file$g, 27, 0, 855);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(navbar, target, anchor);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, main, anchor);
+
+    			if (switch_instance) {
+    				mount_component(switch_instance, main, null);
+    			}
+
+    			insert_dev(target, t1, anchor);
+    			mount_component(footer, target, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (switch_value !== (switch_value = /*page*/ ctx[0])) {
+    				if (switch_instance) {
+    					group_outros();
+    					const old_component = switch_instance;
+
+    					transition_out(old_component.$$.fragment, 1, 0, () => {
+    						destroy_component(old_component, 1);
+    					});
+
+    					check_outros();
+    				}
+
+    				if (switch_value) {
+    					switch_instance = new switch_value(switch_props());
+    					create_component(switch_instance.$$.fragment);
+    					transition_in(switch_instance.$$.fragment, 1);
+    					mount_component(switch_instance, main, null);
+    				} else {
+    					switch_instance = null;
+    				}
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(navbar.$$.fragment, local);
+    			if (switch_instance) transition_in(switch_instance.$$.fragment, local);
+    			transition_in(footer.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(navbar.$$.fragment, local);
+    			if (switch_instance) transition_out(switch_instance.$$.fragment, local);
+    			transition_out(footer.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(navbar, detaching);
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(main);
+    			if (switch_instance) destroy_component(switch_instance);
+    			if (detaching) detach_dev(t1);
+    			destroy_component(footer, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$h.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$h($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("App", slots, []);
+    	let page$1;
+    	page("/", () => $$invalidate(0, page$1 = Index));
+    	page("/structure", () => $$invalidate(0, page$1 = Structure));
+    	page("/constitution", () => $$invalidate(0, page$1 = Constitution));
+    	page("/about", () => $$invalidate(0, page$1 = About));
+    	page("/register", () => $$invalidate(0, page$1 = Register));
+    	page("/candidates", () => $$invalidate(0, page$1 = Candidates));
+    	page("/contact", () => $$invalidate(0, page$1 = Contact));
+    	page.start({ hashbang: true });
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<App> was created with unknown prop '${key}'`);
     	});
 
-    	$$self.$capture_state = () => ({ Index: Src });
-    	return [];
+    	$$self.$capture_state = () => ({
+    		Index,
+    		Structure,
+    		NavBar: Navbar,
+    		router: page,
+    		Constitution,
+    		About,
+    		Register,
+    		Candidates,
+    		Contact,
+    		Footer,
+    		page: page$1
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("page" in $$props) $$invalidate(0, page$1 = $$props.page);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [page$1];
     }
 
     class App extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$9, create_fragment$9, safe_not_equal, {});
+    		init(this, options, instance$h, create_fragment$h, safe_not_equal, {});
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
     			tagName: "App",
     			options,
-    			id: create_fragment$9.name
+    			id: create_fragment$h.name
     		});
     	}
     }

@@ -1,39 +1,59 @@
 <script> 
-import Hero from "./components/Hero/Hero.svelte";
-import Footer from "./components/Footer/Footer.svelte"
-import NewsBar from "./components/News_Panel/News_Bar.svelte"
-import MissionBar from "./components/Mission_Panel/Mission_Bar.svelte";
-import CardWithImage from "./components/Card/CardImage.svelte";
-import CTAForm from "./components/Forms/CTA_Form.svelte";
-import SideReg from "./components/Forms/SideRegForm.svelte";
+import Hero from "../components/Hero/Hero.svelte";
+import Footer from "../components/Footer/Footer.svelte"
+import NewsBar from "../components/News_Panel/News_Bar.svelte"
+import MissionBar from "../components/Mission_Panel/Mission_Bar.svelte";
+import CardWithImage from "../components/Card/CardImage.svelte";
+import CTAForm from "../components/Forms/CTA_Form.svelte";
+import SideReg from "../components/Forms/SideRegForm.svelte";
 
 const data = [ 
   {
       title:"Fact Number One",
       body:"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam repudiandae doloribus magni ratione accusamus accusantium quas odio veritatis dignissimos porro.",
-      footer:"Learn more"
+      footer:"Learn more",
+      img:"../nChairman.jpg"
   },
     {
       title:"Fact Number Two",
       body:"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam repudiandae doloribus magni ratione accusamus accusantium quas odio veritatis dignissimos porro.",
-      footer:"Learn more"
+      footer:"Learn more",
+      img:"../nChairman.jpg"
   },
     {
       title:"Fact Number Three",
       body:"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam repudiandae doloribus magni ratione accusamus accusantium quas odio veritatis dignissimos porro.",
-      footer:"Learn more"
+      footer:"Learn more",
+      img:"../nChairman.jpg"
   },
     {
       title:"Fact Number Four",
       body:"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam repudiandae doloribus magni ratione accusamus accusantium quas odio veritatis dignissimos porro.",
-      footer:"Learn more"
+      footer:"Learn more",
+      img:"../nChairman.jpg"
   },
 ]
     </script>
     
-     <main>
-       
-   <Hero />
+   
+   <Hero>
+   
+      <div slot="hero-texts" class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
+        <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Action Democratic Party</h1>
+        
+        <p class="mb-8 leading-relaxed">THE ACTION DEMOCRATIC PARTY (ADP) is a registered political party in Nigeria. The party was formed and established in 2017 to deal with the lapses that have over the years been complained about by Nigerians because the tenets of true democracy have been lost thereby giving some select few a godlike image where political parties are being dictated upon by the few and powerful.</p>
+        <div class="flex justify-center">
+          <button class="inline-flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg">Join Us!</button>
+          <button class="ml-4 inline-flex text-gray-700 bg-white py-2 px-6 focus:outline-none hover:text-red-500 rounded text-lg border-red-500">Explore</button>
+        </div>
+      </div>
+    
+    
+      <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6" slot="hero-image">
+        <img class="object-cover object-center rounded" alt="hero" src="../office.jpg">
+      </div> 
+  
+    </Hero>
    <section class="text-gray-600 body-font">
     <div class="container mx-auto px-5 py-4 mx-auto flex flex-wrap">
       <h1 class="py-4 text-lg font-medium title-font sm:text-3xl text-2xl ">Some facts...</h1>
@@ -92,8 +112,8 @@ const data = [
 <SideReg />
 
   <NewsBar />
-    </main>
-    <Footer />
+    
+    
     
     <style>
     

@@ -13,7 +13,7 @@ function openNav () {
     <div class="md:flex items-center justify-between">
         <div class="flex justify-between items-center">
             <div>
-                <a class="text-gray-800 dark:text-white text-xl font-bold md:text-2xl hover:text-gray-700 dark:hover:text-gray-300" href="#">
+                <a class="text-gray-800 dark:text-white text-xl font-bold md:text-2xl hover:text-gray-700 dark:hover:text-gray-300" href="/">
                     <img src="../adplogo.jpg" width="90" alt="adplogos">
                 </a>
             </div>
@@ -29,13 +29,13 @@ function openNav () {
     
         <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
         <div class="flex flex-col -mx-2 mt-2 md:mt-0 md:flex-row md:block {`${isNav? "block":"hidden"}`}" >
-            <a href="#" class="py-2 px-2 text-sm text-gray-800 dark:text-gray-200 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium md:mx-2">Home</a>
-            <a href="#" class="py-2 px-2 text-sm text-gray-800 dark:text-gray-200 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium md:mx-2">About Us</a>
-            <a href="#" class="py-2 px-2 text-sm text-gray-800 dark:text-gray-200 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium md:mx-2">Constitution </a>
-            <a href="#" class="py-2 px-2 text-sm text-gray-800 dark:text-gray-200 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium md:mx-2">Structure </a>
-            <a href="#" class="py-2 px-2 text-sm text-gray-800 dark:text-gray-200 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium md:mx-2">Register </a>
-            <a href="#" class="py-2 px-2 text-sm text-gray-800 dark:text-gray-200 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium md:mx-2">Candidates </a>
-            <a href="#" class="py-2 px-2 text-sm text-gray-800 dark:text-gray-200 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium md:mx-2">Contact Us </a>
+            <a href="/" class="py-2 px-2 text-sm text-gray-800 dark:text-gray-200 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium md:mx-2">Home</a>
+            <a href="/about" class="py-2 px-2 text-sm text-gray-800 dark:text-gray-200 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium md:mx-2">About Us</a>
+            <a href="/constitution" class="py-2 px-2 text-sm text-gray-800 dark:text-gray-200 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium md:mx-2">Constitution </a>
+            <a href="/structure" class="py-2 px-2 text-sm text-gray-800 dark:text-gray-200 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium md:mx-2">Structure </a>
+            <a href="/register" class="py-2 px-2 text-sm text-gray-800 dark:text-gray-200 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium md:mx-2">Register </a>
+            <a href="/candidates" class="py-2 px-2 text-sm text-gray-800 dark:text-gray-200 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium md:mx-2">Candidates </a>
+            <a href="contact" class="py-2 px-2 text-sm text-gray-800 dark:text-gray-200 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium md:mx-2">Contact Us </a>
         </div>
     </div>
 </nav>

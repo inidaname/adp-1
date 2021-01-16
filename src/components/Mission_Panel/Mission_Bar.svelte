@@ -6,13 +6,15 @@
   {
       title:"Mission",
       body:"To provide Responsive leadership that is transparent and accountable to the people.",
-      footer:""
+      footer:"",
+      img:"../rocketicon.png"
      
   },
     {
       title:"Vision",
       body:"A Secure, Stable and Egalitarian Nigeria where Democracy and Rule of Law Reign.",
-      footer:""
+      footer:"",
+      img:"../sendicon.png"
       
   },
     
