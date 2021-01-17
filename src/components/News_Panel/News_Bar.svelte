@@ -3,23 +3,23 @@
     {
       title:"ADP presidential candidate says oil money should be used to develop country",
       body:"Mr Yabagi Sani, the Action Democratic Party (ADP) presidential candidate, has experessed the need to use Nigeria’s oil revenue to develop the nation. ",
-      img:"../newsImg1.jpg",
+      img:"../withkunle.jpeg",
       footer:"Read more",
-      url:"https://www.facebook.com"
+      url:"https://medium.com/action-democratic-party/adp-presidential-candidate-says-oil-money-should-be-used-to-develop-country-b9d330ddf4b4"
   },
     {
-      title:"ADP presidential candidate says oil money should be used to develop country",
-      body:"Mr Yabagi Sani, the Action Democratic Party (ADP) presidential candidate, has experessed the need to use Nigeria’s oil revenue to develop the nation. ",
-      img:"../newsImg1.jpg",
+      title:"ADP Presidential Candidate, Sani Meet Obasanjo",
+      body:"The Presidential candidate of the Action Democratic Party (ADP), met with the former President, Chief Olusegun Obasanjo on Wednesday, the meeting took place at the Presidential library in Ogun State capital city, Abeokuta. ",
+      img:"../withobj.jpeg",
       footer:"Read more",
-      url:"https://www.facebook.com"
+      url:"https://medium.com/action-democratic-party/2019-adp-presidential-candidate-sani-meet-obasanjo-f95602ef175b"
   },
     {
-      title:"ADP presidential candidate says oil money should be used to develop country",
-      body:"Mr Yabagi Sani, the Action Democratic Party (ADP) presidential candidate, has experessed the need to use Nigeria’s oil revenue to develop the nation. ",
-      img:"../newsImg1.jpg",
+      title:"ADP Presidential Candidate, Engr YY Sani Recognized Internationally",
+      body:"United Nations honor Engr. Sani with the coveted UN Humanitarian Award in recognition of his contributions to the social, economic and political development in Africa . The historic event took place on Thursday 13th September 2018 at the UN Headquartrs in New York USA.",
+      img:"../withwhyte.jpeg",
       footer:"Read more",
-      url:"https://www.facebook.com"
+      url:"https://medium.com/action-democratic-party/pictorial-of-the-presidential-candidate-and-national-chairman-of-adp-engr-e30ecfce1079"
   },
   ]
   import CardWithImage  from "../Card/CardImage.svelte"

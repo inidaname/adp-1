@@ -35,30 +35,30 @@
     <input type="text" id="fullname" name="fullname" class="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
 </div>
 <div class="relative mb-4">
-    <label for="fullname" class="leading-7 text-sm text-gray-600">Password <span class="text-red-500">*</span></label>
-    <input type="text" id="fullname" name="fullname" class="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+    <label for="password" class="leading-7 text-sm text-gray-600">Password <span class="text-red-500">*</span></label>
+    <input type="text" id="password" name="password" class="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
   </div>
 <div class="relative mb-4">
-    <label for="fullname" class="leading-7 text-sm text-gray-600">Telephone Number <span class="text-red-500">*</span></label>
-    <input type="text" id="fullname" name="fullname" class="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+    <label for="phonenumber" class="leading-7 text-sm text-gray-600">Telephone Number <span class="text-red-500">*</span></label>
+    <input type="text" id="phonenumber" name="phonenumber" class="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
   </div>
 <div class="relative mb-4">
-    <label for="fullname" class="leading-7 text-sm text-gray-600">Gender<span class="text-red-500">*</span></label>
-    <select id="fullname" name="fullname" class="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out">
+    <label for="gender" class="leading-7 text-sm text-gray-600">Gender<span class="text-red-500">*</span></label>
+    <select id="gender" name="gender" class="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out">
         <option value="male"> Male</option>
         <option value="female"> Female</option>
     </select>
   </div>
 <div class="relative mb-4">
-    <label for="fullname" class="leading-7 text-sm text-gray-600">State<span class="text-red-500">*</span></label>
-    <select id="fullname" name="fullname" class="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out">
+    <label for="state" class="leading-7 text-sm text-gray-600">State<span class="text-red-500">*</span></label>
+    <select id="state" name="state" class="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out">
         <option value=""> select state</option>
        
     </select>
   </div>
 <div class="relative mb-4">
-    <label for="fullname" class="leading-7 text-sm text-gray-600">Ward<span class="text-red-500">*</span></label>
-    <select id="fullname" name="fullname" class="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out">
+    <label for="ward" class="leading-7 text-sm text-gray-600">Ward<span class="text-red-500">*</span></label>
+    <select id="ward" name="ward" class="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out">
         <option value=""> select ward</option>
     </select>
   </div>
@@ -70,32 +70,32 @@
 <div class="relative flex-grow w-full">
          <!-- Hello Side Two -->
          <div class="relative mb-4">
-            <label for="email" class="leading-7 text-sm text-gray-600">PVC Number <span class="text-red-500"> *</span> </label>
-            <input type="email" id="email" name="email" class="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            <label for="pvc_number" class="leading-7 text-sm text-gray-600">PVC Number <span class="text-red-500"> *</span> </label>
+            <input type="pvc_number" id="pvc_number" name="pvc_number" class="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
         </div>
          
           <div class="relative mb-4">
-            <label for="email" class="leading-7 text-sm text-gray-600">Confirm Password <span class="text-red-500"> *</span></label>
-            <input type="email" id="email" name="email" class="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            <label for="confirm_password" class="leading-7 text-sm text-gray-600">Confirm Password <span class="text-red-500"> *</span></label>
+            <input type="confirm_password" id="confirm_password" name="confirm_password" class="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
           </div> 
           <div class="relative mb-4">
             <label for="email" class="leading-7 text-sm text-gray-600">Email Address <span class="text-red-500"> *</span></label>
             <input type="email" id="email" name="email" class="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
           </div> 
           <div class="relative mb-4">
-            <label for="email" class="leading-7 text-sm text-gray-600">Date of Birth <span class="text-red-500"> *</span></label>
-            <input type="date" id="email" name="email" class="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            <label for="dob" class="leading-7 text-sm text-gray-600">Date of Birth <span class="text-red-500"> *</span></label>
+            <input type="date" id="dob" name="dob" class="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
           </div> 
           <div class="relative mb-4">
-            <label for="email" class="leading-7 text-sm text-gray-600">Local Goverment Area <span class="text-red-500"> *</span></label>
-            <select id="fullname" name="fullname" class="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            <label for="lga" class="leading-7 text-sm text-gray-600">Local Goverment Area <span class="text-red-500"> *</span></label>
+            <select id="lga" name="lga" class="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out">
                 <option value=""> select LGA</option>
                
             </select>
           </div> 
           <div class="relative mb-4">
-            <label for="email" class="leading-7 text-sm text-gray-600">Voting Unit <span class="text-red-500"> *</span></label>
-            <select id="fullname" name="fullname" class="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            <label for="voting_unit" class="leading-7 text-sm text-gray-600">Voting Unit <span class="text-red-500"> *</span></label>
+            <select id="voting_unit" name="voting_unit" class="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out">
                 <option value=""> select voting unit</option>
                
             </select>
@@ -103,7 +103,9 @@
         </div>
         
       </div>
-      <div class="container mx-auto w-32" ><button class="text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg mx-auto my-3">Sign Up</button></div>
+      <div class="container mx-auto w-32" ><button class="text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg mx-auto my-3">Sign Up</button> <br>
+        <p class="text-sm text-center"> Already have an account? <a href="/login" class="text-blue-500">Sign in</a> </p>
+      </div>
       
     </div>
   </section>

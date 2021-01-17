@@ -9,22 +9,49 @@ import Register from "./pages/Register.svelte";
 import Candidates from "./pages/Candidates.svelte";
 import Contact from "./pages/Contact.svelte";
 import Footer from "./components/Footer/Footer.svelte";
+import Login from "./pages/Login.svelte";
 let page; 
-router("/", ()=> page = Index )
-router("/structure", ()=> page = Structure );
-router("/constitution", ()=> page = Constitution );
-router("/about", ()=> page = About );
-router("/register", ()=> page = Register );
-router("/candidates", ()=> page = Candidates );
-router("/contact", ()=> page = Contact );
-
+let activePage;
+let segment;
+router("/", ()=>{ page = Index; 
+    // activePage="current"
+    segment = undefined
+    
+});
+router("/structure", ()=> {page = Structure;
+    // activePage="current"
+    segment= "structure"
+} );
+router("/constitution", ()=> {page = Constitution; 
+    // activePage="current"
+    segment="constitution"
+} );
+router("/about", ()=> {page = About ; 
+    // activePage="current"
+    segment ="about"
+});
+router("/register", ()=> {page = Register; 
+    // activePage="current"
+    segment ="register"
+} );
+router("/candidates", ()=> {page = Candidates; 
+    // activePage="current"
+    segment ="candidate"
+ });
+router("/contact", ()=> {page = Contact; 
+    // activePage="current"
+    segment = "contact"
+} );
+router("/login", ()=>{page = Login; 
+    // activePage="current"
+})
 router.start({
     hashbang:true
 })
 
 
 </script>
-<NavBar />
+<NavBar {segment} />
 <main>
     <svelte:component this={page}/>
 </main>

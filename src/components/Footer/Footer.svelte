@@ -1,10 +1,10 @@
-<footer class="text-gray-600 body-font bg-gray-400">
+<footer class="text-white body-font bg-gray-900 ">
     <div class="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
       <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left md:mt-0 mt-10">
         <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
             <img src="../adplogo.jpg" width="150" alt="adplogos">
         </a>
-        <p class="mt-2 text-sm text-gray-500">Air plant banjo lyft occupy retro adaptogen indego</p>
+        <p class="mt-2 text-sm text-gray-500">Action Democratic Party</p>
       </div>
       <div class="flex-grow flex flex-wrap md:pr-20 -mb-10 md:text-left text-center order-first">
         <div class="lg:w-1/2 md:w-1/2 w-full px-4">
