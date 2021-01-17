@@ -83,9 +83,9 @@ const data = [
  <!-- From the Chairman's Desk -->
 <section class="text-gray-600 body-font overflow-hidden">
   <div class="container px-5 py-4 mx-auto">
-    <div class="lg:w-4/5 mx-auto flex flex-wrap p-2">
+    <div class="lg:w-4/5 mx-auto flex flex-wrap p-2 items-center">
       <!-- svelte-ignore a11y-img-redundant-alt -->
-      <img alt="Chairman's photo" class="lg:w-1/2 w-full lg:h-auto h-64  rounded" src="../nChairman.jpg"/>
+      <img alt="Chairman's photo" class="lg:w-1/2 w-full lg:h-72 h-32 rounded" src="../nChairman.jpg"/>
       <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
         
         <h1 class="text-red-900 text-3xl title-font font-medium mb-1">From the Chairman's Desk</h1>
