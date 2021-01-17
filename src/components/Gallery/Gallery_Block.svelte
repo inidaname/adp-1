@@ -2,28 +2,28 @@
  import ImageCard from "../Card/ImageCard.svelte";
     const galleries = [
         {
-       img:"../blank.jpg", position:"Leader, ADP",
-            name:"No image"
+       img:"../adplogo.jpg", position:"Leader, ADP",
+            name:"First Name, Last Name"
         },
         {
-            img:"../blank.jpg", position:"Leader, ADP",
-            name:"No image"
+            img:"../adplogo.jpg", position:"Leader, ADP",
+            name:"First Name, Last Name"
         },
         {
-            img:"../blank.jpg", position:"Leader, ADP",
-            name:"No image"
+            img:"../adplogo.jpg", position:"Leader, ADP",
+            name:"First Name, Last Name"
         },
         {
-            img:"../blank.jpg", position:"Leader, ADP",
-            name:"No image"
+            img:"../adplogo.jpg", position:"Leader, ADP",
+            name:"First Name, Last Name"
         },
         {
-            img:"../blank.jpg", position:"Leader, ADP",
-            name:"No image"
+            img:"../adplogo.jpg", position:"Leader, ADP",
+            name:"First Name, Last Name"
         },
         {
-            img:"../blank.jpg", position:"Leader, ADP",
-            name:"No image"
+            img:"../adplogo.jpg", position:"Leader, ADP",
+            name:"First Name, Last Name"
         },
     ]
       </script>

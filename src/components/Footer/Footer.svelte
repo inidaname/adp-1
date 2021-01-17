@@ -1,6 +1,7 @@
 <footer class="text-white body-font bg-gray-900 ">
     <div class="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
       <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left md:mt-0 mt-10">
+        <!-- svelte-ignore a11y-missing-attribute -->
         <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
             <img src="../adplogo.jpg" width="150" alt="adplogos">
         </a>
@@ -34,8 +35,8 @@
         </div>
       </div>
     </div>
-    <div class="bg-gray-100">
-      <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
+    <div class="bg-gray-800 ">
+      <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row text-white">
         <p class="text-gray-500 text-sm text-center sm:text-left">© 2020 Action Democratic Party
         </p>
         <span class="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">

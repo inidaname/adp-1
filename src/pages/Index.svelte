@@ -6,6 +6,7 @@ import MissionBar from "../components/Mission_Panel/Mission_Bar.svelte";
 import CardWithImage from "../components/Card/CardImage.svelte";
 import CTAForm from "../components/Forms/CTA_Form.svelte";
 import SideReg from "../components/Forms/SideRegForm.svelte";
+import Carousel from "../components/Carousel/Carousel.svelte";
 
 const data = [ 
   {
@@ -35,7 +36,7 @@ const data = [
 ]
     </script>
     
-   
+   <Carousel />
    <Hero>
    
       <div slot="hero-texts" class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
@@ -50,13 +51,14 @@ const data = [
     
     
       <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6" slot="hero-image">
-        <img class="object-cover object-center rounded" alt="hero" src="../office.jpg">
+        <img class="object-cover object-center rounded" alt="hero" src="../adplogo.jpg">
       </div> 
   
     </Hero>
+    
    <section class="text-gray-600 body-font">
     <div class="container mx-auto px-5 py-4 mx-auto flex flex-wrap">
-      <h1 class="py-4 text-lg font-medium title-font sm:text-3xl text-2xl ">Some facts...</h1>
+      <h1 class="py-4 text-lg font-medium title-font sm:text-3xl text-2xl ">Some facts about Action Democratic Party...</h1>
       <div class="flex flex-wrap -m-4">
         <CardWithImage properties={data} />
       </div>
@@ -67,16 +69,8 @@ const data = [
     <div class="container px-5 py-24 mx-auto flex flex-wrap">
       <h2 class="sm:text-3xl text-2xl text-red-900 font-medium title-font mb-10 md:w-2/5">I’ll Restore The Pride, Economy Of Nigeria
         <br>  - YY Sani</h2>
-      <div class="md:w-3/5 md:pl-6">
-        <p class="leading-relaxed text-base">Engr. Yabagi Yusuf Sani (YY Sani) is the presidential candidate of the Action Democratic Party (ADP) in the 2019 general elections. In this interview conducted during a meeting of all the candidates of the party held at the ADP National Secretariat in Abuja on January 9, he speaks on the necessity of the meeting, why Nigeria has become a laughing...</p>
-        <div class="flex md:mt-4 mt-6">
-          <!-- svelte-ignore a11y-missing-attribute -->
-          <a class="text-blue-500 inline-flex items-center ml-4">Learn More
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-          </a>
-        </div>
+      <div class="md:w-3/5 md:pl-6 shadow-lg rounded-md">
+        <p class="leading-relaxed text-base p-4 ">Engr. Yabagi Yusuf Sani (YY Sani) is the presidential candidate of the Action Democratic Party (ADP) in the 2019 general elections. In this interview conducted during a meeting of all the candidates of the party held at the ADP National Secretariat in Abuja on January 9, he speaks on the necessity of the meeting, why Nigeria has become a laughing...</p>
       </div>
     </div>
   </section>
