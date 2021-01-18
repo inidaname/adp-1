@@ -51,8 +51,9 @@ router.start({
 
 
 </script>
+
 <NavBar {segment} />
-<main>
+<main class=" overflow-x-hidden pt-9">
     <svelte:component this={page}/>
 </main>
 

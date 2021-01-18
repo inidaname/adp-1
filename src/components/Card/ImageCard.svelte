@@ -15,10 +15,11 @@
   </script>
 
 {#each galleries as image }
-<div class="max-w-xs bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden mx-auto my-4">
+<div class="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 max-w-xs bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden mx-auto my-4">
   <img class="w-full h-56 object-cover" src="{image.img}" alt="avatar">
   
   <div class="py-5 text-center">
+      <!-- svelte-ignore a11y-invalid-attribute -->
       <a href="#" class="block text-2xl text-gray-800 dark:text-white font-bold">{image.name}</a>
       <span class="text-sm text-gray-700 dark:text-gray-200">{image.position}</span>
   </div>

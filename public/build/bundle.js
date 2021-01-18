@@ -116,6 +116,19 @@ var app = (function () {
     function set_style(node, key, value, important) {
         node.style.setProperty(key, value, important ? 'important' : '');
     }
+    function select_option(select, value) {
+        for (let i = 0; i < select.options.length; i += 1) {
+            const option = select.options[i];
+            if (option.__value === value) {
+                option.selected = true;
+                return;
+            }
+        }
+    }
+    function select_value(select) {
+        const selected_option = select.querySelector(':checked') || select.options[0];
+        return selected_option && selected_option.__value;
+    }
     function toggle_class(element, name, toggle) {
         element.classList[toggle ? 'add' : 'remove'](name);
     }
@@ -513,57 +526,57 @@ var app = (function () {
     			if (img0.src !== (img0_src_value = "../adplogo.jpg")) attr_dev(img0, "src", img0_src_value);
     			attr_dev(img0, "width", "90");
     			attr_dev(img0, "alt", "adplogos");
-    			add_location(img0, file, 17, 20, 544);
+    			add_location(img0, file, 18, 20, 779);
     			attr_dev(a0, "class", "text-gray-800 dark:text-white text-xl font-bold md:text-2xl hover:text-gray-700 dark:hover:text-gray-300");
     			attr_dev(a0, "href", "/");
-    			add_location(a0, file, 16, 16, 398);
-    			add_location(div0, file, 15, 12, 376);
+    			add_location(a0, file, 17, 16, 633);
+    			add_location(div0, file, 16, 12, 611);
     			if (img1.src !== (img1_src_value = /*isNav*/ ctx[1] ? "../xtimes.svg" : "../ham.svg")) attr_dev(img1, "src", img1_src_value);
     			attr_dev(img1, "alt", "");
     			attr_dev(img1, "class", "border-0 focus:outline-none");
-    			add_location(img1, file, 24, 20, 971);
+    			add_location(img1, file, 25, 20, 1206);
     			attr_dev(button, "type", "button");
     			attr_dev(button, "class", "text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none focus:text-gray-600 dark:focus:text-gray-400");
     			attr_dev(button, "aria-label", "Toggle menu");
-    			add_location(button, file, 23, 16, 734);
+    			add_location(button, file, 24, 16, 969);
     			attr_dev(div1, "class", "md:hidden");
-    			add_location(div1, file, 22, 12, 694);
+    			add_location(div1, file, 23, 12, 929);
     			attr_dev(div2, "class", "flex justify-between items-center");
-    			add_location(div2, file, 14, 8, 316);
+    			add_location(div2, file, 15, 8, 551);
     			attr_dev(a1, "href", "/");
-    			attr_dev(a1, "class", "py-2 px-2 text-sm text-gray-900 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium md:mx-2");
+    			attr_dev(a1, "class", "py-2 px-2 transition duration-500 ease-in-out text-sm text-gray-900 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium md:mx-2");
     			toggle_class(a1, "bg-red-500", /*segment*/ ctx[0] === undefined);
-    			add_location(a1, file, 32, 12, 1313);
+    			add_location(a1, file, 33, 12, 1548);
     			attr_dev(a2, "href", "/about");
-    			attr_dev(a2, "class", "py-2 px-2 text-sm text-gray-900 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium md:mx-2");
+    			attr_dev(a2, "class", "py-2 px-2 transition duration-500 ease-in-out text-sm text-gray-900 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium md:mx-2");
     			toggle_class(a2, "bg-red-500", /*segment*/ ctx[0] === "about");
-    			add_location(a2, file, 34, 12, 1512);
+    			add_location(a2, file, 35, 12, 1783);
     			attr_dev(a3, "href", "/constitution");
-    			attr_dev(a3, "class", "py-2 px-2 text-sm text-gray-900 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium md:mx-2");
+    			attr_dev(a3, "class", "py-2 px-2 transition duration-500 ease-in-out text-sm text-gray-900 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium md:mx-2");
     			toggle_class(a3, "bg-red-500", /*segment*/ ctx[0] === "constitution");
-    			add_location(a3, file, 35, 12, 1705);
+    			add_location(a3, file, 36, 12, 2012);
     			attr_dev(a4, "href", "/structure");
-    			attr_dev(a4, "class", "py-2 px-2 text-sm text-gray-900 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium md:mx-2");
+    			attr_dev(a4, "class", "py-2 px-2 transition duration-500 ease-in-out text-sm text-gray-900 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium md:mx-2");
     			toggle_class(a4, "bg-red-500", /*segment*/ ctx[0] === "structure");
-    			add_location(a4, file, 36, 12, 1917);
+    			add_location(a4, file, 37, 12, 2260);
     			attr_dev(a5, "href", "/register");
-    			attr_dev(a5, "class", "py-2 px-2 text-sm text-gray-900 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium md:mx-2");
+    			attr_dev(a5, "class", "py-2 px-2 transition duration-500 ease-in-out text-sm text-gray-900 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium md:mx-2");
     			toggle_class(a5, "bg-red-500", /*segment*/ ctx[0] === "register");
-    			add_location(a5, file, 37, 12, 2120);
+    			add_location(a5, file, 38, 12, 2499);
     			attr_dev(a6, "href", "/candidates");
-    			attr_dev(a6, "class", "py-2 px-2 text-sm text-gray-900 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium md:mx-2");
+    			attr_dev(a6, "class", "py-2 px-2 transition duration-500 ease-in-out text-sm text-gray-900 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium md:mx-2");
     			toggle_class(a6, "bg-red-500", /*segment*/ ctx[0] === "candidate");
-    			add_location(a6, file, 38, 12, 2319);
+    			add_location(a6, file, 39, 12, 2734);
     			attr_dev(a7, "href", "contact");
-    			attr_dev(a7, "class", "py-2 px-2 text-sm text-gray-900 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium md:mx-2");
+    			attr_dev(a7, "class", "py-2 px-2 transition duration-500 ease-in-out text-sm text-gray-900 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium md:mx-2");
     			toggle_class(a7, "bg-red-500", /*segment*/ ctx[0] === "contact");
-    			add_location(a7, file, 39, 12, 2523);
+    			add_location(a7, file, 40, 12, 2974);
     			attr_dev(div3, "class", div3_class_value = "flex flex-col -mx-2 mt-2 md:mt-0 md:flex-row md:block " + `${/*isNav*/ ctx[1] ? "block" : "hidden"}`);
-    			add_location(div3, file, 31, 8, 1201);
+    			add_location(div3, file, 32, 8, 1436);
     			attr_dev(div4, "class", "md:flex items-center justify-between");
-    			add_location(div4, file, 13, 4, 257);
-    			attr_dev(nav, "class", "px-6 py-3 shadow");
-    			add_location(nav, file, 12, 0, 222);
+    			add_location(div4, file, 14, 4, 492);
+    			attr_dev(nav, "class", "px-6 py-3 border-b-2 border-gray-900 fixed w-full top-0 z-30 bg-white");
+    			add_location(nav, file, 13, 0, 404);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -767,11 +780,11 @@ var app = (function () {
     			t = space();
     			if (hero_image_slot) hero_image_slot.c();
     			attr_dev(div, "class", "container mx-auto flex px-5 py-24 md:flex-row flex-col items-center");
-    			add_location(div, file$1, 10, 8, 181);
+    			add_location(div, file$1, 11, 8, 359);
     			attr_dev(section, "class", "text-gray-600 body-font");
-    			add_location(section, file$1, 9, 4, 131);
+    			add_location(section, file$1, 10, 4, 309);
     			attr_dev(header, "class", "bg-white dark:bg-gray-800");
-    			add_location(header, file$1, 8, 0, 84);
+    			add_location(header, file$1, 9, 0, 262);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1192,7 +1205,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (8:0) {#each properties as prop}
+    // (9:0) {#each properties as prop}
     function create_each_block(ctx) {
     	let div3;
     	let div2;
@@ -1234,22 +1247,22 @@ var app = (function () {
     			t6 = space();
     			if (img.src !== (img_src_value = /*prop*/ ctx[1].img)) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "...");
-    			add_location(img, file$3, 11, 5, 392);
+    			add_location(img, file$3, 12, 5, 661);
     			attr_dev(div0, "class", "w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-white-100 flex-shrink-0");
-    			add_location(div0, file$3, 10, 6, 262);
+    			add_location(div0, file$3, 11, 6, 531);
     			attr_dev(h2, "class", "text-gray-900 text-lg title-font font-medium mb-3");
-    			add_location(h2, file$3, 14, 8, 479);
+    			add_location(h2, file$3, 15, 8, 748);
     			attr_dev(p, "class", "leading-relaxed text-base");
-    			add_location(p, file$3, 15, 8, 567);
+    			add_location(p, file$3, 16, 8, 836);
     			attr_dev(a, "class", "mt-3 text-blue-500 inline-flex items-center");
     			attr_dev(a, "href", a_href_value = /*prop*/ ctx[1].url);
-    			add_location(a, file$3, 17, 8, 682);
+    			add_location(a, file$3, 18, 8, 951);
     			attr_dev(div1, "class", "flex-grow");
-    			add_location(div1, file$3, 13, 6, 447);
-    			attr_dev(div2, "class", "flex  rounded-lg border-gray-200 border-opacity-50 p-8 sm:flex-row flex-col shadow-lg border-0 hover:shadow-xl ");
-    			add_location(div2, file$3, 9, 4, 130);
+    			add_location(div1, file$3, 14, 6, 716);
+    			attr_dev(div2, "class", "transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 flex  rounded-lg border-gray-200 border-opacity-50 p-8 sm:flex-row flex-col shadow-lg border-0 hover:shadow-xl ");
+    			add_location(div2, file$3, 10, 4, 316);
     			attr_dev(div3, "class", "p-4 lg:w-1/2 md:w-full ");
-    			add_location(div3, file$3, 8, 0, 88);
+    			add_location(div3, file$3, 9, 0, 274);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div3, anchor);
@@ -1290,7 +1303,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(8:0) {#each properties as prop}",
+    		source: "(9:0) {#each properties as prop}",
     		ctx
     	});
 
@@ -2579,15 +2592,15 @@ var app = (function () {
     			attr_dev(img, "class", "w-full h-56 object-cover");
     			if (img.src !== (img_src_value = /*image*/ ctx[1].img)) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "avatar");
-    			add_location(img, file$a, 18, 2, 700);
+    			add_location(img, file$a, 18, 2, 783);
     			attr_dev(a, "href", "#");
     			attr_dev(a, "class", "block text-2xl text-gray-800 dark:text-white font-bold");
-    			add_location(a, file$a, 21, 6, 812);
+    			add_location(a, file$a, 22, 6, 947);
     			attr_dev(span, "class", "text-sm text-gray-700 dark:text-gray-200");
-    			add_location(span, file$a, 22, 6, 910);
+    			add_location(span, file$a, 23, 6, 1045);
     			attr_dev(div0, "class", "py-5 text-center");
-    			add_location(div0, file$a, 20, 2, 775);
-    			attr_dev(div1, "class", "max-w-xs bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden mx-auto my-4");
+    			add_location(div0, file$a, 20, 2, 858);
+    			attr_dev(div1, "class", "transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 max-w-xs bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden mx-auto my-4");
     			add_location(div1, file$a, 17, 0, 599);
     		},
     		m: function mount(target, anchor) {
@@ -2936,7 +2949,7 @@ var app = (function () {
     /* src/pages/Structure.svelte generated by Svelte v3.31.2 */
     const file$c = "src/pages/Structure.svelte";
 
-    // (11:4) <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6" slot="hero-image">
+    // (12:4) <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6" slot="hero-image">
     function create_hero_image_slot$1(ctx) {
     	let div;
     	let img;
@@ -2949,10 +2962,10 @@ var app = (function () {
     			attr_dev(img, "class", "object-cover object-center rounded");
     			attr_dev(img, "alt", "hero");
     			if (img.src !== (img_src_value = "../nChairman.jpg")) attr_dev(img, "src", img_src_value);
-    			add_location(img, file$c, 11, 8, 256);
+    			add_location(img, file$c, 12, 8, 426);
     			attr_dev(div, "class", "lg:max-w-lg lg:w-full md:w-1/2 w-5/6");
     			attr_dev(div, "slot", "hero-image");
-    			add_location(div, file$c, 10, 4, 179);
+    			add_location(div, file$c, 11, 4, 349);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -2967,14 +2980,14 @@ var app = (function () {
     		block,
     		id: create_hero_image_slot$1.name,
     		type: "slot",
-    		source: "(11:4) <div class=\\\"lg:max-w-lg lg:w-full md:w-1/2 w-5/6\\\" slot=\\\"hero-image\\\">",
+    		source: "(12:4) <div class=\\\"lg:max-w-lg lg:w-full md:w-1/2 w-5/6\\\" slot=\\\"hero-image\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (16:6) <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center" slot="hero-texts">
+    // (17:6) <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center" slot="hero-texts">
     function create_hero_texts_slot$1(ctx) {
     	let div;
     	let h1;
@@ -2990,12 +3003,12 @@ var app = (function () {
     			p = element("p");
     			p.textContent = "The role of the Party's National Chairman is often different from a party leader. The duties of the chairman/chairperson are typically concerned with the party membership as a whole and the activities of the party organization. Chairman often play important roles in strategies to recruit and retain members in campaign fundersing and in internal party governance, where they may serve as member of or preside over a governing board or council.";
     			attr_dev(h1, "class", "title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900");
-    			add_location(h1, file$c, 16, 8, 522);
+    			add_location(h1, file$c, 17, 8, 692);
     			attr_dev(p, "class", "mb-8 leading-relaxed");
-    			add_location(p, file$c, 18, 8, 641);
+    			add_location(p, file$c, 19, 8, 811);
     			attr_dev(div, "class", "lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center");
     			attr_dev(div, "slot", "hero-texts");
-    			add_location(div, file$c, 15, 6, 361);
+    			add_location(div, file$c, 16, 6, 531);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -3012,14 +3025,14 @@ var app = (function () {
     		block,
     		id: create_hero_texts_slot$1.name,
     		type: "slot",
-    		source: "(16:6) <div class=\\\"lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center\\\" slot=\\\"hero-texts\\\">",
+    		source: "(17:6) <div class=\\\"lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center\\\" slot=\\\"hero-texts\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (10:0) <Hero>
+    // (11:0) <Hero>
     function create_default_slot_2(ctx) {
     	let t;
 
@@ -3040,14 +3053,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_2.name,
     		type: "slot",
-    		source: "(10:0) <Hero>",
+    		source: "(11:0) <Hero>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (24:4) <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900" slot="gallery-heading">
+    // (25:4) <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900" slot="gallery-heading">
     function create_gallery_heading_slot_1(ctx) {
     	let h1;
 
@@ -3057,7 +3070,7 @@ var app = (function () {
     			h1.textContent = "Board of Trustee Members";
     			attr_dev(h1, "class", "sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900");
     			attr_dev(h1, "slot", "gallery-heading");
-    			add_location(h1, file$c, 23, 4, 1171);
+    			add_location(h1, file$c, 24, 4, 1341);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h1, anchor);
@@ -3071,14 +3084,14 @@ var app = (function () {
     		block,
     		id: create_gallery_heading_slot_1.name,
     		type: "slot",
-    		source: "(24:4) <h1 class=\\\"sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900\\\" slot=\\\"gallery-heading\\\">",
+    		source: "(25:4) <h1 class=\\\"sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900\\\" slot=\\\"gallery-heading\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (25:4) <p class="lg:w-2/3 mx-auto leading-relaxed text-base" slot="gallery-subtitle">
+    // (26:4) <p class="lg:w-2/3 mx-auto leading-relaxed text-base" slot="gallery-subtitle">
     function create_gallery_subtitle_slot_1(ctx) {
     	let p;
 
@@ -3088,7 +3101,7 @@ var app = (function () {
     			p.textContent = "Whatever cardigan tote bag tumblr The ADP Board of Trustee (BoT) is a constitutionally mandated body with the Action Democratic Party of Nigeria that provides advice and cousel to the leadership of the National Working Committee and stuff. It is regarded by the party's constitution as the conscience of the party.";
     			attr_dev(p, "class", "lg:w-2/3 mx-auto leading-relaxed text-base");
     			attr_dev(p, "slot", "gallery-subtitle");
-    			add_location(p, file$c, 24, 4, 1303);
+    			add_location(p, file$c, 25, 4, 1473);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -3102,14 +3115,14 @@ var app = (function () {
     		block,
     		id: create_gallery_subtitle_slot_1.name,
     		type: "slot",
-    		source: "(25:4) <p class=\\\"lg:w-2/3 mx-auto leading-relaxed text-base\\\" slot=\\\"gallery-subtitle\\\">",
+    		source: "(26:4) <p class=\\\"lg:w-2/3 mx-auto leading-relaxed text-base\\\" slot=\\\"gallery-subtitle\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (23:0) <GalleryBlock>
+    // (24:0) <GalleryBlock>
     function create_default_slot_1(ctx) {
     	let t;
 
@@ -3130,14 +3143,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1.name,
     		type: "slot",
-    		source: "(23:0) <GalleryBlock>",
+    		source: "(24:0) <GalleryBlock>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (31:4) <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900" slot="gallery-heading">
+    // (32:4) <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900" slot="gallery-heading">
     function create_gallery_heading_slot(ctx) {
     	let h1;
 
@@ -3147,7 +3160,7 @@ var app = (function () {
     			h1.textContent = "National Working Committee Members";
     			attr_dev(h1, "class", "sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900");
     			attr_dev(h1, "slot", "gallery-heading");
-    			add_location(h1, file$c, 30, 4, 1741);
+    			add_location(h1, file$c, 31, 4, 1911);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h1, anchor);
@@ -3161,14 +3174,14 @@ var app = (function () {
     		block,
     		id: create_gallery_heading_slot.name,
     		type: "slot",
-    		source: "(31:4) <h1 class=\\\"sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900\\\" slot=\\\"gallery-heading\\\">",
+    		source: "(32:4) <h1 class=\\\"sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900\\\" slot=\\\"gallery-heading\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (32:4) <p class="lg:w-2/3 mx-auto leading-relaxed text-base" slot="gallery-subtitle">
+    // (33:4) <p class="lg:w-2/3 mx-auto leading-relaxed text-base" slot="gallery-subtitle">
     function create_gallery_subtitle_slot(ctx) {
     	let p;
 
@@ -3178,7 +3191,7 @@ var app = (function () {
     			p.textContent = "The ADP National Working Committee Members also known as NWC, is the executive committee of the Action Democratic Party in Nigeria. The NWC is composed of 12 party members, all of which are elected to a four year term at the party's National Convention, The NWC is headed by the Chairman who also functions as the party's National Chairman. The NWC has the responsibility for the day-to-day governance of the party as well as oversight of its national activities.";
     			attr_dev(p, "class", "lg:w-2/3 mx-auto leading-relaxed text-base");
     			attr_dev(p, "slot", "gallery-subtitle");
-    			add_location(p, file$c, 31, 4, 1883);
+    			add_location(p, file$c, 32, 4, 2053);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -3192,14 +3205,14 @@ var app = (function () {
     		block,
     		id: create_gallery_subtitle_slot.name,
     		type: "slot",
-    		source: "(32:4) <p class=\\\"lg:w-2/3 mx-auto leading-relaxed text-base\\\" slot=\\\"gallery-subtitle\\\">",
+    		source: "(33:4) <p class=\\\"lg:w-2/3 mx-auto leading-relaxed text-base\\\" slot=\\\"gallery-subtitle\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (30:0) <GalleryBlock>
+    // (31:0) <GalleryBlock>
     function create_default_slot$1(ctx) {
     	let t;
 
@@ -3220,7 +3233,7 @@ var app = (function () {
     		block,
     		id: create_default_slot$1.name,
     		type: "slot",
-    		source: "(30:0) <GalleryBlock>",
+    		source: "(31:0) <GalleryBlock>",
     		ctx
     	});
 
@@ -5002,17 +5015,16 @@ var app = (function () {
     	}
     }
 
-    /* src/pages/Register.svelte generated by Svelte v3.31.2 */
+    /* src/components/Forms/CandidateReg.svelte generated by Svelte v3.31.2 */
 
-    const file$f = "src/pages/Register.svelte";
+    const file$f = "src/components/Forms/CandidateReg.svelte";
 
     function create_fragment$f(ctx) {
-    	let section1;
     	let div22;
     	let div5;
     	let h1;
     	let t1;
-    	let section0;
+    	let section;
     	let div4;
     	let div0;
     	let p0;
@@ -5136,13 +5148,12 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			section1 = element("section");
     			div22 = element("div");
     			div5 = element("div");
     			h1 = element("h1");
-    			h1.textContent = "Register";
+    			h1.textContent = "Register as a Candidate";
     			t1 = space();
-    			section0 = element("section");
+    			section = element("section");
     			div4 = element("div");
     			div0 = element("div");
     			p0 = element("p");
@@ -5288,226 +5299,223 @@ var app = (function () {
     			a = element("a");
     			a.textContent = "Sign in";
     			attr_dev(h1, "class", "sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900");
-    			add_location(h1, file$f, 5, 8, 161);
+    			add_location(h1, file$f, 2, 6, 107);
     			attr_dev(span0, "class", "text-red-500");
-    			add_location(span0, file$f, 9, 76, 583);
+    			add_location(span0, file$f, 6, 74, 536);
     			attr_dev(p0, "class", "leading-relaxed text-base mb-3");
-    			add_location(p0, file$f, 9, 16, 523);
+    			add_location(p0, file$f, 6, 14, 476);
     			attr_dev(li0, "class", "mb-4");
-    			add_location(li0, file$f, 11, 20, 700);
+    			add_location(li0, file$f, 8, 18, 649);
     			attr_dev(li1, "class", "mb-4");
-    			add_location(li1, file$f, 12, 20, 850);
+    			add_location(li1, file$f, 9, 18, 797);
     			attr_dev(ul, "class", "list-disc");
-    			add_location(ul, file$f, 10, 16, 657);
-    			attr_dev(div0, "class", "md:w-1/2 md:pr-12 md:py-8 md:border-r md:border-b-0 mb-10 md:mb-0 pb-10 border-b border-gray-200");
-    			add_location(div0, file$f, 8, 14, 396);
+    			add_location(ul, file$f, 7, 14, 608);
+    			attr_dev(div0, "class", "md:w-1/2 md:pr-12 md:py-4 md:border-r md:border-b-0 mb-10 md:mb-0 pb-10 border-b border-gray-200");
+    			add_location(div0, file$f, 5, 12, 351);
     			attr_dev(h2, "class", "title-font font-semibold text-gray-800 tracking-wider text-sm mb-3");
-    			add_location(h2, file$f, 16, 16, 1051);
+    			add_location(h2, file$f, 13, 14, 990);
     			attr_dev(input0, "type", "file");
     			attr_dev(input0, "name", "ppics");
     			attr_dev(input0, "id", "fileupload");
     			attr_dev(input0, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out");
-    			add_location(input0, file$f, 20, 22, 1280);
+    			add_location(input0, file$f, 17, 20, 1211);
     			attr_dev(div1, "class", "mt-2 flex items-center");
-    			add_location(div1, file$f, 19, 20, 1221);
-    			add_location(div2, file$f, 17, 16, 1174);
+    			add_location(div1, file$f, 16, 18, 1154);
+    			add_location(div2, file$f, 14, 14, 1111);
     			attr_dev(div3, "class", "flex flex-col md:w-1/2 md:pl-12");
-    			add_location(div3, file$f, 15, 14, 989);
+    			add_location(div3, file$f, 12, 12, 930);
     			attr_dev(div4, "class", "container flex flex-wrap px-5 py-5 mx-auto items-center");
-    			add_location(div4, file$f, 7, 12, 312);
-    			attr_dev(section0, "class", "text-gray-600 body-font");
-    			add_location(section0, file$f, 6, 8, 258);
+    			add_location(div4, file$f, 4, 10, 269);
+    			attr_dev(section, "class", "text-gray-600 body-font");
+    			add_location(section, file$f, 3, 6, 217);
     			attr_dev(div5, "class", "flex flex-col text-justify w-full mb-12");
-    			add_location(div5, file$f, 4, 6, 99);
+    			add_location(div5, file$f, 1, 4, 47);
     			attr_dev(span1, "class", "text-red-500");
-    			add_location(span1, file$f, 33, 76, 1985);
+    			add_location(span1, file$f, 30, 74, 1898);
     			attr_dev(label0, "for", "fullname");
     			attr_dev(label0, "class", "leading-7 text-sm text-gray-600");
-    			add_location(label0, file$f, 33, 4, 1913);
+    			add_location(label0, file$f, 30, 2, 1826);
     			attr_dev(input1, "type", "text");
     			attr_dev(input1, "id", "fullname");
     			attr_dev(input1, "name", "fullname");
     			attr_dev(input1, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out");
-    			add_location(input1, file$f, 34, 4, 2033);
+    			add_location(input1, file$f, 31, 2, 1944);
     			attr_dev(div6, "class", "relative mb-4");
-    			add_location(div6, file$f, 32, 0, 1881);
+    			add_location(div6, file$f, 29, 0, 1796);
     			attr_dev(span2, "class", "text-red-500");
-    			add_location(span2, file$f, 37, 75, 2401);
+    			add_location(span2, file$f, 34, 73, 2310);
     			attr_dev(label1, "for", "password");
     			attr_dev(label1, "class", "leading-7 text-sm text-gray-600");
-    			add_location(label1, file$f, 37, 4, 2330);
+    			add_location(label1, file$f, 34, 2, 2239);
     			attr_dev(input2, "type", "text");
     			attr_dev(input2, "id", "password");
     			attr_dev(input2, "name", "password");
     			attr_dev(input2, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out");
-    			add_location(input2, file$f, 38, 4, 2449);
+    			add_location(input2, file$f, 35, 2, 2356);
     			attr_dev(div7, "class", "relative mb-4");
-    			add_location(div7, file$f, 36, 0, 2298);
+    			add_location(div7, file$f, 33, 0, 2209);
     			attr_dev(span3, "class", "text-red-500");
-    			add_location(span3, file$f, 41, 86, 2830);
+    			add_location(span3, file$f, 38, 84, 2733);
     			attr_dev(label2, "for", "phonenumber");
     			attr_dev(label2, "class", "leading-7 text-sm text-gray-600");
-    			add_location(label2, file$f, 41, 4, 2748);
+    			add_location(label2, file$f, 38, 2, 2651);
     			attr_dev(input3, "type", "text");
     			attr_dev(input3, "id", "phonenumber");
     			attr_dev(input3, "name", "phonenumber");
     			attr_dev(input3, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out");
-    			add_location(input3, file$f, 42, 4, 2878);
+    			add_location(input3, file$f, 39, 2, 2779);
     			attr_dev(div8, "class", "relative mb-4");
-    			add_location(div8, file$f, 40, 0, 2716);
+    			add_location(div8, file$f, 37, 0, 2621);
     			attr_dev(span4, "class", "text-red-500");
-    			add_location(span4, file$f, 45, 70, 3249);
+    			add_location(span4, file$f, 42, 68, 3146);
     			attr_dev(label3, "for", "gender");
     			attr_dev(label3, "class", "leading-7 text-sm text-gray-600");
-    			add_location(label3, file$f, 45, 4, 3183);
+    			add_location(label3, file$f, 42, 2, 3080);
     			option0.__value = "male";
     			option0.value = option0.__value;
-    			add_location(option0, file$f, 47, 8, 3548);
+    			add_location(option0, file$f, 44, 6, 3441);
     			option1.__value = "female";
     			option1.value = option1.__value;
-    			add_location(option1, file$f, 48, 8, 3592);
+    			add_location(option1, file$f, 45, 6, 3483);
     			attr_dev(select0, "id", "gender");
     			attr_dev(select0, "name", "gender");
     			attr_dev(select0, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out");
-    			add_location(select0, file$f, 46, 4, 3297);
+    			add_location(select0, file$f, 43, 2, 3192);
     			attr_dev(div9, "class", "relative mb-4");
-    			add_location(div9, file$f, 44, 0, 3151);
+    			add_location(div9, file$f, 41, 0, 3050);
     			attr_dev(span5, "class", "text-red-500");
-    			add_location(span5, file$f, 52, 68, 3751);
+    			add_location(span5, file$f, 49, 66, 3636);
     			attr_dev(label4, "for", "state");
     			attr_dev(label4, "class", "leading-7 text-sm text-gray-600");
-    			add_location(label4, file$f, 52, 4, 3687);
+    			add_location(label4, file$f, 49, 2, 3572);
     			option2.__value = "";
     			option2.value = option2.__value;
-    			add_location(option2, file$f, 54, 8, 4048);
+    			add_location(option2, file$f, 51, 6, 3929);
     			attr_dev(select1, "id", "state");
     			attr_dev(select1, "name", "state");
     			attr_dev(select1, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out");
-    			add_location(select1, file$f, 53, 4, 3799);
+    			add_location(select1, file$f, 50, 2, 3682);
     			attr_dev(div10, "class", "relative mb-4");
-    			add_location(div10, file$f, 51, 0, 3655);
+    			add_location(div10, file$f, 48, 0, 3542);
     			attr_dev(span6, "class", "text-red-500");
-    			add_location(span6, file$f, 59, 66, 4213);
+    			add_location(span6, file$f, 56, 64, 4086);
     			attr_dev(label5, "for", "ward");
     			attr_dev(label5, "class", "leading-7 text-sm text-gray-600");
-    			add_location(label5, file$f, 59, 4, 4151);
+    			add_location(label5, file$f, 56, 2, 4024);
     			option3.__value = "";
     			option3.value = option3.__value;
-    			add_location(option3, file$f, 61, 8, 4508);
+    			add_location(option3, file$f, 58, 6, 4377);
     			attr_dev(select2, "id", "ward");
     			attr_dev(select2, "name", "ward");
     			attr_dev(select2, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out");
-    			add_location(select2, file$f, 60, 4, 4261);
+    			add_location(select2, file$f, 57, 2, 4132);
     			attr_dev(div11, "class", "relative mb-4");
-    			add_location(div11, file$f, 58, 0, 4119);
+    			add_location(div11, file$f, 55, 0, 3994);
     			attr_dev(div12, "class", "relative flex-grow w-full");
-    			add_location(div12, file$f, 30, 0, 1817);
+    			add_location(div12, file$f, 27, 0, 1732);
     			attr_dev(span7, "class", "text-red-500");
-    			add_location(span7, file$f, 72, 87, 4788);
+    			add_location(span7, file$f, 69, 85, 4641);
     			attr_dev(label6, "for", "pvc_number");
     			attr_dev(label6, "class", "leading-7 text-sm text-gray-600");
-    			add_location(label6, file$f, 72, 12, 4713);
+    			add_location(label6, file$f, 69, 10, 4566);
     			attr_dev(input4, "type", "pvc_number");
     			attr_dev(input4, "id", "pvc_number");
     			attr_dev(input4, "name", "pvc_number");
     			attr_dev(input4, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out");
-    			add_location(input4, file$f, 73, 12, 4846);
+    			add_location(input4, file$f, 70, 10, 4697);
     			attr_dev(div13, "class", "relative mb-4");
-    			add_location(div13, file$f, 71, 9, 4673);
+    			add_location(div13, file$f, 68, 7, 4528);
     			attr_dev(span8, "class", "text-red-500");
-    			add_location(span8, file$f, 77, 99, 5276);
+    			add_location(span8, file$f, 74, 97, 5119);
     			attr_dev(label7, "for", "confirm_password");
     			attr_dev(label7, "class", "leading-7 text-sm text-gray-600");
-    			add_location(label7, file$f, 77, 12, 5189);
+    			add_location(label7, file$f, 74, 10, 5032);
     			attr_dev(input5, "type", "confirm_password");
     			attr_dev(input5, "id", "confirm_password");
     			attr_dev(input5, "name", "confirm_password");
     			attr_dev(input5, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out");
-    			add_location(input5, file$f, 78, 12, 5333);
+    			add_location(input5, file$f, 75, 10, 5174);
     			attr_dev(div14, "class", "relative mb-4");
-    			add_location(div14, file$f, 76, 10, 5149);
+    			add_location(div14, file$f, 73, 8, 4994);
     			attr_dev(span9, "class", "text-red-500");
-    			add_location(span9, file$f, 81, 85, 5760);
+    			add_location(span9, file$f, 78, 83, 5595);
     			attr_dev(label8, "for", "email");
     			attr_dev(label8, "class", "leading-7 text-sm text-gray-600");
-    			add_location(label8, file$f, 81, 12, 5687);
+    			add_location(label8, file$f, 78, 10, 5522);
     			attr_dev(input6, "type", "email");
     			attr_dev(input6, "id", "email");
     			attr_dev(input6, "name", "email");
     			attr_dev(input6, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out");
-    			add_location(input6, file$f, 82, 12, 5817);
+    			add_location(input6, file$f, 79, 10, 5650);
     			attr_dev(div15, "class", "relative mb-4");
-    			add_location(div15, file$f, 80, 10, 5647);
+    			add_location(div15, file$f, 77, 8, 5484);
     			attr_dev(span10, "class", "text-red-500");
-    			add_location(span10, file$f, 85, 83, 6209);
+    			add_location(span10, file$f, 82, 81, 6036);
     			attr_dev(label9, "for", "dob");
     			attr_dev(label9, "class", "leading-7 text-sm text-gray-600");
-    			add_location(label9, file$f, 85, 12, 6138);
+    			add_location(label9, file$f, 82, 10, 5965);
     			attr_dev(input7, "type", "date");
     			attr_dev(input7, "id", "dob");
     			attr_dev(input7, "name", "dob");
     			attr_dev(input7, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out");
-    			add_location(input7, file$f, 86, 12, 6266);
+    			add_location(input7, file$f, 83, 10, 6091);
     			attr_dev(div16, "class", "relative mb-4");
-    			add_location(div16, file$f, 84, 10, 6098);
+    			add_location(div16, file$f, 81, 8, 5927);
     			attr_dev(span11, "class", "text-red-500");
-    			add_location(span11, file$f, 89, 90, 6660);
+    			add_location(span11, file$f, 86, 88, 6479);
     			attr_dev(label10, "for", "lga");
     			attr_dev(label10, "class", "leading-7 text-sm text-gray-600");
-    			add_location(label10, file$f, 89, 12, 6582);
+    			add_location(label10, file$f, 86, 10, 6401);
     			option4.__value = "";
     			option4.value = option4.__value;
-    			add_location(option4, file$f, 91, 16, 6970);
+    			add_location(option4, file$f, 88, 14, 6785);
     			attr_dev(select3, "id", "lga");
     			attr_dev(select3, "name", "lga");
     			attr_dev(select3, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out");
-    			add_location(select3, file$f, 90, 12, 6717);
+    			add_location(select3, file$f, 87, 10, 6534);
     			attr_dev(div17, "class", "relative mb-4");
-    			add_location(div17, file$f, 88, 10, 6542);
+    			add_location(div17, file$f, 85, 8, 6363);
     			attr_dev(span12, "class", "text-red-500");
-    			add_location(span12, file$f, 96, 89, 7191);
+    			add_location(span12, file$f, 93, 87, 6996);
     			attr_dev(label11, "for", "voting_unit");
     			attr_dev(label11, "class", "leading-7 text-sm text-gray-600");
-    			add_location(label11, file$f, 96, 12, 7114);
+    			add_location(label11, file$f, 93, 10, 6919);
     			option5.__value = "";
     			option5.value = option5.__value;
-    			add_location(option5, file$f, 98, 16, 7517);
+    			add_location(option5, file$f, 95, 14, 7318);
     			attr_dev(select4, "id", "voting_unit");
     			attr_dev(select4, "name", "voting_unit");
     			attr_dev(select4, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out");
-    			add_location(select4, file$f, 97, 12, 7248);
+    			add_location(select4, file$f, 94, 10, 7051);
     			attr_dev(div18, "class", "relative mb-4");
-    			add_location(div18, file$f, 95, 10, 7074);
+    			add_location(div18, file$f, 92, 8, 6881);
     			attr_dev(div19, "class", "relative flex-grow w-full");
-    			add_location(div19, file$f, 69, 0, 4591);
+    			add_location(div19, file$f, 66, 0, 4450);
     			attr_dev(div20, "class", "flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end");
-    			add_location(div20, file$f, 28, 6, 1693);
+    			add_location(div20, file$f, 25, 4, 1608);
     			attr_dev(button, "class", "text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg mx-auto my-3");
-    			add_location(button, file$f, 105, 43, 7699);
-    			add_location(br, file$f, 105, 182, 7838);
+    			add_location(button, file$f, 102, 41, 7486);
+    			add_location(br, file$f, 102, 180, 7625);
     			attr_dev(a, "href", "/login");
     			attr_dev(a, "class", "text-blue-500");
-    			add_location(a, file$f, 106, 65, 7908);
+    			add_location(a, file$f, 103, 63, 7693);
     			attr_dev(p1, "class", "text-sm text-center");
-    			add_location(p1, file$f, 106, 8, 7851);
+    			add_location(p1, file$f, 103, 6, 7636);
     			attr_dev(div21, "class", "container mx-auto w-32");
-    			add_location(div21, file$f, 105, 6, 7662);
-    			attr_dev(div22, "class", "container px-5 py-24 mx-auto");
-    			add_location(div22, file$f, 3, 4, 50);
-    			attr_dev(section1, "class", "text-gray-600 body-font");
-    			add_location(section1, file$f, 2, 2, 4);
+    			add_location(div21, file$f, 102, 4, 7449);
+    			attr_dev(div22, "class", "container px-5 py-10 mx-auto");
+    			add_location(div22, file$f, 0, 0, 0);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, section1, anchor);
-    			append_dev(section1, div22);
+    			insert_dev(target, div22, anchor);
     			append_dev(div22, div5);
     			append_dev(div5, h1);
     			append_dev(div5, t1);
-    			append_dev(div5, section0);
-    			append_dev(section0, div4);
+    			append_dev(div5, section);
+    			append_dev(section, div4);
     			append_dev(div4, div0);
     			append_dev(div0, p0);
     			append_dev(p0, t2);
@@ -5632,7 +5640,7 @@ var app = (function () {
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(section1);
+    			if (detaching) detach_dev(div22);
     		}
     	};
 
@@ -5649,42 +5657,962 @@ var app = (function () {
 
     function instance$f($$self, $$props) {
     	let { $$slots: slots = {}, $$scope } = $$props;
-    	validate_slots("Register", slots, []);
+    	validate_slots("CandidateReg", slots, []);
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
-    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Register> was created with unknown prop '${key}'`);
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<CandidateReg> was created with unknown prop '${key}'`);
     	});
 
     	return [];
     }
 
-    class Register extends SvelteComponentDev {
+    class CandidateReg extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
     		init(this, options, instance$f, create_fragment$f, safe_not_equal, {});
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
-    			tagName: "Register",
+    			tagName: "CandidateReg",
     			options,
     			id: create_fragment$f.name
     		});
     	}
     }
 
-    /* src/pages/Candidates.svelte generated by Svelte v3.31.2 */
+    /* src/components/Forms/VotersReg.svelte generated by Svelte v3.31.2 */
 
-    const file$g = "src/pages/Candidates.svelte";
+    const file$g = "src/components/Forms/VotersReg.svelte";
+
+    function create_fragment$g(ctx) {
+    	let div22;
+    	let div5;
+    	let h1;
+    	let t1;
+    	let section;
+    	let div4;
+    	let div0;
+    	let p0;
+    	let t2;
+    	let span0;
+    	let t4;
+    	let t5;
+    	let ul;
+    	let li0;
+    	let t7;
+    	let li1;
+    	let t9;
+    	let div3;
+    	let h2;
+    	let t11;
+    	let div2;
+    	let div1;
+    	let input0;
+    	let t12;
+    	let div20;
+    	let div12;
+    	let div6;
+    	let label0;
+    	let t13;
+    	let span1;
+    	let t15;
+    	let input1;
+    	let t16;
+    	let div7;
+    	let label1;
+    	let t17;
+    	let span2;
+    	let t19;
+    	let input2;
+    	let t20;
+    	let div8;
+    	let label2;
+    	let t21;
+    	let span3;
+    	let t23;
+    	let input3;
+    	let t24;
+    	let div9;
+    	let label3;
+    	let t25;
+    	let span4;
+    	let t27;
+    	let select0;
+    	let option0;
+    	let option1;
+    	let t30;
+    	let div10;
+    	let label4;
+    	let t31;
+    	let span5;
+    	let t33;
+    	let select1;
+    	let option2;
+    	let t35;
+    	let div11;
+    	let label5;
+    	let t36;
+    	let span6;
+    	let t38;
+    	let select2;
+    	let option3;
+    	let t40;
+    	let div19;
+    	let div13;
+    	let label6;
+    	let t41;
+    	let span7;
+    	let t43;
+    	let input4;
+    	let t44;
+    	let div14;
+    	let label7;
+    	let t45;
+    	let span8;
+    	let t47;
+    	let input5;
+    	let t48;
+    	let div15;
+    	let label8;
+    	let t49;
+    	let span9;
+    	let t51;
+    	let input6;
+    	let t52;
+    	let div16;
+    	let label9;
+    	let t53;
+    	let span10;
+    	let t55;
+    	let input7;
+    	let t56;
+    	let div17;
+    	let label10;
+    	let t57;
+    	let span11;
+    	let t59;
+    	let select3;
+    	let option4;
+    	let t61;
+    	let div18;
+    	let label11;
+    	let t62;
+    	let span12;
+    	let t64;
+    	let select4;
+    	let option5;
+    	let t66;
+    	let div21;
+    	let button;
+    	let t68;
+    	let br;
+    	let t69;
+    	let p1;
+    	let t70;
+    	let a;
+
+    	const block = {
+    		c: function create() {
+    			div22 = element("div");
+    			div5 = element("div");
+    			h1 = element("h1");
+    			h1.textContent = "Register as a voter";
+    			t1 = space();
+    			section = element("section");
+    			div4 = element("div");
+    			div0 = element("div");
+    			p0 = element("p");
+    			t2 = text("All fields marked ");
+    			span0 = element("span");
+    			span0.textContent = "*";
+    			t4 = text(" are all important");
+    			t5 = space();
+    			ul = element("ul");
+    			li0 = element("li");
+    			li0.textContent = "Please note that Full Name must contain at least First and Last Name preferably, a third name may be added.";
+    			t7 = space();
+    			li1 = element("li");
+    			li1.textContent = "Please provide at least a phone number and/or email address";
+    			t9 = space();
+    			div3 = element("div");
+    			h2 = element("h2");
+    			h2.textContent = "Upload Profile Picture";
+    			t11 = space();
+    			div2 = element("div");
+    			div1 = element("div");
+    			input0 = element("input");
+    			t12 = space();
+    			div20 = element("div");
+    			div12 = element("div");
+    			div6 = element("div");
+    			label0 = element("label");
+    			t13 = text("Full Name ");
+    			span1 = element("span");
+    			span1.textContent = "*";
+    			t15 = space();
+    			input1 = element("input");
+    			t16 = space();
+    			div7 = element("div");
+    			label1 = element("label");
+    			t17 = text("Password ");
+    			span2 = element("span");
+    			span2.textContent = "*";
+    			t19 = space();
+    			input2 = element("input");
+    			t20 = space();
+    			div8 = element("div");
+    			label2 = element("label");
+    			t21 = text("Telephone Number ");
+    			span3 = element("span");
+    			span3.textContent = "*";
+    			t23 = space();
+    			input3 = element("input");
+    			t24 = space();
+    			div9 = element("div");
+    			label3 = element("label");
+    			t25 = text("Gender");
+    			span4 = element("span");
+    			span4.textContent = "*";
+    			t27 = space();
+    			select0 = element("select");
+    			option0 = element("option");
+    			option0.textContent = "Male";
+    			option1 = element("option");
+    			option1.textContent = "Female";
+    			t30 = space();
+    			div10 = element("div");
+    			label4 = element("label");
+    			t31 = text("State");
+    			span5 = element("span");
+    			span5.textContent = "*";
+    			t33 = space();
+    			select1 = element("select");
+    			option2 = element("option");
+    			option2.textContent = "select state";
+    			t35 = space();
+    			div11 = element("div");
+    			label5 = element("label");
+    			t36 = text("Ward");
+    			span6 = element("span");
+    			span6.textContent = "*";
+    			t38 = space();
+    			select2 = element("select");
+    			option3 = element("option");
+    			option3.textContent = "select ward";
+    			t40 = space();
+    			div19 = element("div");
+    			div13 = element("div");
+    			label6 = element("label");
+    			t41 = text("PVC Number ");
+    			span7 = element("span");
+    			span7.textContent = "*";
+    			t43 = space();
+    			input4 = element("input");
+    			t44 = space();
+    			div14 = element("div");
+    			label7 = element("label");
+    			t45 = text("Confirm Password ");
+    			span8 = element("span");
+    			span8.textContent = "*";
+    			t47 = space();
+    			input5 = element("input");
+    			t48 = space();
+    			div15 = element("div");
+    			label8 = element("label");
+    			t49 = text("Email Address ");
+    			span9 = element("span");
+    			span9.textContent = "*";
+    			t51 = space();
+    			input6 = element("input");
+    			t52 = space();
+    			div16 = element("div");
+    			label9 = element("label");
+    			t53 = text("Date of Birth ");
+    			span10 = element("span");
+    			span10.textContent = "*";
+    			t55 = space();
+    			input7 = element("input");
+    			t56 = space();
+    			div17 = element("div");
+    			label10 = element("label");
+    			t57 = text("Local Goverment Area ");
+    			span11 = element("span");
+    			span11.textContent = "*";
+    			t59 = space();
+    			select3 = element("select");
+    			option4 = element("option");
+    			option4.textContent = "select LGA";
+    			t61 = space();
+    			div18 = element("div");
+    			label11 = element("label");
+    			t62 = text("Voting Unit ");
+    			span12 = element("span");
+    			span12.textContent = "*";
+    			t64 = space();
+    			select4 = element("select");
+    			option5 = element("option");
+    			option5.textContent = "select voting unit";
+    			t66 = space();
+    			div21 = element("div");
+    			button = element("button");
+    			button.textContent = "Sign Up";
+    			t68 = space();
+    			br = element("br");
+    			t69 = space();
+    			p1 = element("p");
+    			t70 = text("Already have an account? ");
+    			a = element("a");
+    			a.textContent = "Sign in";
+    			attr_dev(h1, "class", "sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900");
+    			add_location(h1, file$g, 2, 6, 107);
+    			attr_dev(span0, "class", "text-red-500");
+    			add_location(span0, file$g, 6, 74, 532);
+    			attr_dev(p0, "class", "leading-relaxed text-base mb-3");
+    			add_location(p0, file$g, 6, 14, 472);
+    			attr_dev(li0, "class", "mb-4");
+    			add_location(li0, file$g, 8, 18, 645);
+    			attr_dev(li1, "class", "mb-4");
+    			add_location(li1, file$g, 9, 18, 793);
+    			attr_dev(ul, "class", "list-disc");
+    			add_location(ul, file$g, 7, 14, 604);
+    			attr_dev(div0, "class", "md:w-1/2 md:pr-12 md:py-4 md:border-r md:border-b-0 mb-10 md:mb-0 pb-10 border-b border-gray-200");
+    			add_location(div0, file$g, 5, 12, 347);
+    			attr_dev(h2, "class", "title-font font-semibold text-gray-800 tracking-wider text-sm mb-3");
+    			add_location(h2, file$g, 13, 14, 986);
+    			attr_dev(input0, "type", "file");
+    			attr_dev(input0, "name", "ppics");
+    			attr_dev(input0, "id", "fileupload");
+    			attr_dev(input0, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out");
+    			add_location(input0, file$g, 17, 20, 1207);
+    			attr_dev(div1, "class", "mt-2 flex items-center");
+    			add_location(div1, file$g, 16, 18, 1150);
+    			add_location(div2, file$g, 14, 14, 1107);
+    			attr_dev(div3, "class", "flex flex-col md:w-1/2 md:pl-12");
+    			add_location(div3, file$g, 12, 12, 926);
+    			attr_dev(div4, "class", "container flex flex-wrap px-5 py-5 mx-auto items-center");
+    			add_location(div4, file$g, 4, 10, 265);
+    			attr_dev(section, "class", "text-gray-600 body-font");
+    			add_location(section, file$g, 3, 6, 213);
+    			attr_dev(div5, "class", "flex flex-col text-justify w-full mb-12");
+    			add_location(div5, file$g, 1, 4, 47);
+    			attr_dev(span1, "class", "text-red-500");
+    			add_location(span1, file$g, 30, 74, 1894);
+    			attr_dev(label0, "for", "fullname");
+    			attr_dev(label0, "class", "leading-7 text-sm text-gray-600");
+    			add_location(label0, file$g, 30, 2, 1822);
+    			attr_dev(input1, "type", "text");
+    			attr_dev(input1, "id", "fullname");
+    			attr_dev(input1, "name", "fullname");
+    			attr_dev(input1, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out");
+    			add_location(input1, file$g, 31, 2, 1940);
+    			attr_dev(div6, "class", "relative mb-4");
+    			add_location(div6, file$g, 29, 0, 1792);
+    			attr_dev(span2, "class", "text-red-500");
+    			add_location(span2, file$g, 34, 73, 2306);
+    			attr_dev(label1, "for", "password");
+    			attr_dev(label1, "class", "leading-7 text-sm text-gray-600");
+    			add_location(label1, file$g, 34, 2, 2235);
+    			attr_dev(input2, "type", "text");
+    			attr_dev(input2, "id", "password");
+    			attr_dev(input2, "name", "password");
+    			attr_dev(input2, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out");
+    			add_location(input2, file$g, 35, 2, 2352);
+    			attr_dev(div7, "class", "relative mb-4");
+    			add_location(div7, file$g, 33, 0, 2205);
+    			attr_dev(span3, "class", "text-red-500");
+    			add_location(span3, file$g, 38, 84, 2729);
+    			attr_dev(label2, "for", "phonenumber");
+    			attr_dev(label2, "class", "leading-7 text-sm text-gray-600");
+    			add_location(label2, file$g, 38, 2, 2647);
+    			attr_dev(input3, "type", "text");
+    			attr_dev(input3, "id", "phonenumber");
+    			attr_dev(input3, "name", "phonenumber");
+    			attr_dev(input3, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out");
+    			add_location(input3, file$g, 39, 2, 2775);
+    			attr_dev(div8, "class", "relative mb-4");
+    			add_location(div8, file$g, 37, 0, 2617);
+    			attr_dev(span4, "class", "text-red-500");
+    			add_location(span4, file$g, 42, 68, 3142);
+    			attr_dev(label3, "for", "gender");
+    			attr_dev(label3, "class", "leading-7 text-sm text-gray-600");
+    			add_location(label3, file$g, 42, 2, 3076);
+    			option0.__value = "male";
+    			option0.value = option0.__value;
+    			add_location(option0, file$g, 44, 6, 3437);
+    			option1.__value = "female";
+    			option1.value = option1.__value;
+    			add_location(option1, file$g, 45, 6, 3479);
+    			attr_dev(select0, "id", "gender");
+    			attr_dev(select0, "name", "gender");
+    			attr_dev(select0, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out");
+    			add_location(select0, file$g, 43, 2, 3188);
+    			attr_dev(div9, "class", "relative mb-4");
+    			add_location(div9, file$g, 41, 0, 3046);
+    			attr_dev(span5, "class", "text-red-500");
+    			add_location(span5, file$g, 49, 66, 3632);
+    			attr_dev(label4, "for", "state");
+    			attr_dev(label4, "class", "leading-7 text-sm text-gray-600");
+    			add_location(label4, file$g, 49, 2, 3568);
+    			option2.__value = "";
+    			option2.value = option2.__value;
+    			add_location(option2, file$g, 51, 6, 3925);
+    			attr_dev(select1, "id", "state");
+    			attr_dev(select1, "name", "state");
+    			attr_dev(select1, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out");
+    			add_location(select1, file$g, 50, 2, 3678);
+    			attr_dev(div10, "class", "relative mb-4");
+    			add_location(div10, file$g, 48, 0, 3538);
+    			attr_dev(span6, "class", "text-red-500");
+    			add_location(span6, file$g, 56, 64, 4082);
+    			attr_dev(label5, "for", "ward");
+    			attr_dev(label5, "class", "leading-7 text-sm text-gray-600");
+    			add_location(label5, file$g, 56, 2, 4020);
+    			option3.__value = "";
+    			option3.value = option3.__value;
+    			add_location(option3, file$g, 58, 6, 4373);
+    			attr_dev(select2, "id", "ward");
+    			attr_dev(select2, "name", "ward");
+    			attr_dev(select2, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out");
+    			add_location(select2, file$g, 57, 2, 4128);
+    			attr_dev(div11, "class", "relative mb-4");
+    			add_location(div11, file$g, 55, 0, 3990);
+    			attr_dev(div12, "class", "relative flex-grow w-full");
+    			add_location(div12, file$g, 27, 0, 1728);
+    			attr_dev(span7, "class", "text-red-500");
+    			add_location(span7, file$g, 69, 85, 4637);
+    			attr_dev(label6, "for", "pvc_number");
+    			attr_dev(label6, "class", "leading-7 text-sm text-gray-600");
+    			add_location(label6, file$g, 69, 10, 4562);
+    			attr_dev(input4, "type", "pvc_number");
+    			attr_dev(input4, "id", "pvc_number");
+    			attr_dev(input4, "name", "pvc_number");
+    			attr_dev(input4, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out");
+    			add_location(input4, file$g, 70, 10, 4693);
+    			attr_dev(div13, "class", "relative mb-4");
+    			add_location(div13, file$g, 68, 7, 4524);
+    			attr_dev(span8, "class", "text-red-500");
+    			add_location(span8, file$g, 74, 97, 5115);
+    			attr_dev(label7, "for", "confirm_password");
+    			attr_dev(label7, "class", "leading-7 text-sm text-gray-600");
+    			add_location(label7, file$g, 74, 10, 5028);
+    			attr_dev(input5, "type", "confirm_password");
+    			attr_dev(input5, "id", "confirm_password");
+    			attr_dev(input5, "name", "confirm_password");
+    			attr_dev(input5, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out");
+    			add_location(input5, file$g, 75, 10, 5170);
+    			attr_dev(div14, "class", "relative mb-4");
+    			add_location(div14, file$g, 73, 8, 4990);
+    			attr_dev(span9, "class", "text-red-500");
+    			add_location(span9, file$g, 78, 83, 5591);
+    			attr_dev(label8, "for", "email");
+    			attr_dev(label8, "class", "leading-7 text-sm text-gray-600");
+    			add_location(label8, file$g, 78, 10, 5518);
+    			attr_dev(input6, "type", "email");
+    			attr_dev(input6, "id", "email");
+    			attr_dev(input6, "name", "email");
+    			attr_dev(input6, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out");
+    			add_location(input6, file$g, 79, 10, 5646);
+    			attr_dev(div15, "class", "relative mb-4");
+    			add_location(div15, file$g, 77, 8, 5480);
+    			attr_dev(span10, "class", "text-red-500");
+    			add_location(span10, file$g, 82, 81, 6032);
+    			attr_dev(label9, "for", "dob");
+    			attr_dev(label9, "class", "leading-7 text-sm text-gray-600");
+    			add_location(label9, file$g, 82, 10, 5961);
+    			attr_dev(input7, "type", "date");
+    			attr_dev(input7, "id", "dob");
+    			attr_dev(input7, "name", "dob");
+    			attr_dev(input7, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out");
+    			add_location(input7, file$g, 83, 10, 6087);
+    			attr_dev(div16, "class", "relative mb-4");
+    			add_location(div16, file$g, 81, 8, 5923);
+    			attr_dev(span11, "class", "text-red-500");
+    			add_location(span11, file$g, 86, 88, 6475);
+    			attr_dev(label10, "for", "lga");
+    			attr_dev(label10, "class", "leading-7 text-sm text-gray-600");
+    			add_location(label10, file$g, 86, 10, 6397);
+    			option4.__value = "";
+    			option4.value = option4.__value;
+    			add_location(option4, file$g, 88, 14, 6781);
+    			attr_dev(select3, "id", "lga");
+    			attr_dev(select3, "name", "lga");
+    			attr_dev(select3, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out");
+    			add_location(select3, file$g, 87, 10, 6530);
+    			attr_dev(div17, "class", "relative mb-4");
+    			add_location(div17, file$g, 85, 8, 6359);
+    			attr_dev(span12, "class", "text-red-500");
+    			add_location(span12, file$g, 93, 87, 6992);
+    			attr_dev(label11, "for", "voting_unit");
+    			attr_dev(label11, "class", "leading-7 text-sm text-gray-600");
+    			add_location(label11, file$g, 93, 10, 6915);
+    			option5.__value = "";
+    			option5.value = option5.__value;
+    			add_location(option5, file$g, 95, 14, 7314);
+    			attr_dev(select4, "id", "voting_unit");
+    			attr_dev(select4, "name", "voting_unit");
+    			attr_dev(select4, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out");
+    			add_location(select4, file$g, 94, 10, 7047);
+    			attr_dev(div18, "class", "relative mb-4");
+    			add_location(div18, file$g, 92, 8, 6877);
+    			attr_dev(div19, "class", "relative flex-grow w-full");
+    			add_location(div19, file$g, 66, 0, 4446);
+    			attr_dev(div20, "class", "flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end");
+    			add_location(div20, file$g, 25, 4, 1604);
+    			attr_dev(button, "class", "text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg mx-auto my-3");
+    			add_location(button, file$g, 102, 41, 7482);
+    			add_location(br, file$g, 102, 180, 7621);
+    			attr_dev(a, "href", "/login");
+    			attr_dev(a, "class", "text-blue-500");
+    			add_location(a, file$g, 103, 63, 7689);
+    			attr_dev(p1, "class", "text-sm text-center");
+    			add_location(p1, file$g, 103, 6, 7632);
+    			attr_dev(div21, "class", "container mx-auto w-32");
+    			add_location(div21, file$g, 102, 4, 7445);
+    			attr_dev(div22, "class", "container px-5 py-10 mx-auto");
+    			add_location(div22, file$g, 0, 0, 0);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div22, anchor);
+    			append_dev(div22, div5);
+    			append_dev(div5, h1);
+    			append_dev(div5, t1);
+    			append_dev(div5, section);
+    			append_dev(section, div4);
+    			append_dev(div4, div0);
+    			append_dev(div0, p0);
+    			append_dev(p0, t2);
+    			append_dev(p0, span0);
+    			append_dev(p0, t4);
+    			append_dev(div0, t5);
+    			append_dev(div0, ul);
+    			append_dev(ul, li0);
+    			append_dev(ul, t7);
+    			append_dev(ul, li1);
+    			append_dev(div4, t9);
+    			append_dev(div4, div3);
+    			append_dev(div3, h2);
+    			append_dev(div3, t11);
+    			append_dev(div3, div2);
+    			append_dev(div2, div1);
+    			append_dev(div1, input0);
+    			append_dev(div22, t12);
+    			append_dev(div22, div20);
+    			append_dev(div20, div12);
+    			append_dev(div12, div6);
+    			append_dev(div6, label0);
+    			append_dev(label0, t13);
+    			append_dev(label0, span1);
+    			append_dev(div6, t15);
+    			append_dev(div6, input1);
+    			append_dev(div12, t16);
+    			append_dev(div12, div7);
+    			append_dev(div7, label1);
+    			append_dev(label1, t17);
+    			append_dev(label1, span2);
+    			append_dev(div7, t19);
+    			append_dev(div7, input2);
+    			append_dev(div12, t20);
+    			append_dev(div12, div8);
+    			append_dev(div8, label2);
+    			append_dev(label2, t21);
+    			append_dev(label2, span3);
+    			append_dev(div8, t23);
+    			append_dev(div8, input3);
+    			append_dev(div12, t24);
+    			append_dev(div12, div9);
+    			append_dev(div9, label3);
+    			append_dev(label3, t25);
+    			append_dev(label3, span4);
+    			append_dev(div9, t27);
+    			append_dev(div9, select0);
+    			append_dev(select0, option0);
+    			append_dev(select0, option1);
+    			append_dev(div12, t30);
+    			append_dev(div12, div10);
+    			append_dev(div10, label4);
+    			append_dev(label4, t31);
+    			append_dev(label4, span5);
+    			append_dev(div10, t33);
+    			append_dev(div10, select1);
+    			append_dev(select1, option2);
+    			append_dev(div12, t35);
+    			append_dev(div12, div11);
+    			append_dev(div11, label5);
+    			append_dev(label5, t36);
+    			append_dev(label5, span6);
+    			append_dev(div11, t38);
+    			append_dev(div11, select2);
+    			append_dev(select2, option3);
+    			append_dev(div20, t40);
+    			append_dev(div20, div19);
+    			append_dev(div19, div13);
+    			append_dev(div13, label6);
+    			append_dev(label6, t41);
+    			append_dev(label6, span7);
+    			append_dev(div13, t43);
+    			append_dev(div13, input4);
+    			append_dev(div19, t44);
+    			append_dev(div19, div14);
+    			append_dev(div14, label7);
+    			append_dev(label7, t45);
+    			append_dev(label7, span8);
+    			append_dev(div14, t47);
+    			append_dev(div14, input5);
+    			append_dev(div19, t48);
+    			append_dev(div19, div15);
+    			append_dev(div15, label8);
+    			append_dev(label8, t49);
+    			append_dev(label8, span9);
+    			append_dev(div15, t51);
+    			append_dev(div15, input6);
+    			append_dev(div19, t52);
+    			append_dev(div19, div16);
+    			append_dev(div16, label9);
+    			append_dev(label9, t53);
+    			append_dev(label9, span10);
+    			append_dev(div16, t55);
+    			append_dev(div16, input7);
+    			append_dev(div19, t56);
+    			append_dev(div19, div17);
+    			append_dev(div17, label10);
+    			append_dev(label10, t57);
+    			append_dev(label10, span11);
+    			append_dev(div17, t59);
+    			append_dev(div17, select3);
+    			append_dev(select3, option4);
+    			append_dev(div19, t61);
+    			append_dev(div19, div18);
+    			append_dev(div18, label11);
+    			append_dev(label11, t62);
+    			append_dev(label11, span12);
+    			append_dev(div18, t64);
+    			append_dev(div18, select4);
+    			append_dev(select4, option5);
+    			append_dev(div22, t66);
+    			append_dev(div22, div21);
+    			append_dev(div21, button);
+    			append_dev(div21, t68);
+    			append_dev(div21, br);
+    			append_dev(div21, t69);
+    			append_dev(div21, p1);
+    			append_dev(p1, t70);
+    			append_dev(p1, a);
+    		},
+    		p: noop,
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div22);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$g.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$g($$self, $$props) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("VotersReg", slots, []);
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<VotersReg> was created with unknown prop '${key}'`);
+    	});
+
+    	return [];
+    }
+
+    class VotersReg extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$g, create_fragment$g, safe_not_equal, {});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "VotersReg",
+    			options,
+    			id: create_fragment$g.name
+    		});
+    	}
+    }
+
+    /* src/pages/Register.svelte generated by Svelte v3.31.2 */
+    const file$h = "src/pages/Register.svelte";
 
     function get_each_context$2(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[3] = list[i];
+    	return child_ctx;
+    }
+
+    // (16:10) {#each options as opt }
+    function create_each_block$2(ctx) {
+    	let option;
+    	let t_value = /*opt*/ ctx[3].name + "";
+    	let t;
+
+    	const block = {
+    		c: function create() {
+    			option = element("option");
+    			t = text(t_value);
+    			option.__value = ctx[3];
+    			option.value = option.__value;
+    			add_location(option, file$h, 16, 12, 535);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, option, anchor);
+    			append_dev(option, t);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(option);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block$2.name,
+    		type: "each",
+    		source: "(16:10) {#each options as opt }",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$h(ctx) {
+    	let section;
+    	let div;
+    	let select;
+    	let t;
+    	let switch_instance;
+    	let current;
+    	let mounted;
+    	let dispose;
+    	let each_value = /*options*/ ctx[1];
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$2(get_each_context$2(ctx, each_value, i));
+    	}
+
+    	var switch_value = /*selected*/ ctx[0].component;
+
+    	function switch_props(ctx) {
+    		return { $$inline: true };
+    	}
+
+    	if (switch_value) {
+    		switch_instance = new switch_value(switch_props());
+    	}
+
+    	const block = {
+    		c: function create() {
+    			section = element("section");
+    			div = element("div");
+    			select = element("select");
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			t = space();
+    			if (switch_instance) create_component(switch_instance.$$.fragment);
+    			attr_dev(select, "class", "sm:text-2xl text-md px-2 mt-40 ");
+    			if (/*selected*/ ctx[0] === void 0) add_render_callback(() => /*select_change_handler*/ ctx[2].call(select));
+    			add_location(select, file$h, 14, 6, 418);
+    			attr_dev(div, "class", "flex items-center container mx-auto w-full");
+    			add_location(div, file$h, 13, 4, 355);
+    			attr_dev(section, "class", "text-gray-600 body-font");
+    			add_location(section, file$h, 12, 2, 309);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, section, anchor);
+    			append_dev(section, div);
+    			append_dev(div, select);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(select, null);
+    			}
+
+    			select_option(select, /*selected*/ ctx[0]);
+    			append_dev(section, t);
+
+    			if (switch_instance) {
+    				mount_component(switch_instance, section, null);
+    			}
+
+    			current = true;
+
+    			if (!mounted) {
+    				dispose = listen_dev(select, "change", /*select_change_handler*/ ctx[2]);
+    				mounted = true;
+    			}
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*options*/ 2) {
+    				each_value = /*options*/ ctx[1];
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$2(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block$2(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(select, null);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
+
+    			if (dirty & /*selected, options*/ 3) {
+    				select_option(select, /*selected*/ ctx[0]);
+    			}
+
+    			if (switch_value !== (switch_value = /*selected*/ ctx[0].component)) {
+    				if (switch_instance) {
+    					group_outros();
+    					const old_component = switch_instance;
+
+    					transition_out(old_component.$$.fragment, 1, 0, () => {
+    						destroy_component(old_component, 1);
+    					});
+
+    					check_outros();
+    				}
+
+    				if (switch_value) {
+    					switch_instance = new switch_value(switch_props());
+    					create_component(switch_instance.$$.fragment);
+    					transition_in(switch_instance.$$.fragment, 1);
+    					mount_component(switch_instance, section, null);
+    				} else {
+    					switch_instance = null;
+    				}
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			if (switch_instance) transition_in(switch_instance.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			if (switch_instance) transition_out(switch_instance.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(section);
+    			destroy_each(each_blocks, detaching);
+    			if (switch_instance) destroy_component(switch_instance);
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$h.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$h($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("Register", slots, []);
+
+    	const options = [
+    		{ name: "Voter Form", component: VotersReg },
+    		{
+    			name: "Candidate Form",
+    			component: CandidateReg
+    		}
+    	];
+
+    	let selected = options[0];
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Register> was created with unknown prop '${key}'`);
+    	});
+
+    	function select_change_handler() {
+    		selected = select_value(this);
+    		$$invalidate(0, selected);
+    		$$invalidate(1, options);
+    	}
+
+    	$$self.$capture_state = () => ({
+    		CandidateReg,
+    		VotersReg,
+    		options,
+    		selected
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("selected" in $$props) $$invalidate(0, selected = $$props.selected);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [selected, options, select_change_handler];
+    }
+
+    class Register extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$h, create_fragment$h, safe_not_equal, {});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "Register",
+    			options,
+    			id: create_fragment$h.name
+    		});
+    	}
+    }
+
+    /* src/pages/Candidates.svelte generated by Svelte v3.31.2 */
+
+    const file$i = "src/pages/Candidates.svelte";
+
+    function get_each_context$3(ctx, list, i) {
     	const child_ctx = ctx.slice();
     	child_ctx[1] = list[i];
     	return child_ctx;
     }
 
-    // (23:8) {#each biographies as bio}
-    function create_each_block$2(ctx) {
+    // (24:8) {#each biographies as bio}
+    function create_each_block$3(ctx) {
     	let div2;
     	let div0;
     	let span;
@@ -5724,21 +6652,21 @@ var app = (function () {
     			t6 = space();
     			if (img.src !== (img_src_value = /*bio*/ ctx[1].image)) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "");
-    			add_location(img, file$g, 25, 66, 3161);
+    			add_location(img, file$i, 26, 66, 3335);
     			attr_dev(span, "class", "font-semibold title-font text-gray-700");
-    			add_location(span, file$g, 25, 12, 3107);
+    			add_location(span, file$i, 26, 12, 3281);
     			attr_dev(div0, "class", "md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col");
-    			add_location(div0, file$g, 24, 10, 3032);
+    			add_location(div0, file$i, 25, 10, 3206);
     			attr_dev(h1, "class", "text-2xl font-medium text-red-900 title-font mb-2");
-    			add_location(h1, file$g, 29, 12, 3282);
+    			add_location(h1, file$i, 30, 12, 3456);
     			attr_dev(h3, "class", "text-2xl font-medium text-blue-900 title-font mb-2");
-    			add_location(h3, file$g, 30, 12, 3372);
+    			add_location(h3, file$i, 31, 12, 3546);
     			attr_dev(p, "class", "leading-relaxed");
-    			add_location(p, file$g, 31, 12, 3467);
+    			add_location(p, file$i, 32, 12, 3641);
     			attr_dev(div1, "class", "md:flex-grow pl-10");
-    			add_location(div1, file$g, 28, 10, 3237);
+    			add_location(div1, file$i, 29, 10, 3411);
     			attr_dev(div2, "class", "py-8 flex flex-wrap md:flex-nowrap");
-    			add_location(div2, file$g, 23, 8, 2973);
+    			add_location(div2, file$i, 24, 8, 3147);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div2, anchor);
@@ -5765,16 +6693,16 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_each_block$2.name,
+    		id: create_each_block$3.name,
     		type: "each",
-    		source: "(23:8) {#each biographies as bio}",
+    		source: "(24:8) {#each biographies as bio}",
     		ctx
     	});
 
     	return block;
     }
 
-    function create_fragment$g(ctx) {
+    function create_fragment$i(ctx) {
     	let section;
     	let div1;
     	let div0;
@@ -5783,7 +6711,7 @@ var app = (function () {
     	let each_blocks = [];
 
     	for (let i = 0; i < each_value.length; i += 1) {
-    		each_blocks[i] = create_each_block$2(get_each_context$2(ctx, each_value, i));
+    		each_blocks[i] = create_each_block$3(get_each_context$3(ctx, each_value, i));
     	}
 
     	const block = {
@@ -5797,11 +6725,11 @@ var app = (function () {
     			}
 
     			attr_dev(div0, "class", "-my-8 divide-y-2 divide-gray-100");
-    			add_location(div0, file$g, 21, 6, 2883);
+    			add_location(div0, file$i, 22, 6, 3057);
     			attr_dev(div1, "class", "container px-5 py-24 mx-auto");
-    			add_location(div1, file$g, 20, 4, 2834);
+    			add_location(div1, file$i, 21, 4, 3008);
     			attr_dev(section, "class", "text-gray-600 body-font overflow-hidden");
-    			add_location(section, file$g, 19, 0, 2772);
+    			add_location(section, file$i, 20, 0, 2946);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -5822,12 +6750,12 @@ var app = (function () {
     				let i;
 
     				for (i = 0; i < each_value.length; i += 1) {
-    					const child_ctx = get_each_context$2(ctx, each_value, i);
+    					const child_ctx = get_each_context$3(ctx, each_value, i);
 
     					if (each_blocks[i]) {
     						each_blocks[i].p(child_ctx, dirty);
     					} else {
-    						each_blocks[i] = create_each_block$2(child_ctx);
+    						each_blocks[i] = create_each_block$3(child_ctx);
     						each_blocks[i].c();
     						each_blocks[i].m(div0, null);
     					}
@@ -5850,7 +6778,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_fragment$g.name,
+    		id: create_fragment$i.name,
     		type: "component",
     		source: "",
     		ctx
@@ -5859,7 +6787,7 @@ var app = (function () {
     	return block;
     }
 
-    function instance$g($$self, $$props, $$invalidate) {
+    function instance$i($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("Candidates", slots, []);
 
@@ -5891,22 +6819,22 @@ var app = (function () {
     class Candidates extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$g, create_fragment$g, safe_not_equal, {});
+    		init(this, options, instance$i, create_fragment$i, safe_not_equal, {});
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
     			tagName: "Candidates",
     			options,
-    			id: create_fragment$g.name
+    			id: create_fragment$i.name
     		});
     	}
     }
 
     /* src/pages/Contact.svelte generated by Svelte v3.31.2 */
 
-    const file$h = "src/pages/Contact.svelte";
+    const file$j = "src/pages/Contact.svelte";
 
-    function create_fragment$h(ctx) {
+    function create_fragment$j(ctx) {
     	let section;
     	let div0;
     	let iframe;
@@ -6011,69 +6939,69 @@ var app = (function () {
     			iframe.allowFullscreen = "";
     			attr_dev(iframe, "aria-hidden", "false");
     			attr_dev(iframe, "tabindex", "0");
-    			add_location(iframe, file$h, 3, 8, 160);
+    			add_location(iframe, file$j, 3, 8, 160);
     			attr_dev(div0, "class", "absolute inset-0 bg-gray-300");
-    			add_location(div0, file$h, 1, 4, 55);
+    			add_location(div0, file$j, 1, 4, 55);
     			attr_dev(h2, "class", "text-white text-lg mb-1 font-medium title-font");
-    			add_location(h2, file$h, 8, 8, 784);
-    			add_location(br, file$h, 9, 198, 1058);
+    			add_location(h2, file$j, 8, 8, 784);
+    			add_location(br, file$j, 9, 198, 1058);
     			attr_dev(p0, "class", "leading-relaxed mb-2 text-gray-600 text-xs bg-white rounded-md shadow-lg p-3");
-    			add_location(p0, file$h, 9, 8, 868);
+    			add_location(p0, file$j, 9, 8, 868);
     			attr_dev(p1, "class", "leading-relaxed mb-2 text-gray-600 text-xs ");
-    			add_location(p1, file$h, 12, 8, 1134);
+    			add_location(p1, file$j, 12, 8, 1134);
     			if (img0.src !== (img0_src_value = "../addressicon.png")) attr_dev(img0, "src", img0_src_value);
     			attr_dev(img0, "alt", "");
     			attr_dev(img0, "class", " w-5");
-    			add_location(img0, file$h, 14, 47, 1301);
+    			add_location(img0, file$j, 14, 47, 1301);
     			attr_dev(span0, "class", "block mb-1 leading-5");
-    			add_location(span0, file$h, 14, 11, 1265);
+    			add_location(span0, file$j, 14, 11, 1265);
     			if (img1.src !== (img1_src_value = "../telephoneicon.png")) attr_dev(img1, "src", img1_src_value);
     			attr_dev(img1, "alt", "");
     			attr_dev(img1, "class", " w-5 mr-2");
-    			add_location(img1, file$h, 15, 49, 1516);
+    			add_location(img1, file$j, 15, 49, 1516);
     			attr_dev(span1, "class", "flex mb-1 items-center");
-    			add_location(span1, file$h, 15, 11, 1478);
+    			add_location(span1, file$j, 15, 11, 1478);
     			if (img2.src !== (img2_src_value = "../whatsappicon.png")) attr_dev(img2, "src", img2_src_value);
     			attr_dev(img2, "alt", "");
     			attr_dev(img2, "class", " w-5 mr-2");
-    			add_location(img2, file$h, 16, 50, 1651);
+    			add_location(img2, file$j, 16, 50, 1651);
     			attr_dev(span2, "class", "flex mb-1 items-center");
-    			add_location(span2, file$h, 16, 11, 1612);
+    			add_location(span2, file$j, 16, 11, 1612);
     			if (img3.src !== (img3_src_value = "../mailicon.svg")) attr_dev(img3, "src", img3_src_value);
     			attr_dev(img3, "alt", "");
     			attr_dev(img3, "class", " w-5 mr-2");
-    			add_location(img3, file$h, 17, 48, 1784);
+    			add_location(img3, file$j, 17, 48, 1784);
     			attr_dev(span3, "class", "flex mb-1 items-center");
-    			add_location(span3, file$h, 17, 11, 1747);
+    			add_location(span3, file$j, 17, 11, 1747);
     			attr_dev(p2, "class", "text-xs bg-white rounded-md shadow-lg p-3");
-    			add_location(p2, file$h, 13, 10, 1200);
+    			add_location(p2, file$j, 13, 10, 1200);
     			attr_dev(label0, "for", "email");
     			attr_dev(label0, "class", "leading-7 text-sm text-gray-600");
-    			add_location(label0, file$h, 22, 10, 1933);
+    			add_location(label0, file$j, 22, 10, 1933);
     			attr_dev(input, "type", "email");
     			attr_dev(input, "id", "email");
     			attr_dev(input, "name", "email");
     			attr_dev(input, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out");
-    			add_location(input, file$h, 23, 10, 2016);
+    			add_location(input, file$j, 23, 10, 2016);
     			attr_dev(div1, "class", "relative mb-4");
-    			add_location(div1, file$h, 21, 8, 1895);
+    			add_location(div1, file$j, 21, 8, 1895);
     			attr_dev(label1, "for", "message");
     			attr_dev(label1, "class", "leading-7 text-sm text-gray-600");
-    			add_location(label1, file$h, 26, 10, 2330);
+    			add_location(label1, file$j, 26, 10, 2330);
     			attr_dev(textarea, "id", "message");
     			attr_dev(textarea, "name", "message");
     			attr_dev(textarea, "class", "w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out");
-    			add_location(textarea, file$h, 27, 10, 2417);
+    			add_location(textarea, file$j, 27, 10, 2417);
     			attr_dev(div2, "class", "relative mb-4");
-    			add_location(div2, file$h, 25, 8, 2292);
+    			add_location(div2, file$j, 25, 8, 2292);
     			attr_dev(button, "class", "text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg");
-    			add_location(button, file$h, 29, 8, 2715);
+    			add_location(button, file$j, 29, 8, 2715);
     			attr_dev(div3, "class", "lg:w-1/3 md:w-1/2 bg-gray-900 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0 relative z-10 shadow-md");
-    			add_location(div3, file$h, 7, 6, 647);
+    			add_location(div3, file$j, 7, 6, 647);
     			attr_dev(div4, "class", "container px-5 py-24 mx-auto flex");
-    			add_location(div4, file$h, 5, 4, 592);
+    			add_location(div4, file$j, 5, 4, 592);
     			attr_dev(section, "class", "text-gray-600 body-font relative");
-    			add_location(section, file$h, 0, 0, 0);
+    			add_location(section, file$j, 0, 0, 0);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -6132,7 +7060,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_fragment$h.name,
+    		id: create_fragment$j.name,
     		type: "component",
     		source: "",
     		ctx
@@ -6141,7 +7069,7 @@ var app = (function () {
     	return block;
     }
 
-    function instance$h($$self, $$props) {
+    function instance$j($$self, $$props) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("Contact", slots, []);
     	const writable_props = [];
@@ -6156,22 +7084,22 @@ var app = (function () {
     class Contact extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$h, create_fragment$h, safe_not_equal, {});
+    		init(this, options, instance$j, create_fragment$j, safe_not_equal, {});
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
     			tagName: "Contact",
     			options,
-    			id: create_fragment$h.name
+    			id: create_fragment$j.name
     		});
     	}
     }
 
     /* src/pages/Login.svelte generated by Svelte v3.31.2 */
 
-    const file$i = "src/pages/Login.svelte";
+    const file$k = "src/pages/Login.svelte";
 
-    function create_fragment$i(ctx) {
+    function create_fragment$k(ctx) {
     	let div7;
     	let div0;
     	let t0;
@@ -6244,51 +7172,51 @@ var app = (function () {
     			span1 = element("span");
     			attr_dev(div0, "class", "hidden lg:block lg:w-1/2 bg-cover");
     			set_style(div0, "background-image", "url('../office.jpg')");
-    			add_location(div0, file$i, 2, 8, 131);
+    			add_location(div0, file$k, 2, 8, 131);
     			attr_dev(h2, "class", "text-2xl font-semibold text-gray-700 dark:text-white text-center text-blue-900");
-    			add_location(h2, file$i, 5, 12, 308);
+    			add_location(h2, file$k, 5, 12, 308);
     			attr_dev(p, "class", "text-xl text-red-600 dark:text-red-200 text-center");
-    			add_location(p, file$i, 7, 12, 441);
+    			add_location(p, file$k, 7, 12, 441);
     			attr_dev(label0, "class", "block text-gray-600 dark:text-gray-200 text-sm font-medium mb-2");
     			attr_dev(label0, "for", "LoggingEmailAddress");
-    			add_location(label0, file$i, 10, 16, 569);
+    			add_location(label0, file$k, 10, 16, 569);
     			attr_dev(input0, "id", "LoggingEmailAddress");
     			attr_dev(input0, "class", "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded py-2 px-4 block w-full focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring");
     			attr_dev(input0, "type", "email");
-    			add_location(input0, file$i, 11, 16, 712);
+    			add_location(input0, file$k, 11, 16, 712);
     			attr_dev(div1, "class", "mt-4");
-    			add_location(div1, file$i, 9, 12, 534);
+    			add_location(div1, file$k, 9, 12, 534);
     			attr_dev(label1, "class", "block text-gray-600 dark:text-gray-200 text-sm font-medium mb-2");
     			attr_dev(label1, "for", "loggingPassword");
-    			add_location(label1, file$i, 16, 20, 1101);
+    			add_location(label1, file$k, 16, 20, 1101);
     			attr_dev(a0, "href", "#");
     			attr_dev(a0, "class", "text-xs text-gray-500 dark:text-gray-300 hover:underline");
-    			add_location(a0, file$i, 17, 20, 1239);
+    			add_location(a0, file$k, 17, 20, 1239);
     			attr_dev(div2, "class", "flex justify-between");
-    			add_location(div2, file$i, 15, 16, 1046);
+    			add_location(div2, file$k, 15, 16, 1046);
     			attr_dev(input1, "id", "loggingPassword");
     			attr_dev(input1, "class", "bg-wbg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded py-2 px-4 block w-full focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring");
     			attr_dev(input1, "type", "password");
-    			add_location(input1, file$i, 20, 16, 1377);
+    			add_location(input1, file$k, 20, 16, 1377);
     			attr_dev(div3, "class", "mt-4");
-    			add_location(div3, file$i, 14, 12, 1011);
+    			add_location(div3, file$k, 14, 12, 1011);
     			attr_dev(button, "class", "bg-red-500 text-white py-2 px-4 w-full tracking-wide rounded hover:bg-red-600 focus:outline-none focus:bg-gray-600");
-    			add_location(button, file$i, 24, 16, 1714);
+    			add_location(button, file$k, 24, 16, 1714);
     			attr_dev(div4, "class", "mt-8");
-    			add_location(div4, file$i, 23, 12, 1679);
+    			add_location(div4, file$k, 23, 12, 1679);
     			attr_dev(span0, "class", "border-b dark:border-gray-600 w-1/5 md:w-1/4");
-    			add_location(span0, file$i, 30, 16, 2011);
+    			add_location(span0, file$k, 30, 16, 2011);
     			attr_dev(a1, "href", "/register");
     			attr_dev(a1, "class", "text-xs text-gray-500 dark:text-gray-400 uppercase hover:underline");
-    			add_location(a1, file$i, 32, 16, 2095);
+    			add_location(a1, file$k, 32, 16, 2095);
     			attr_dev(span1, "class", "border-b dark:border-gray-600 w-1/5 md:w-1/4");
-    			add_location(span1, file$i, 34, 16, 2238);
+    			add_location(span1, file$k, 34, 16, 2238);
     			attr_dev(div5, "class", "mt-4 flex items-center justify-between");
-    			add_location(div5, file$i, 29, 12, 1942);
+    			add_location(div5, file$k, 29, 12, 1942);
     			attr_dev(div6, "class", "w-full py-8 px-6 md:px-8 lg:w-1/2");
-    			add_location(div6, file$i, 4, 8, 248);
+    			add_location(div6, file$k, 4, 8, 248);
     			attr_dev(div7, "class", "flex max-w-sm mx-auto bg-white dark:bg-gray-800 rounded-lg my-24 shadow-lg overflow-hidden lg:max-w-4xl");
-    			add_location(div7, file$i, 1, 4, 5);
+    			add_location(div7, file$k, 1, 4, 5);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -6335,7 +7263,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_fragment$i.name,
+    		id: create_fragment$k.name,
     		type: "component",
     		source: "",
     		ctx
@@ -6344,7 +7272,7 @@ var app = (function () {
     	return block;
     }
 
-    function instance$i($$self, $$props) {
+    function instance$k($$self, $$props) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("Login", slots, []);
     	const writable_props = [];
@@ -6359,21 +7287,21 @@ var app = (function () {
     class Login extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$i, create_fragment$i, safe_not_equal, {});
+    		init(this, options, instance$k, create_fragment$k, safe_not_equal, {});
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
     			tagName: "Login",
     			options,
-    			id: create_fragment$i.name
+    			id: create_fragment$k.name
     		});
     	}
     }
 
     /* src/App.svelte generated by Svelte v3.31.2 */
-    const file$j = "src/App.svelte";
+    const file$l = "src/App.svelte";
 
-    function create_fragment$j(ctx) {
+    function create_fragment$l(ctx) {
     	let navbar;
     	let t0;
     	let main;
@@ -6407,7 +7335,8 @@ var app = (function () {
     			if (switch_instance) create_component(switch_instance.$$.fragment);
     			t1 = space();
     			create_component(footer.$$.fragment);
-    			add_location(main, file$j, 54, 0, 1408);
+    			attr_dev(main, "class", " overflow-x-hidden pt-9");
+    			add_location(main, file$l, 55, 0, 1409);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -6477,7 +7406,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_fragment$j.name,
+    		id: create_fragment$l.name,
     		type: "component",
     		source: "",
     		ctx
@@ -6486,7 +7415,7 @@ var app = (function () {
     	return block;
     }
 
-    function instance$j($$self, $$props, $$invalidate) {
+    function instance$l($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("App", slots, []);
     	let page$1;
@@ -6586,13 +7515,13 @@ var app = (function () {
     class App extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$j, create_fragment$j, safe_not_equal, {});
+    		init(this, options, instance$l, create_fragment$l, safe_not_equal, {});
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
     			tagName: "App",
     			options,
-    			id: create_fragment$j.name
+    			id: create_fragment$l.name
     		});
     	}
     }
