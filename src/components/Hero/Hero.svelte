@@ -11,7 +11,7 @@ import NavBar from "../Navbar/Navbar.svelte"
 
 <header class="bg-white dark:bg-gray-800">
     <section class="text-gray-600 body-font">
-        <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
+        <div class="container mx-auto flex flex-col-reverse px-5 py-24 md:flex-row items-center">
           <slot name="hero-texts"></slot>
           
           <slot name="hero-image"></slot>

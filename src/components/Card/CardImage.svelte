@@ -15,9 +15,9 @@ export let properties;
       </div>
       <div class="flex-grow">
         <h2 class="text-gray-900 text-lg title-font font-medium mb-3">{prop.title}</h2>
-        <p class="leading-relaxed text-base">{prop.body}</p>
+        <p class="leading-relaxed text-sm font-light">{prop.body}</p>
         <!-- svelte-ignore a11y-missing-attribute -->
-        <a class="mt-3 text-blue-500 inline-flex items-center" href="{prop.url}">{prop.footer}
+        <a class="mt-3 text-blue-500 inline-flex items-center text-sm" href="{prop.url}">{prop.footer}
           
         </a>
       </div>

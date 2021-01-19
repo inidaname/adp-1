@@ -6,8 +6,8 @@
             <div class="md:w-1/2 md:pr-12 md:py-4 md:border-r md:border-b-0 mb-10 md:mb-0 pb-10 border-b border-gray-200">
               <p class="leading-relaxed text-base mb-3">All fields marked <span class="text-red-500">*</span> are all important</p>
               <ul class="list-disc">
-                  <li class="mb-4">Please note that Full Name must contain at least First and Last Name preferably, a third name may be added.</li>
-                  <li class="mb-4">Please provide at least a phone number and/or email address</li>
+                  <li class="mb-4 text-sm font-light">Please note that Full Name must contain at least First and Last Name preferably, a third name may be added.</li>
+                  <li class="mb-4 text-sm font-light">Please provide at least a phone number and/or email address</li>
               </ul>
             </div>
             <div class="flex flex-col md:w-1/2 md:pl-12">

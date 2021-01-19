@@ -6,8 +6,8 @@
             <div class="md:w-1/2 md:pr-12 md:py-4 md:border-r md:border-b-0 mb-10 md:mb-0 pb-10 border-b border-gray-200">
               <p class="leading-relaxed text-base mb-3">All fields marked <span class="text-red-500">*</span> are all important</p>
               <ul class="list-disc">
-                  <li class="mb-4">Please note that Full Name must contain at least First and Last Name preferably, a third name may be added.</li>
-                  <li class="mb-4">Please provide at least a phone number and/or email address</li>
+                  <li class="mb-4 font-light text-sm">Please note that Full Name must contain at least First and Last Name preferably, a third name may be added.</li>
+                  <li class="mb-4 font-light text-sm">Please provide at least a phone number and/or email address</li>
               </ul>
             </div>
             <div class="flex flex-col md:w-1/2 md:pl-12">
@@ -46,7 +46,7 @@
       <option value="female"> Female</option>
   </select>
 </div>
-<div class="relative mb-4">
+<!-- <div class="relative mb-4">
   <label for="state" class="leading-7 text-sm text-gray-600">State<span class="text-red-500">*</span></label>
   <select id="state" name="state" class="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out">
       <option value=""> select state</option>
@@ -58,7 +58,7 @@
   <select id="ward" name="ward" class="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out">
       <option value=""> select ward</option>
   </select>
-</div>
+</div> -->
 
   
   
@@ -83,20 +83,20 @@
           <label for="dob" class="leading-7 text-sm text-gray-600">Date of Birth <span class="text-red-500"> *</span></label>
           <input type="date" id="dob" name="dob" class="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
         </div> 
-        <div class="relative mb-4">
+       <div class="relative mb-4">
           <label for="lga" class="leading-7 text-sm text-gray-600">Local Goverment Area <span class="text-red-500"> *</span></label>
           <select id="lga" name="lga" class="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out">
               <option value=""> select LGA</option>
              
           </select>
         </div> 
-        <div class="relative mb-4">
+        <!--  <div class="relative mb-4">
           <label for="voting_unit" class="leading-7 text-sm text-gray-600">Voting Unit <span class="text-red-500"> *</span></label>
           <select id="voting_unit" name="voting_unit" class="w-full bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out">
               <option value=""> select voting unit</option>
              
           </select>
-        </div> 
+        </div>  -->
       </div>
       
     </div>

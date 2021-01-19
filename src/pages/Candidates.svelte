@@ -23,15 +23,15 @@ const biographies = [
     <div class="container px-5 py-24 mx-auto">
       <div class="-my-8 divide-y-2 divide-gray-100">
         {#each biographies as bio}
-        <div class="py-8 flex flex-wrap md:flex-nowrap">
-          <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
-            <span class="font-semibold title-font text-gray-700"> <img src="{bio.image}" alt=""> </span>
+        <div class="py-8 flex items-center justify-center flex-wrap md:flex-nowrap">
+          <div class="md:w-64 w-1/2 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
+            <span class="font-semibold title-font text-gray-700"> <img src="{bio.image}" alt="" class="w-full"> </span>
          
           </div>
           <div class="md:flex-grow pl-10">
             <h1 class="text-2xl font-medium text-red-900 title-font mb-2">{bio.name}</h1>
             <h3 class="text-2xl font-medium text-blue-900 title-font mb-2">{bio.position}</h3>
-            <p class="leading-relaxed">{bio.bio}</p>
+            <p class="leading-relaxed font-light text-sm :text-md">{bio.bio}</p>
             <!-- svelte-ignore a11y-missing-attribute -->
            
           </div>

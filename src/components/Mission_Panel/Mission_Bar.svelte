@@ -25,6 +25,7 @@
       <!-- <h1 class="sm:text-3xl text-2xl font-medium title-font text-center text-gray-900 mb-10">
           Objectives
       </h1> -->
+      <h1 class="py-5 font-medium title-font sm:text-3xl text-2xl text-blue-900 text-right ">The Party's Mission and Vision</h1>
       <div class="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4 md:space-y-0 space-y-6">
         <CardWithImage properties={data}/>
       </div>

@@ -7,6 +7,7 @@ import CardWithImage from "../components/Card/CardImage.svelte";
 import CTAForm from "../components/Forms/CTA_Form.svelte";
 import SideReg from "../components/Forms/SideRegForm.svelte";
 import Carousel from "../components/Carousel/Carousel.svelte";
+import Card from "../components/Card/Card.svelte";
 
 const data = [ 
   {
@@ -40,7 +41,7 @@ const data = [
    <Hero>
    
       <div slot="hero-texts" class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-        <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Action Democratic Party</h1>
+        <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900 ">Action Democratic Party</h1>
         
         <p class="mb-8 leading-relaxed">THE ACTION DEMOCRATIC PARTY (ADP) is a registered political party in Nigeria. The party was formed and established in 2017 to deal with the lapses that have over the years been complained about by Nigerians because the tenets of true democracy have been lost thereby giving some select few a godlike image where political parties are being dictated upon by the few and powerful.</p>
         <div class="flex justify-center">
@@ -50,17 +51,18 @@ const data = [
       </div>
     
     
-      <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6" slot="hero-image">
+      <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-4 md:mb-0" slot="hero-image">
         <img class="object-cover object-center rounded" alt="hero" src="../adplogo.jpg">
       </div> 
   
     </Hero>
     
    <section class="text-gray-600 body-font">
-    <div class="container mx-auto px-5 py-4 mx-auto flex flex-wrap">
-      <h1 class="py-4 text-lg font-medium title-font sm:text-3xl text-2xl ">Some facts about Action Democratic Party...</h1>
-      <div class="flex flex-wrap -m-4">
-        <CardWithImage properties={data} />
+    <div class="container  px-5 py-4 mx-auto flex flex-wrap">
+      <h1 class="py-4 font-medium title-font sm:text-3xl text-2xl text-blue-900 ">Some facts about Action Democratic Party</h1>
+      <div class="flex flex-wrap justify-center -m-4 py-7 ">
+        <!-- <Carage properties={data} /> -->
+        <Card properties={data}/>
       </div>
     </div>
   </section>
