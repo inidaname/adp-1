@@ -1,5 +1,5 @@
 <section class="text-gray-600 body-font container mx-auto">
-  <h1 class="py-4 font-medium title-font sm:text-3xl text-2xl text-blue-900 ">Member's Corner</h1>
+  <h1 class="py-4 font-medium title-font sm:text-3xl text-2xl text-blue-900 ml-5 sm:ml-0">Member's Corner</h1>
     <div class="container px-5 py-10 mx-auto flex flex-wrap items-center">
       <div class="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
         <h1 class="title-font font-medium text-3xl text-gray-900">Join Us!</h1>

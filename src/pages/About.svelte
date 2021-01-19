@@ -19,7 +19,6 @@ import Hero from "../components/Hero/Hero.svelte"
 </Hero>
 <section class="container mx-auto">
     <div class="p-4">
-
    <h2 class=" fpy-5 font-medium title-font sm:text-3xl text-2xl text-blue-900 text-left ">ADP's Three Points Agenda</h2>  
    <p class="font-medium py-2">
 In the ADP, the three point agenda are:
