@@ -1,6 +1,6 @@
 <div class="container px-5 py-10 mx-auto">
     <div class="flex flex-col text-justify w-full mb-12">
-      <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Register as a voter</h1>
+      <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-red-900">Register as a Supporter</h1>
       <section class="text-gray-600 body-font">
           <div class="container flex flex-wrap px-5 py-5 mx-auto items-center">
             <div class="md:w-1/2 md:pr-12 md:py-4 md:border-r md:border-b-0 mb-10 md:mb-0 pb-10 border-b border-gray-200">

@@ -1,5 +1,5 @@
 <script>
-import NavBar from "../Navbar/Navbar.svelte"
+
 
 </script>
 
@@ -9,11 +9,10 @@ import NavBar from "../Navbar/Navbar.svelte"
 </style>
 
 
-<header class="bg-white dark:bg-gray-800">
-    <section class="text-gray-600 body-font">
+<header class=" bg-gray-900">
+    <section class="text-white body-font">
         <div class="container mx-auto flex flex-col-reverse px-5 py-24 md:flex-row items-center">
           <slot name="hero-texts"></slot>
-          
           <slot name="hero-image"></slot>
         </div>
       </section>
