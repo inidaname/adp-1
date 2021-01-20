@@ -1,3 +1,12 @@
+<svelte:window on:keyup={ev => ev.key === 'Escape' && closeModal()}></svelte:window>
+<script>
+import {Carousel, Accordion, Modal, openModal, closeModal} from "renderless-svelte";
+import Donate from "../Donate_Panel/Donate.svelte";
+ const items = ["Squirrel 🐿️", "Rabbit 🐇", "Hamster 🐹"]
+</script>
+
+
+
 <section class="relative">
 	<div class="">
         <img src="../office.jpg" class="" alt="banner"/>
@@ -8,10 +17,9 @@
                         <p class="mb-2 mt-16 sm:mt-3 leading-relaxed w-11/12 text-white text-xs sm:text-sm font-light md:text-sm lg:text-lg">THE ACTION DEMOCRATIC PARTY (ADP) is a registered political party in Nigeria. The party was formed and established in 2017 to deal with the lapses that have over the years been complained about by Nigerians because the tenets of true democracy have been lost thereby giving some select few a godlike image where political parties are being dictated upon by the few and powerful.</p>
                         <div class="flex justify-center">
                           <button class="inline-flex text-white text-xs bg-red-500 border-0 py-1 px-3 md:py-2 md:px-6 focus:outline-none hover:bg-red-600 rounded md:text-lg lg:mt-3">Join Us!</button>
+                          <button class="inline-flex text-white text-xs bg-red-500 border-0 py-1 px-3 md:py-2 md:px-6 focus:outline-none hover:bg-red-600 rounded md:text-lg lg:mt-3 mx-2"on:click={() => openModal("Rabbit 🐇")}>Donate</button>
                         </div>
-                      </div>
-                    
-                    
+                      </div>                   
                       <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-4 md:mb-0 hidden md:block">
                         <img class="object-cover object-center rounded" alt="hero" src="../adplogo.jpg">
                       </div> 
@@ -19,8 +27,7 @@
         </div>
 	
 </section>
-
-        
+<Donate />
     
 
 

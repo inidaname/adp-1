@@ -12,7 +12,7 @@ import SupporterForm from "../components/Forms/SupporterForm.svelte"
 
   <section class="text-gray-600 body-font">
     <div class="flex items-center container mx-auto w-full">
-      <select class="sm:text-xl text-md mx-4 mt-20 w-1/2 bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out " bind:value={selected}>
+      <select class="sm:text-xl text-md mx-4 mt-20 w-1/2 bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-2 px-1 leading-8 transition-colors duration-200 ease-in-out " bind:value={selected}>
           {#each options as opt }
             <option value="{opt}">{opt.name}</option>
           {/each}   
@@ -20,5 +20,4 @@ import SupporterForm from "../components/Forms/SupporterForm.svelte"
     </div>
     <svelte:component this={selected.component} />
 
-  
   </section>
