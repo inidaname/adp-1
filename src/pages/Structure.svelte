@@ -3,6 +3,9 @@
   import Hero from "../components/Hero/Hero.svelte";
 </script>
 
+<svelte:head>
+  <title>Our Structures</title>
+</svelte:head>
 <Hero>
   <div
     class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 flex flex-col items-center mb-4 sm:mb-0"
@@ -34,7 +37,7 @@
     </p>
   </div>
 </Hero>
-<GalleryBlock>
+<!-- <GalleryBlock>
   <h1
     class="sm:text-3xl text-2xl font-medium title-font mb-4 text-red-900"
     slot="gallery-heading"
@@ -48,7 +51,7 @@
     Committee and stuff. It is regarded by the party's constitution as the
     conscience of the party.
   </p>
-</GalleryBlock>
+</GalleryBlock> -->
 
 <GalleryBlock>
   <h1

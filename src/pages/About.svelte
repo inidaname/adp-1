@@ -4,6 +4,9 @@
   import Hero from "../components/Hero/Hero.svelte";
 </script>
 
+<svelte:head>
+  <title>About ADP</title>
+</svelte:head>
 <Hero>
   <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6" slot="hero-image">
     <img
@@ -69,4 +72,7 @@
 
 <MissionBar />
 
+<!-- Picture update -->
+
+<!-- ./picture update -->
 <NewsBar />

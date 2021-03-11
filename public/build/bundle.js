@@ -1166,6 +1166,7 @@ var app = (function () {
     	let t5;
     	let a_href_value;
     	let t6;
+    	let div3_data_aos_duration_value;
 
     	const block = {
     		c: function create() {
@@ -1186,23 +1187,23 @@ var app = (function () {
     			t6 = space();
     			if (img.src !== (img_src_value = /*prop*/ ctx[1].img)) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "...");
-    			add_location(img, file$m, 16, 8, 564);
+    			add_location(img, file$m, 16, 8, 571);
     			attr_dev(div0, "class", "w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-white-100 flex-shrink-0");
-    			add_location(div0, file$m, 13, 6, 413);
+    			add_location(div0, file$m, 13, 6, 420);
     			attr_dev(h2, "class", "text-red-900 text-3xl title-font font-medium mb-3");
-    			add_location(h2, file$m, 19, 8, 651);
-    			attr_dev(p, "class", "leading-relaxed text-2xl font-light");
-    			add_location(p, file$m, 22, 8, 762);
+    			add_location(h2, file$m, 19, 8, 658);
+    			attr_dev(p, "class", "leading-relaxed text-2xl sm:text-lg font-light capitalize");
+    			add_location(p, file$m, 22, 8, 769);
     			attr_dev(a, "class", "mt-3 text-blue-500 inline-flex items-center text-sm");
     			attr_dev(a, "href", a_href_value = /*prop*/ ctx[1].url);
-    			add_location(a, file$m, 24, 8, 889);
+    			add_location(a, file$m, 26, 8, 940);
     			attr_dev(div1, "class", "flex-grow");
-    			add_location(div1, file$m, 18, 6, 618);
+    			add_location(div1, file$m, 18, 6, 625);
     			attr_dev(div2, "class", "transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-90 flex  rounded-lg border-gray-200 border-opacity-50 p-8 sm:flex-row flex-col shadow-lg border-0 hover:shadow-xl ");
-    			add_location(div2, file$m, 10, 4, 185);
+    			add_location(div2, file$m, 10, 4, 192);
     			attr_dev(div3, "class", "p-4 lg:w-1/2 md:w-full ");
     			attr_dev(div3, "data-aos", "fade-up");
-    			attr_dev(div3, "data-aos-duration", "1000");
+    			attr_dev(div3, "data-aos-duration", div3_data_aos_duration_value = "" + (/*prop*/ ctx[1].id + "00"));
     			add_location(div3, file$m, 5, 2, 79);
     		},
     		m: function mount(target, anchor) {
@@ -1233,6 +1234,10 @@ var app = (function () {
 
     			if (dirty & /*properties*/ 1 && a_href_value !== (a_href_value = /*prop*/ ctx[1].url)) {
     				attr_dev(a, "href", a_href_value);
+    			}
+
+    			if (dirty & /*properties*/ 1 && div3_data_aos_duration_value !== (div3_data_aos_duration_value = "" + (/*prop*/ ctx[1].id + "00"))) {
+    				attr_dev(div3, "data-aos-duration", div3_data_aos_duration_value);
     			}
     		},
     		d: function destroy(detaching) {
@@ -1408,15 +1413,15 @@ var app = (function () {
     			div1 = element("div");
     			create_component(cardwithimage.$$.fragment);
     			attr_dev(h1, "class", "sm:text-3xl text-2xl font-medium title-font text-blue-900");
-    			add_location(h1, file$l, 29, 8, 1810);
+    			add_location(h1, file$l, 50, 6, 2585);
     			attr_dev(div0, "class", "flex flex-col text-center w-full mb-10");
-    			add_location(div0, file$l, 28, 6, 1748);
+    			add_location(div0, file$l, 49, 4, 2525);
     			attr_dev(div1, "class", "flex flex-wrap -m-4");
-    			add_location(div1, file$l, 31, 6, 1918);
+    			add_location(div1, file$l, 54, 4, 2707);
     			attr_dev(div2, "class", "container px-5 py-10 mx-auto");
-    			add_location(div2, file$l, 27, 4, 1698);
+    			add_location(div2, file$l, 48, 2, 2477);
     			attr_dev(section, "class", "text-gray-600 body-font");
-    			add_location(section, file$l, 26, 0, 1651);
+    			add_location(section, file$l, 47, 0, 2432);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1468,21 +1473,32 @@ var app = (function () {
     			body: "Mr Yabagi Sani, the Action Democratic Party (ADP) presidential candidate, has experessed the need to use Nigeria’s oil revenue to develop the nation. ",
     			img: "../withkunle.jpeg",
     			footer: "Read more",
-    			url: "https://medium.com/action-democratic-party/adp-presidential-candidate-says-oil-money-should-be-used-to-develop-country-b9d330ddf4b4"
+    			url: "https://medium.com/action-democratic-party/adp-presidential-candidate-says-oil-money-should-be-used-to-develop-country-b9d330ddf4b4",
+    			id: 3
     		},
     		{
     			title: "ADP Presidential Candidate, Sani Meet Obasanjo",
     			body: "The Presidential candidate of the Action Democratic Party (ADP), met with the former President, Chief Olusegun Obasanjo on Wednesday, the meeting took place at the Presidential library in Ogun State capital city, Abeokuta. ",
     			img: "../withobj.jpeg",
     			footer: "Read more",
-    			url: "https://medium.com/action-democratic-party/2019-adp-presidential-candidate-sani-meet-obasanjo-f95602ef175b"
+    			url: "https://medium.com/action-democratic-party/2019-adp-presidential-candidate-sani-meet-obasanjo-f95602ef175b",
+    			id: 6
     		},
     		{
     			title: "ADP Presidential Candidate, Engr YY Sani Recognized Internationally",
     			body: "United Nations honor Engr. Sani with the coveted UN Humanitarian Award in recognition of his contributions to the social, economic and political development in Africa . The historic event took place on Thursday 13th September 2018 at the UN Headquartrs in New York USA.",
     			img: "../withwhyte.jpeg",
     			footer: "Read more",
-    			url: "https://medium.com/action-democratic-party/pictorial-of-the-presidential-candidate-and-national-chairman-of-adp-engr-e30ecfce1079"
+    			url: "https://medium.com/action-democratic-party/pictorial-of-the-presidential-candidate-and-national-chairman-of-adp-engr-e30ecfce1079",
+    			id: 9
+    		},
+    		{
+    			title: "ADP Plateau State Meeting",
+    			body: "ADP Plateau state meeting was held at junction hotel Jos South on 10/03/202. National officers of the party in attendance were: Hon Solomon Maichibi (Nat. Vice Chairman NC) Hon. Pam Ibrahim (Dir General Duties) Hon Sam Gyang (nat welfare sec.) others were Engr Damulak, Alphonsus Jibgwan, SWC, Local Govt. Chairmen, critical stakeholders, former candidates of the party in the last national elections. and valuable resolutions were passed at the end of the meeting",
+    			img: "../mlatest.jpeg",
+    			footer: "Read more",
+    			url: "#",
+    			id: 11
     		}
     	];
 
@@ -2981,34 +2997,35 @@ var app = (function () {
     function create_fragment$f(ctx) {
     	let slides;
     	let t0;
+    	let t1;
     	let section0;
     	let div1;
     	let h2;
-    	let t1;
-    	let br;
     	let t2;
+    	let br;
     	let t3;
+    	let t4;
     	let div0;
     	let p0;
-    	let t5;
+    	let t6;
     	let section1;
     	let div5;
     	let div4;
-    	let t6;
+    	let t7;
     	let img;
     	let img_src_value;
-    	let t7;
+    	let t8;
     	let div3;
     	let h1;
-    	let t9;
-    	let div2;
     	let t10;
+    	let div2;
+    	let t11;
     	let p1;
-    	let t12;
-    	let missionbar;
     	let t13;
-    	let sidereg;
+    	let missionbar;
     	let t14;
+    	let sidereg;
+    	let t15;
     	let newsbar;
     	let current;
     	slides = new Carousel({ $$inline: true });
@@ -3020,68 +3037,70 @@ var app = (function () {
     		c: function create() {
     			create_component(slides.$$.fragment);
     			t0 = space();
+    			t1 = space();
     			section0 = element("section");
     			div1 = element("div");
     			h2 = element("h2");
-    			t1 = text("I’ll Restore The Pride, Economy Of Nigeria\r\n      ");
+    			t2 = text("I’ll Restore The Pride, Economy Of Nigeria\r\n      ");
     			br = element("br");
-    			t2 = text(" - YY Sani");
-    			t3 = space();
+    			t3 = text(" - YY Sani");
+    			t4 = space();
     			div0 = element("div");
     			p0 = element("p");
     			p0.textContent = "Engr. Yabagi Yusuf Sani (YY Sani) is the presidential candidate of the\r\n        Action Democratic Party (ADP) in the 2019 general elections. In this\r\n        interview conducted during a meeting of all the candidates of the party\r\n        held at the ADP National Secretariat in Abuja on January 9, he speaks on\r\n        the necessity of the meeting, why Nigeria has become a laughing...";
-    			t5 = space();
+    			t6 = space();
     			section1 = element("section");
     			div5 = element("div");
     			div4 = element("div");
-    			t6 = text(";\r\n      ");
+    			t7 = text(";\r\n      ");
     			img = element("img");
-    			t7 = space();
+    			t8 = space();
     			div3 = element("div");
     			h1 = element("h1");
     			h1.textContent = "From the Chairman's Desk";
-    			t9 = space();
-    			div2 = element("div");
     			t10 = space();
+    			div2 = element("div");
+    			t11 = space();
     			p1 = element("p");
     			p1.textContent = "The National Chairman of the Action Democratic Party (ADP), Engr.\r\n          Yabagi Sani, spoke with Press men in Abuja. He expressed\r\n          dissatisfaction with the way the economy of the country was being run,\r\n          insisting that the interest of the masses do not feature in the\r\n          decision made by the ruling party...";
-    			t12 = space();
-    			create_component(missionbar.$$.fragment);
     			t13 = space();
-    			create_component(sidereg.$$.fragment);
+    			create_component(missionbar.$$.fragment);
     			t14 = space();
+    			create_component(sidereg.$$.fragment);
+    			t15 = space();
     			create_component(newsbar.$$.fragment);
-    			add_location(br, file$e, 63, 6, 2481);
+    			document.title = "index";
+    			add_location(br, file$e, 65, 6, 2624);
     			attr_dev(h2, "class", "sm:text-3xl text-2xl text-red-900 font-medium title-font mb-10 md:w-2/5");
-    			add_location(h2, file$e, 59, 4, 2326);
+    			add_location(h2, file$e, 61, 4, 2469);
     			attr_dev(p0, "class", "leading-relaxed  md:text-2xl p-4 ");
-    			add_location(p0, file$e, 66, 6, 2573);
+    			add_location(p0, file$e, 68, 6, 2716);
     			attr_dev(div0, "class", "md:w-3/5 md:pl-6 shadow-lg rounded-md");
-    			add_location(div0, file$e, 65, 4, 2514);
+    			add_location(div0, file$e, 67, 4, 2657);
     			attr_dev(div1, "class", "container px-5  mx-auto flex flex-wrap items-center");
-    			add_location(div1, file$e, 58, 2, 2255);
+    			add_location(div1, file$e, 60, 2, 2398);
     			attr_dev(section0, "class", "text-gray-600 body-font py-24");
-    			add_location(section0, file$e, 57, 0, 2204);
+    			add_location(section0, file$e, 59, 0, 2347);
     			attr_dev(img, "alt", "Chairman's photo");
     			attr_dev(img, "class", "lg:w-96 w-full  md:w-1/2 rounded");
     			if (img.src !== (img_src_value = "../yychairman.jpg")) attr_dev(img, "src", img_src_value);
-    			add_location(img, file$e, 85, 6, 3393);
+    			add_location(img, file$e, 87, 6, 3536);
     			attr_dev(h1, "class", "text-red-900 text-3xl title-font font-medium mb-1");
-    			add_location(h1, file$e, 91, 8, 3599);
+    			add_location(h1, file$e, 93, 8, 3742);
     			attr_dev(div2, "class", "flex mb-4");
-    			add_location(div2, file$e, 94, 8, 3722);
+    			add_location(div2, file$e, 96, 8, 3865);
     			attr_dev(p1, "class", "leading-relaxed md:text-2xl");
     			attr_dev(p1, "data-aos", "fade-up-left");
     			attr_dev(p1, "data-aos-duration", "1000");
-    			add_location(p1, file$e, 95, 8, 3757);
+    			add_location(p1, file$e, 97, 8, 3900);
     			attr_dev(div3, "class", "lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0");
-    			add_location(div3, file$e, 90, 6, 3530);
+    			add_location(div3, file$e, 92, 6, 3673);
     			attr_dev(div4, "class", "lg:w-4/5 mx-auto flex flex-wrap p-0 items-center");
-    			add_location(div4, file$e, 83, 4, 3269);
+    			add_location(div4, file$e, 85, 4, 3412);
     			attr_dev(div5, "class", "container px-5 mx-auto");
-    			add_location(div5, file$e, 82, 2, 3227);
+    			add_location(div5, file$e, 84, 2, 3370);
     			attr_dev(section1, "class", "text-gray-600 body-font overflow-hidden py-20");
-    			add_location(section1, file$e, 81, 0, 3160);
+    			add_location(section1, file$e, 83, 0, 3303);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -3089,33 +3108,34 @@ var app = (function () {
     		m: function mount(target, anchor) {
     			mount_component(slides, target, anchor);
     			insert_dev(target, t0, anchor);
+    			insert_dev(target, t1, anchor);
     			insert_dev(target, section0, anchor);
     			append_dev(section0, div1);
     			append_dev(div1, h2);
-    			append_dev(h2, t1);
-    			append_dev(h2, br);
     			append_dev(h2, t2);
-    			append_dev(div1, t3);
+    			append_dev(h2, br);
+    			append_dev(h2, t3);
+    			append_dev(div1, t4);
     			append_dev(div1, div0);
     			append_dev(div0, p0);
-    			insert_dev(target, t5, anchor);
+    			insert_dev(target, t6, anchor);
     			insert_dev(target, section1, anchor);
     			append_dev(section1, div5);
     			append_dev(div5, div4);
-    			append_dev(div4, t6);
-    			append_dev(div4, img);
     			append_dev(div4, t7);
+    			append_dev(div4, img);
+    			append_dev(div4, t8);
     			append_dev(div4, div3);
     			append_dev(div3, h1);
-    			append_dev(div3, t9);
-    			append_dev(div3, div2);
     			append_dev(div3, t10);
+    			append_dev(div3, div2);
+    			append_dev(div3, t11);
     			append_dev(div3, p1);
-    			insert_dev(target, t12, anchor);
-    			mount_component(missionbar, target, anchor);
     			insert_dev(target, t13, anchor);
-    			mount_component(sidereg, target, anchor);
+    			mount_component(missionbar, target, anchor);
     			insert_dev(target, t14, anchor);
+    			mount_component(sidereg, target, anchor);
+    			insert_dev(target, t15, anchor);
     			mount_component(newsbar, target, anchor);
     			current = true;
     		},
@@ -3138,14 +3158,15 @@ var app = (function () {
     		d: function destroy(detaching) {
     			destroy_component(slides, detaching);
     			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(t1);
     			if (detaching) detach_dev(section0);
-    			if (detaching) detach_dev(t5);
+    			if (detaching) detach_dev(t6);
     			if (detaching) detach_dev(section1);
-    			if (detaching) detach_dev(t12);
-    			destroy_component(missionbar, detaching);
     			if (detaching) detach_dev(t13);
-    			destroy_component(sidereg, detaching);
+    			destroy_component(missionbar, detaching);
     			if (detaching) detach_dev(t14);
+    			destroy_component(sidereg, detaching);
+    			if (detaching) detach_dev(t15);
     			destroy_component(newsbar, detaching);
     		}
     	};
@@ -3164,34 +3185,6 @@ var app = (function () {
     function instance$f($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("Index", slots, []);
-
-    	const data = [
-    		{
-    			title: "Fact Number One",
-    			body: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam repudiandae doloribus magni ratione accusamus accusantium quas odio veritatis dignissimos porro.",
-    			footer: "Learn more",
-    			img: "../nChairman.jpg"
-    		},
-    		{
-    			title: "Fact Number Two",
-    			body: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam repudiandae doloribus magni ratione accusamus accusantium quas odio veritatis dignissimos porro.",
-    			footer: "Learn more",
-    			img: "../nChairman.jpg"
-    		},
-    		{
-    			title: "Fact Number Three",
-    			body: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam repudiandae doloribus magni ratione accusamus accusantium quas odio veritatis dignissimos porro.",
-    			footer: "Learn more",
-    			img: "../nChairman.jpg"
-    		},
-    		{
-    			title: "Fact Number Four",
-    			body: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam repudiandae doloribus magni ratione accusamus accusantium quas odio veritatis dignissimos porro.",
-    			footer: "Learn more",
-    			img: "../nChairman.jpg"
-    		}
-    	];
-
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
@@ -3207,8 +3200,7 @@ var app = (function () {
     		CTAForm: CTA_Form,
     		SideReg: SideRegForm,
     		Slides: Carousel,
-    		Card,
-    		data
+    		Card
     	});
 
     	return [];
@@ -3238,7 +3230,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (17:0) {#each galleries as image }
+    // (16:0) {#each galleries as image}
     function create_each_block$3(ctx) {
     	let div1;
     	let img;
@@ -3249,10 +3241,19 @@ var app = (function () {
     	let t1_value = /*image*/ ctx[1].name + "";
     	let t1;
     	let t2;
-    	let span;
+    	let p0;
     	let t3_value = /*image*/ ctx[1].position + "";
     	let t3;
     	let t4;
+    	let p1;
+    	let t5_value = /*image*/ ctx[1].email + "";
+    	let t5;
+    	let t6;
+    	let p2;
+    	let t7_value = /*image*/ ctx[1].tel + "";
+    	let t7;
+    	let t8;
+    	let div1_data_aos_duration_value;
 
     	const block = {
     		c: function create() {
@@ -3263,22 +3264,34 @@ var app = (function () {
     			a = element("a");
     			t1 = text(t1_value);
     			t2 = space();
-    			span = element("span");
+    			p0 = element("p");
     			t3 = text(t3_value);
     			t4 = space();
-    			attr_dev(img, "class", "w-full h-56 object-cover");
+    			p1 = element("p");
+    			t5 = text(t5_value);
+    			t6 = space();
+    			p2 = element("p");
+    			t7 = text(t7_value);
+    			t8 = space();
+    			attr_dev(img, "class", "w-full h-56 ");
     			if (img.src !== (img_src_value = /*image*/ ctx[1].img)) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "avatar");
-    			add_location(img, file$d, 18, 2, 801);
+    			add_location(img, file$d, 21, 4, 864);
     			attr_dev(a, "href", "#");
-    			attr_dev(a, "class", "block text-2xl text-gray-800 dark:text-white font-bold");
-    			add_location(a, file$d, 22, 6, 969);
-    			attr_dev(span, "class", "text-sm text-gray-700 dark:text-gray-200");
-    			add_location(span, file$d, 23, 6, 1068);
+    			attr_dev(a, "class", "block text-xl text-gray-900  font-bold");
+    			add_location(a, file$d, 25, 6, 1020);
+    			attr_dev(p0, "class", "text-sm font-medium text-red-900 ");
+    			add_location(p0, file$d, 27, 6, 1111);
+    			attr_dev(p1, "class", "text-sm font-medium text-red-900");
+    			add_location(p1, file$d, 31, 6, 1204);
+    			attr_dev(p2, "class", "text-sm font-medium text-red-900");
+    			add_location(p2, file$d, 32, 6, 1273);
     			attr_dev(div0, "class", "py-5 text-center");
-    			add_location(div0, file$d, 20, 2, 878);
-    			attr_dev(div1, "class", "transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 max-w-xs bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden mx-auto my-4");
-    			add_location(div1, file$d, 17, 0, 616);
+    			add_location(div0, file$d, 23, 4, 929);
+    			attr_dev(div1, "class", "transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-90 max-w-xs bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden mx-auto my-4");
+    			attr_dev(div1, "data-aos", "fade-up");
+    			attr_dev(div1, "data-aos-duration", div1_data_aos_duration_value = "" + (/*image*/ ctx[1].id + "00"));
+    			add_location(div1, file$d, 16, 2, 607);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div1, anchor);
@@ -3288,9 +3301,15 @@ var app = (function () {
     			append_dev(div0, a);
     			append_dev(a, t1);
     			append_dev(div0, t2);
-    			append_dev(div0, span);
-    			append_dev(span, t3);
-    			append_dev(div1, t4);
+    			append_dev(div0, p0);
+    			append_dev(p0, t3);
+    			append_dev(div0, t4);
+    			append_dev(div0, p1);
+    			append_dev(p1, t5);
+    			append_dev(div0, t6);
+    			append_dev(div0, p2);
+    			append_dev(p2, t7);
+    			append_dev(div1, t8);
     		},
     		p: function update(ctx, dirty) {
     			if (dirty & /*galleries*/ 1 && img.src !== (img_src_value = /*image*/ ctx[1].img)) {
@@ -3299,6 +3318,12 @@ var app = (function () {
 
     			if (dirty & /*galleries*/ 1 && t1_value !== (t1_value = /*image*/ ctx[1].name + "")) set_data_dev(t1, t1_value);
     			if (dirty & /*galleries*/ 1 && t3_value !== (t3_value = /*image*/ ctx[1].position + "")) set_data_dev(t3, t3_value);
+    			if (dirty & /*galleries*/ 1 && t5_value !== (t5_value = /*image*/ ctx[1].email + "")) set_data_dev(t5, t5_value);
+    			if (dirty & /*galleries*/ 1 && t7_value !== (t7_value = /*image*/ ctx[1].tel + "")) set_data_dev(t7, t7_value);
+
+    			if (dirty & /*galleries*/ 1 && div1_data_aos_duration_value !== (div1_data_aos_duration_value = "" + (/*image*/ ctx[1].id + "00"))) {
+    				attr_dev(div1, "data-aos-duration", div1_data_aos_duration_value);
+    			}
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div1);
@@ -3309,7 +3334,7 @@ var app = (function () {
     		block,
     		id: create_each_block$3.name,
     		type: "each",
-    		source: "(17:0) {#each galleries as image }",
+    		source: "(16:0) {#each galleries as image}",
     		ctx
     	});
 
@@ -3482,13 +3507,13 @@ var app = (function () {
     			div1 = element("div");
     			create_component(imagecard.$$.fragment);
     			attr_dev(div0, "class", "flex flex-col text-center w-full mb-20");
-    			add_location(div0, file$c, 31, 6, 947);
+    			add_location(div0, file$c, 50, 4, 1219);
     			attr_dev(div1, "class", "flex flex-wrap -m-4 justify-center");
-    			add_location(div1, file$c, 38, 6, 1635);
+    			add_location(div1, file$c, 57, 4, 1840);
     			attr_dev(div2, "class", "container px-5 py-20 mx-auto");
-    			add_location(div2, file$c, 30, 4, 897);
+    			add_location(div2, file$c, 49, 2, 1171);
     			attr_dev(section, "class", "text-gray-600 body-font");
-    			add_location(section, file$c, 29, 0, 850);
+    			add_location(section, file$c, 48, 0, 1126);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -3564,34 +3589,44 @@ var app = (function () {
 
     	const galleries = [
     		{
-    			img: "../adplogo.jpg",
-    			position: "Leader, ADP",
-    			name: "First Name, Last Name"
+    			img: "../fingesi.jpeg",
+    			position: "National Secretary",
+    			name: "Hon. Victor Fingesi",
+    			tel: "unavailable",
+    			email: "unavailable",
+    			id: 3
     		},
     		{
-    			img: "../adplogo.jpg",
-    			position: "Leader, ADP",
-    			name: "First Name, Last Name"
+    			img: "../maricana.jpeg",
+    			position: "Acting National Publicity Secretary",
+    			name: "Marikana Stanley Ibiang",
+    			tel: "+2348033332963",
+    			email: "marikanaurp@gmail.com",
+    			id: 6
     		},
     		{
-    			img: "../adplogo.jpg",
+    			img: "../solomon.jpeg",
     			position: "Leader, ADP",
-    			name: "First Name, Last Name"
+    			name: "Solomon Abraham Maichibi",
+    			tel: "+2348035332132 ",
+    			email: "cleanhandsventure@gmail.com",
+    			id: 9
     		},
     		{
-    			img: "../adplogo.jpg",
-    			position: "Leader, ADP",
-    			name: "First Name, Last Name"
+    			img: "../pastor.jpeg",
+    			position: "National Treasurer",
+    			name: "Pastor Okey Udo",
+    			tel: "+2348033499059",
+    			email: "unavailable",
+    			id: 11
     		},
     		{
-    			img: "../adplogo.jpg",
-    			position: "Leader, ADP",
-    			name: "First Name, Last Name"
-    		},
-    		{
-    			img: "../adplogo.jpg",
-    			position: "Leader, ADP",
-    			name: "First Name, Last Name"
+    			img: "../sam.jpeg",
+    			position: "National Welfare Secretary",
+    			name: " Hon. Sam Gyang",
+    			tel: "+2348034518232",
+    			email: "pamget1@gmail.com",
+    			id: 14
     		}
     	];
 
@@ -3626,7 +3661,7 @@ var app = (function () {
     /* src\pages\Structure.svelte generated by Svelte v3.35.0 */
     const file$b = "src\\pages\\Structure.svelte";
 
-    // (7:2) 
+    // (10:2) 
     function create_hero_image_slot$1(ctx) {
     	let div;
     	let img;
@@ -3639,10 +3674,10 @@ var app = (function () {
     			attr_dev(img, "class", "object-cover object-center rounded");
     			attr_dev(img, "alt", "hero");
     			if (img.src !== (img_src_value = "../nChairman.jpg")) attr_dev(img, "src", img_src_value);
-    			add_location(img, file$b, 10, 4, 289);
+    			add_location(img, file$b, 13, 4, 353);
     			attr_dev(div, "class", "lg:max-w-lg lg:w-full md:w-1/2 w-5/6 flex flex-col items-center mb-4 sm:mb-0");
     			attr_dev(div, "slot", "hero-image");
-    			add_location(div, file$b, 6, 2, 161);
+    			add_location(div, file$b, 9, 2, 225);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -3657,14 +3692,14 @@ var app = (function () {
     		block,
     		id: create_hero_image_slot$1.name,
     		type: "slot",
-    		source: "(7:2) ",
+    		source: "(10:2) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (18:2) 
+    // (21:2) 
     function create_hero_texts_slot$1(ctx) {
     	let div;
     	let h1;
@@ -3680,12 +3715,12 @@ var app = (function () {
     			p = element("p");
     			p.textContent = "The role of the Party's National Chairman is often different from a party\r\n      leader. The duties of the chairman/chairperson are typically concerned\r\n      with the party membership as a whole and the activities of the party\r\n      organization. Chairman often play important roles in strategies to recruit\r\n      and retain members in campaign fundersing and in internal party\r\n      governance, where they may serve as member of or preside over a governing\r\n      board or council.";
     			attr_dev(h1, "class", "title-font sm:text-4xl text-3xl mb-4 font-medium text-red-500");
-    			add_location(h1, file$b, 21, 4, 587);
+    			add_location(h1, file$b, 24, 4, 651);
     			attr_dev(p, "class", "mb-8 leading-relaxed text-lg sm:text-2xl");
-    			add_location(p, file$b, 25, 4, 709);
+    			add_location(p, file$b, 28, 4, 773);
     			attr_dev(div, "class", "lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center");
     			attr_dev(div, "slot", "hero-texts");
-    			add_location(div, file$b, 17, 2, 415);
+    			add_location(div, file$b, 20, 2, 479);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -3702,76 +3737,14 @@ var app = (function () {
     		block,
     		id: create_hero_texts_slot$1.name,
     		type: "slot",
-    		source: "(18:2) ",
+    		source: "(21:2) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (38:2) 
-    function create_gallery_heading_slot_1(ctx) {
-    	let h1;
-
-    	const block = {
-    		c: function create() {
-    			h1 = element("h1");
-    			h1.textContent = "Board of Trustee Members";
-    			attr_dev(h1, "class", "sm:text-3xl text-2xl font-medium title-font mb-4 text-red-900");
-    			attr_dev(h1, "slot", "gallery-heading");
-    			add_location(h1, file$b, 37, 2, 1304);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, h1, anchor);
-    		},
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(h1);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_gallery_heading_slot_1.name,
-    		type: "slot",
-    		source: "(38:2) ",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (44:2) 
-    function create_gallery_subtitle_slot_1(ctx) {
-    	let p;
-
-    	const block = {
-    		c: function create() {
-    			p = element("p");
-    			p.textContent = "Whatever cardigan tote bag tumblr The ADP Board of Trustee (BoT) is a\r\n    constitutionally mandated body with the Action Democratic Party of Nigeria\r\n    that provides advice and cousel to the leadership of the National Working\r\n    Committee and stuff. It is regarded by the party's constitution as the\r\n    conscience of the party.";
-    			attr_dev(p, "class", "lg:w-2/3 mx-auto leading-relaxed text-base");
-    			attr_dev(p, "slot", "gallery-subtitle");
-    			add_location(p, file$b, 43, 2, 1458);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, p, anchor);
-    		},
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(p);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_gallery_subtitle_slot_1.name,
-    		type: "slot",
-    		source: "(44:2) ",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (54:2) 
+    // (57:2) 
     function create_gallery_heading_slot(ctx) {
     	let h1;
 
@@ -3781,7 +3754,7 @@ var app = (function () {
     			h1.textContent = "National Working Committee Members";
     			attr_dev(h1, "class", "sm:text-3xl text-2xl font-medium title-font mb-4 text-red-900");
     			attr_dev(h1, "slot", "gallery-heading");
-    			add_location(h1, file$b, 53, 2, 1923);
+    			add_location(h1, file$b, 56, 2, 1996);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h1, anchor);
@@ -3795,14 +3768,14 @@ var app = (function () {
     		block,
     		id: create_gallery_heading_slot.name,
     		type: "slot",
-    		source: "(54:2) ",
+    		source: "(57:2) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (60:2) 
+    // (63:2) 
     function create_gallery_subtitle_slot(ctx) {
     	let p;
 
@@ -3812,7 +3785,7 @@ var app = (function () {
     			p.textContent = "The ADP National Working Committee Members also known as NWC, is the\r\n    executive committee of the Action Democratic Party in Nigeria. The NWC is\r\n    composed of 12 party members, all of which are elected to a four year term\r\n    at the party's National Convention, The NWC is headed by the Chairman who\r\n    also functions as the party's National Chairman. The NWC has the\r\n    responsibility for the day-to-day governance of the party as well as\r\n    oversight of its national activities.";
     			attr_dev(p, "class", "lg:w-2/3 mx-auto leading-relaxed text-base");
     			attr_dev(p, "slot", "gallery-subtitle");
-    			add_location(p, file$b, 59, 2, 2087);
+    			add_location(p, file$b, 62, 2, 2160);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -3826,7 +3799,7 @@ var app = (function () {
     		block,
     		id: create_gallery_subtitle_slot.name,
     		type: "slot",
-    		source: "(60:2) ",
+    		source: "(63:2) ",
     		ctx
     	});
 
@@ -3834,11 +3807,10 @@ var app = (function () {
     }
 
     function create_fragment$c(ctx) {
-    	let hero;
     	let t0;
-    	let galleryblock0;
+    	let hero;
     	let t1;
-    	let galleryblock1;
+    	let galleryblock;
     	let current;
 
     	hero = new Hero({
@@ -3852,18 +3824,7 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	galleryblock0 = new Gallery_Block({
-    			props: {
-    				$$slots: {
-    					"gallery-subtitle": [create_gallery_subtitle_slot_1],
-    					"gallery-heading": [create_gallery_heading_slot_1]
-    				},
-    				$$scope: { ctx }
-    			},
-    			$$inline: true
-    		});
-
-    	galleryblock1 = new Gallery_Block({
+    	galleryblock = new Gallery_Block({
     			props: {
     				$$slots: {
     					"gallery-subtitle": [create_gallery_subtitle_slot],
@@ -3876,21 +3837,20 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			create_component(hero.$$.fragment);
     			t0 = space();
-    			create_component(galleryblock0.$$.fragment);
+    			create_component(hero.$$.fragment);
     			t1 = space();
-    			create_component(galleryblock1.$$.fragment);
+    			create_component(galleryblock.$$.fragment);
+    			document.title = "Our Structures";
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			mount_component(hero, target, anchor);
     			insert_dev(target, t0, anchor);
-    			mount_component(galleryblock0, target, anchor);
+    			mount_component(hero, target, anchor);
     			insert_dev(target, t1, anchor);
-    			mount_component(galleryblock1, target, anchor);
+    			mount_component(galleryblock, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
@@ -3901,40 +3861,30 @@ var app = (function () {
     			}
 
     			hero.$set(hero_changes);
-    			const galleryblock0_changes = {};
+    			const galleryblock_changes = {};
 
     			if (dirty & /*$$scope*/ 1) {
-    				galleryblock0_changes.$$scope = { dirty, ctx };
+    				galleryblock_changes.$$scope = { dirty, ctx };
     			}
 
-    			galleryblock0.$set(galleryblock0_changes);
-    			const galleryblock1_changes = {};
-
-    			if (dirty & /*$$scope*/ 1) {
-    				galleryblock1_changes.$$scope = { dirty, ctx };
-    			}
-
-    			galleryblock1.$set(galleryblock1_changes);
+    			galleryblock.$set(galleryblock_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
     			transition_in(hero.$$.fragment, local);
-    			transition_in(galleryblock0.$$.fragment, local);
-    			transition_in(galleryblock1.$$.fragment, local);
+    			transition_in(galleryblock.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
     			transition_out(hero.$$.fragment, local);
-    			transition_out(galleryblock0.$$.fragment, local);
-    			transition_out(galleryblock1.$$.fragment, local);
+    			transition_out(galleryblock.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(hero, detaching);
     			if (detaching) detach_dev(t0);
-    			destroy_component(galleryblock0, detaching);
+    			destroy_component(hero, detaching);
     			if (detaching) detach_dev(t1);
-    			destroy_component(galleryblock1, detaching);
+    			destroy_component(galleryblock, detaching);
     		}
     	};
 
@@ -4528,7 +4478,7 @@ var app = (function () {
     /* src\pages\About.svelte generated by Svelte v3.35.0 */
     const file$9 = "src\\pages\\About.svelte";
 
-    // (8:2) 
+    // (11:2) 
     function create_hero_image_slot(ctx) {
     	let div;
     	let img;
@@ -4541,10 +4491,10 @@ var app = (function () {
     			attr_dev(img, "class", "object-cover object-center rounded mb-6 sm:mb-0");
     			attr_dev(img, "alt", "hero");
     			if (img.src !== (img_src_value = "../office.jpg")) attr_dev(img, "src", img_src_value);
-    			add_location(img, file$9, 8, 4, 304);
+    			add_location(img, file$9, 11, 4, 363);
     			attr_dev(div, "class", "lg:max-w-lg lg:w-full md:w-1/2 w-5/6");
     			attr_dev(div, "slot", "hero-image");
-    			add_location(div, file$9, 7, 2, 230);
+    			add_location(div, file$9, 10, 2, 289);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -4559,14 +4509,14 @@ var app = (function () {
     		block,
     		id: create_hero_image_slot.name,
     		type: "slot",
-    		source: "(8:2) ",
+    		source: "(11:2) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (15:2) 
+    // (18:2) 
     function create_hero_texts_slot(ctx) {
     	let div1;
     	let h1;
@@ -4589,17 +4539,17 @@ var app = (function () {
     			a = element("a");
     			a.textContent = "Join Us!";
     			attr_dev(h1, "class", "title-font sm:text-4xl text-3xl mb-4 font-medium text-red-500");
-    			add_location(h1, file$9, 18, 4, 616);
+    			add_location(h1, file$9, 21, 4, 675);
     			attr_dev(p, "class", "mb-8 leading-relaxed text-lg sm:text-2xl");
-    			add_location(p, file$9, 21, 4, 724);
+    			add_location(p, file$9, 24, 4, 783);
     			attr_dev(a, "href", "/register");
     			attr_dev(a, "class", "inline-flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg");
-    			add_location(a, file$9, 30, 6, 1255);
+    			add_location(a, file$9, 33, 6, 1314);
     			attr_dev(div0, "class", "flex justify-center");
-    			add_location(div0, file$9, 29, 4, 1214);
+    			add_location(div0, file$9, 32, 4, 1273);
     			attr_dev(div1, "class", "lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center py-24");
     			attr_dev(div1, "slot", "hero-texts");
-    			add_location(div1, file$9, 14, 2, 438);
+    			add_location(div1, file$9, 17, 2, 497);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div1, anchor);
@@ -4619,7 +4569,7 @@ var app = (function () {
     		block,
     		id: create_hero_texts_slot.name,
     		type: "slot",
-    		source: "(15:2) ",
+    		source: "(18:2) ",
     		ctx
     	});
 
@@ -4627,27 +4577,28 @@ var app = (function () {
     }
 
     function create_fragment$9(ctx) {
-    	let hero;
     	let t0;
+    	let hero;
+    	let t1;
     	let section;
     	let div;
     	let h2;
-    	let t2;
+    	let t3;
     	let p0;
-    	let t4;
+    	let t5;
     	let ul;
     	let li0;
-    	let t6;
+    	let t7;
     	let li1;
-    	let t8;
+    	let t9;
     	let li2;
-    	let t10;
+    	let t11;
     	let p1;
-    	let t12;
+    	let t13;
     	let p2;
-    	let t14;
-    	let missionbar;
     	let t15;
+    	let missionbar;
+    	let t16;
     	let newsbar;
     	let current;
 
@@ -4667,78 +4618,81 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			create_component(hero.$$.fragment);
     			t0 = space();
+    			create_component(hero.$$.fragment);
+    			t1 = space();
     			section = element("section");
     			div = element("div");
     			h2 = element("h2");
     			h2.textContent = "ADP's Three Points Agenda";
-    			t2 = space();
+    			t3 = space();
     			p0 = element("p");
     			p0.textContent = "In the ADP, the three point agenda are:";
-    			t4 = space();
+    			t5 = space();
     			ul = element("ul");
     			li0 = element("li");
     			li0.textContent = "All Inclusiveness";
-    			t6 = space();
+    			t7 = space();
     			li1 = element("li");
     			li1.textContent = "Democracy Empowerment of the Youth and Women";
-    			t8 = space();
+    			t9 = space();
     			li2 = element("li");
     			li2.textContent = "Party Supremacy";
-    			t10 = space();
+    			t11 = space();
     			p1 = element("p");
     			p1.textContent = "The keyword is democracy and this democracy is the same that is\r\n      universally accepted and practiced all over; no one man or woman is\r\n      greater than the party or one's view much better than the other member's\r\n      when that view has not been examined and discussed. The ADP is the\r\n      Nigeria's credible alternative with modern thinking and applications in\r\n      its manifesto.";
-    			t12 = space();
+    			t13 = space();
     			p2 = element("p");
     			p2.textContent = "ADP is the party for every Nigerian who believes that the traditional and\r\n      archaic methods of attending to the Nigerian quagmire should be revisited\r\n      . ADP is the political party that is building a better future for a more\r\n      unified Nigeria.";
-    			t14 = space();
-    			create_component(missionbar.$$.fragment);
     			t15 = space();
+    			create_component(missionbar.$$.fragment);
+    			t16 = space();
     			create_component(newsbar.$$.fragment);
+    			document.title = "About ADP";
     			attr_dev(h2, "class", " py-5 font-medium title-font sm:text-4xl text-2xl text-blue-900 text-left ");
-    			add_location(h2, file$9, 40, 4, 1543);
+    			add_location(h2, file$9, 43, 4, 1602);
     			attr_dev(p0, "class", "font-medium py-2");
-    			add_location(p0, file$9, 45, 4, 1693);
-    			add_location(li0, file$9, 48, 6, 1807);
-    			add_location(li1, file$9, 49, 6, 1841);
-    			add_location(li2, file$9, 50, 6, 1902);
+    			add_location(p0, file$9, 48, 4, 1752);
+    			add_location(li0, file$9, 51, 6, 1866);
+    			add_location(li1, file$9, 52, 6, 1900);
+    			add_location(li2, file$9, 53, 6, 1961);
     			attr_dev(ul, "class", "list-disc px-7");
-    			add_location(ul, file$9, 47, 4, 1772);
+    			add_location(ul, file$9, 50, 4, 1831);
     			attr_dev(p1, "class", "py-4");
-    			add_location(p1, file$9, 52, 4, 1943);
+    			add_location(p1, file$9, 55, 4, 2002);
     			attr_dev(p2, "class", "py-4");
-    			add_location(p2, file$9, 60, 4, 2376);
+    			add_location(p2, file$9, 63, 4, 2435);
     			attr_dev(div, "class", "p-4");
-    			add_location(div, file$9, 39, 2, 1520);
+    			add_location(div, file$9, 42, 2, 1579);
     			attr_dev(section, "class", "container mx-auto sm:text-2xl");
-    			add_location(section, file$9, 38, 0, 1469);
+    			add_location(section, file$9, 41, 0, 1528);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			mount_component(hero, target, anchor);
     			insert_dev(target, t0, anchor);
+    			mount_component(hero, target, anchor);
+    			insert_dev(target, t1, anchor);
     			insert_dev(target, section, anchor);
     			append_dev(section, div);
     			append_dev(div, h2);
-    			append_dev(div, t2);
+    			append_dev(div, t3);
     			append_dev(div, p0);
-    			append_dev(div, t4);
+    			append_dev(div, t5);
     			append_dev(div, ul);
     			append_dev(ul, li0);
-    			append_dev(ul, t6);
+    			append_dev(ul, t7);
     			append_dev(ul, li1);
-    			append_dev(ul, t8);
+    			append_dev(ul, t9);
     			append_dev(ul, li2);
-    			append_dev(div, t10);
+    			append_dev(div, t11);
     			append_dev(div, p1);
-    			append_dev(div, t12);
+    			append_dev(div, t13);
     			append_dev(div, p2);
-    			insert_dev(target, t14, anchor);
-    			mount_component(missionbar, target, anchor);
     			insert_dev(target, t15, anchor);
+    			mount_component(missionbar, target, anchor);
+    			insert_dev(target, t16, anchor);
     			mount_component(newsbar, target, anchor);
     			current = true;
     		},
@@ -4765,12 +4719,13 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(hero, detaching);
     			if (detaching) detach_dev(t0);
+    			destroy_component(hero, detaching);
+    			if (detaching) detach_dev(t1);
     			if (detaching) detach_dev(section);
-    			if (detaching) detach_dev(t14);
-    			destroy_component(missionbar, detaching);
     			if (detaching) detach_dev(t15);
+    			destroy_component(missionbar, detaching);
+    			if (detaching) detach_dev(t16);
     			destroy_component(newsbar, detaching);
     		}
     	};
@@ -6000,7 +5955,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (16:10) {#each options as opt }
+    // (21:6) {#each options as opt}
     function create_each_block$2(ctx) {
     	let option;
     	let t_value = /*opt*/ ctx[3].name + "";
@@ -6012,7 +5967,7 @@ var app = (function () {
     			t = text(t_value);
     			option.__value = /*opt*/ ctx[3];
     			option.value = option.__value;
-    			add_location(option, file$6, 16, 12, 757);
+    			add_location(option, file$6, 21, 8, 827);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, option, anchor);
@@ -6028,7 +5983,7 @@ var app = (function () {
     		block,
     		id: create_each_block$2.name,
     		type: "each",
-    		source: "(16:10) {#each options as opt }",
+    		source: "(21:6) {#each options as opt}",
     		ctx
     	});
 
@@ -6036,10 +5991,11 @@ var app = (function () {
     }
 
     function create_fragment$6(ctx) {
+    	let t0;
     	let section;
     	let div;
     	let select;
-    	let t;
+    	let t1;
     	let switch_instance;
     	let current;
     	let mounted;
@@ -6064,6 +6020,7 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
+    			t0 = space();
     			section = element("section");
     			div = element("div");
     			select = element("select");
@@ -6072,20 +6029,22 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			t = space();
+    			t1 = space();
     			if (switch_instance) create_component(switch_instance.$$.fragment);
+    			document.title = "Sign up";
     			attr_dev(select, "class", "sm:text-xl text-md mx-4 mt-20 w-1/2 bg-white rounded border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-2 px-1 leading-8 transition-colors duration-200 ease-in-out ");
     			if (/*selected*/ ctx[0] === void 0) add_render_callback(() => /*select_change_handler*/ ctx[2].call(select));
-    			add_location(select, file$6, 14, 6, 440);
+    			add_location(select, file$6, 16, 4, 499);
     			attr_dev(div, "class", "flex items-center container mx-auto w-full");
-    			add_location(div, file$6, 13, 4, 376);
+    			add_location(div, file$6, 15, 2, 437);
     			attr_dev(section, "class", "text-gray-600 body-font");
-    			add_location(section, file$6, 12, 2, 329);
+    			add_location(section, file$6, 14, 0, 392);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
+    			insert_dev(target, t0, anchor);
     			insert_dev(target, section, anchor);
     			append_dev(section, div);
     			append_dev(div, select);
@@ -6095,7 +6054,7 @@ var app = (function () {
     			}
 
     			select_option(select, /*selected*/ ctx[0]);
-    			append_dev(section, t);
+    			append_dev(section, t1);
 
     			if (switch_instance) {
     				mount_component(switch_instance, section, null);
@@ -6169,6 +6128,7 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
+    			if (detaching) detach_dev(t0);
     			if (detaching) detach_dev(section);
     			destroy_each(each_blocks, detaching);
     			if (switch_instance) destroy_component(switch_instance);
@@ -6258,7 +6218,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (23:6) {#each biographies as bio}
+    // (26:6) {#each biographies as bio}
     function create_each_block$1(ctx) {
     	let div2;
     	let div0;
@@ -6300,21 +6260,21 @@ var app = (function () {
     			if (img.src !== (img_src_value = /*bio*/ ctx[1].image)) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "");
     			attr_dev(img, "class", "w-full");
-    			add_location(img, file$5, 28, 14, 3246);
+    			add_location(img, file$5, 31, 14, 3298);
     			attr_dev(span, "class", "font-semibold title-font text-gray-700");
-    			add_location(span, file$5, 27, 12, 3177);
+    			add_location(span, file$5, 30, 12, 3229);
     			attr_dev(div0, "class", "md:w-64 w-1/2 md:mb-0 mb-6 flex-shrink-0 flex flex-col");
-    			add_location(div0, file$5, 26, 10, 3095);
+    			add_location(div0, file$5, 29, 10, 3147);
     			attr_dev(h1, "class", "text-2xl font-medium text-red-900 title-font mb-2");
-    			add_location(h1, file$5, 32, 12, 3388);
+    			add_location(h1, file$5, 35, 12, 3440);
     			attr_dev(h3, "class", "text-2xl font-medium text-blue-900 title-font mb-2");
-    			add_location(h3, file$5, 35, 12, 3509);
+    			add_location(h3, file$5, 38, 12, 3561);
     			attr_dev(p, "class", "leading-relaxed font-light text-md sm:text-2xl");
-    			add_location(p, file$5, 38, 12, 3635);
+    			add_location(p, file$5, 41, 12, 3687);
     			attr_dev(div1, "class", "md:flex-grow pl-10");
-    			add_location(div1, file$5, 31, 10, 3342);
+    			add_location(div1, file$5, 34, 10, 3394);
     			attr_dev(div2, "class", "py-8 flex items-center justify-center flex-wrap md:flex-nowrap");
-    			add_location(div2, file$5, 23, 8, 2986);
+    			add_location(div2, file$5, 26, 8, 3038);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div2, anchor);
@@ -6343,7 +6303,7 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(23:6) {#each biographies as bio}",
+    		source: "(26:6) {#each biographies as bio}",
     		ctx
     	});
 
@@ -6351,6 +6311,7 @@ var app = (function () {
     }
 
     function create_fragment$5(ctx) {
+    	let t;
     	let section;
     	let div1;
     	let div0;
@@ -6364,6 +6325,7 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
+    			t = space();
     			section = element("section");
     			div1 = element("div");
     			div0 = element("div");
@@ -6372,17 +6334,19 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
+    			document.title = "Candidates";
     			attr_dev(div0, "class", "-my-8 divide-y-2 divide-gray-100");
-    			add_location(div0, file$5, 21, 4, 2896);
+    			add_location(div0, file$5, 24, 4, 2948);
     			attr_dev(div1, "class", "container px-5 py-24 mx-auto");
-    			add_location(div1, file$5, 20, 2, 2848);
+    			add_location(div1, file$5, 23, 2, 2900);
     			attr_dev(section, "class", "text-gray-600 body-font overflow-hidden");
-    			add_location(section, file$5, 19, 0, 2787);
+    			add_location(section, file$5, 22, 0, 2839);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
+    			insert_dev(target, t, anchor);
     			insert_dev(target, section, anchor);
     			append_dev(section, div1);
     			append_dev(div1, div0);
@@ -6419,6 +6383,7 @@ var app = (function () {
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
+    			if (detaching) detach_dev(t);
     			if (detaching) detach_dev(section);
     			destroy_each(each_blocks, detaching);
     		}
@@ -6443,16 +6408,12 @@ var app = (function () {
     		{
     			name: "Engr. Yabagi Y. Sani",
     			image: "../nChairman.jpg",
-    			position: "ADP Presidential Candidate",
+    			position: "National Chairman",
     			bio: "Engr. Yabagi Yusuf Sani is one of the leading lights in Nigerian Politics and Corporate Business World. Born on July 1, 1954 Yabagi Yusuf Sani attended East Primary School, Bida and Technical Secondary School, Kotangora, Niger State, Nigeria. He later proceeded to the Institute of Technology, New York, USA. Yabagi is also a product of Colombia University, New York, USA where he studied Industrial and Management Engineering with emphasis in Operations Research. Yabagi also attended an Executive Management Program in Havard Business School in Boston Massachusetts. Since his graduation and completion of the mandatory one - year National Youth Service (NYSC) in Nigeria, Engr. Yabagi has been a key player in Nigeria's Oil and Gas sector where he has helped the Government of Nigeria in the development of innovative schemes and strategies to block leakages in the ever porous sector.  "
-    		},
-    		{
-    			name: "Martin Kunle Olateru-Olagbegi",
-    			image: "../kunle.jpg",
-    			position: "ADP Vice Presidential Candidate",
-    			bio: "Martin Kunle Olateru-Olagbegi, was born in Owo, Ondo State, Nigeria. Educated at Owo Government School and Olivet Baptist High School in Oyo, Martin's exceptional academic and athletic accomplishments opened numerous doors for him. As a teenager, Martin received a variety of admission and scholarship offers from colleges and universities throughout the United States, and ultimately decided to study architecture at Prairie View A & M University in Texas As a degreed architect, Martin quickly secured a position at ATTI in Baltimore, Maryland where he worked for two years before moving to Atlanta in 1986. For the next ten years, he served as the architectural program coordinator for the City of Atlanta overseeing complex projects such as the municipal court, firehouses, the city jail, traffic court, and the City Halt Annex. He had oversight of twenty-seven buildings, numerous employees, and an operational budget of over a $100,000,000. In 1996, Martin, recognized for his acute business acumen, founded Nite, Inc., a design, construction and environmental management firm where he served as president and chief executive officer. Headquartered in Atlanta, Georgia, Nile, Inc, had offices in Corpus Christi, Texas and Barnwell, South Carolina. Other locations included Alabama, Mississippi, Kissmmee, Florida and Washington, D.C. These outfits provided viable employment opportunities to numerous individuals, subcontractors and suppliers throughout the northeast and southeast regions of the United States."
     		}
-    	];
+    	]; // {
+    	//   name: "Martin Kunle Olateru-Olagbegi",
+    	//   image: "../kunle.jpg",
 
     	const writable_props = [];
 
@@ -6748,163 +6709,168 @@ var app = (function () {
     const file$3 = "src\\pages\\Login.svelte";
 
     function create_fragment$3(ctx) {
+    	let t0;
     	let div7;
     	let div0;
-    	let t0;
+    	let t1;
     	let div6;
     	let h2;
-    	let t2;
+    	let t3;
     	let p;
-    	let t4;
+    	let t5;
     	let div1;
     	let label0;
-    	let t6;
-    	let input0;
     	let t7;
+    	let input0;
+    	let t8;
     	let div3;
     	let div2;
     	let label1;
-    	let t9;
+    	let t10;
     	let a0;
-    	let t11;
-    	let input1;
     	let t12;
+    	let input1;
+    	let t13;
     	let div4;
     	let button;
-    	let t14;
+    	let t15;
     	let div5;
     	let span0;
-    	let t15;
+    	let t16;
     	let a1;
-    	let t17;
+    	let t18;
     	let span1;
 
     	const block = {
     		c: function create() {
+    			t0 = space();
     			div7 = element("div");
     			div0 = element("div");
-    			t0 = space();
+    			t1 = space();
     			div6 = element("div");
     			h2 = element("h2");
     			h2.textContent = "Action Democratic Party";
-    			t2 = space();
+    			t3 = space();
     			p = element("p");
     			p.textContent = "Welcome back!";
-    			t4 = space();
+    			t5 = space();
     			div1 = element("div");
     			label0 = element("label");
     			label0.textContent = "Email Address";
-    			t6 = space();
-    			input0 = element("input");
     			t7 = space();
+    			input0 = element("input");
+    			t8 = space();
     			div3 = element("div");
     			div2 = element("div");
     			label1 = element("label");
     			label1.textContent = "Password";
-    			t9 = space();
+    			t10 = space();
     			a0 = element("a");
     			a0.textContent = "Forget Password?";
-    			t11 = space();
-    			input1 = element("input");
     			t12 = space();
+    			input1 = element("input");
+    			t13 = space();
     			div4 = element("div");
     			button = element("button");
     			button.textContent = "Login";
-    			t14 = space();
+    			t15 = space();
     			div5 = element("div");
     			span0 = element("span");
-    			t15 = space();
+    			t16 = space();
     			a1 = element("a");
     			a1.textContent = "or sign up";
-    			t17 = space();
+    			t18 = space();
     			span1 = element("span");
+    			document.title = "Sign In";
     			attr_dev(div0, "class", "hidden lg:block lg:w-1/2 bg-cover");
     			set_style(div0, "background-image", "url('../office.jpg')");
-    			add_location(div0, file$3, 2, 8, 133);
+    			add_location(div0, file$3, 6, 2, 183);
     			attr_dev(h2, "class", "text-2xl font-semibold text-gray-700 dark:text-white text-center text-blue-900");
-    			add_location(h2, file$3, 5, 12, 313);
+    			add_location(h2, file$3, 12, 4, 350);
     			attr_dev(p, "class", "text-xl text-red-600 dark:text-red-200 text-center");
-    			add_location(p, file$3, 7, 12, 448);
+    			add_location(p, file$3, 18, 4, 504);
     			attr_dev(label0, "class", "block text-gray-600 dark:text-gray-200 text-sm font-medium mb-2");
     			attr_dev(label0, "for", "LoggingEmailAddress");
-    			add_location(label0, file$3, 10, 16, 579);
+    			add_location(label0, file$3, 23, 6, 631);
     			attr_dev(input0, "id", "LoggingEmailAddress");
     			attr_dev(input0, "class", "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded py-2 px-4 block w-full focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring");
     			attr_dev(input0, "type", "email");
-    			add_location(input0, file$3, 11, 16, 723);
+    			add_location(input0, file$3, 27, 6, 791);
     			attr_dev(div1, "class", "mt-4");
-    			add_location(div1, file$3, 9, 12, 543);
+    			add_location(div1, file$3, 22, 4, 605);
     			attr_dev(label1, "class", "block text-gray-600 dark:text-gray-200 text-sm font-medium mb-2");
     			attr_dev(label1, "for", "loggingPassword");
-    			add_location(label1, file$3, 16, 20, 1117);
+    			add_location(label1, file$3, 36, 8, 1183);
     			attr_dev(a0, "href", "#");
     			attr_dev(a0, "class", "text-xs text-gray-500 dark:text-gray-300 hover:underline");
-    			add_location(a0, file$3, 17, 20, 1256);
+    			add_location(a0, file$3, 40, 8, 1342);
     			attr_dev(div2, "class", "flex justify-between");
-    			add_location(div2, file$3, 15, 16, 1061);
+    			add_location(div2, file$3, 35, 6, 1139);
     			attr_dev(input1, "id", "loggingPassword");
     			attr_dev(input1, "class", "bg-wbg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded py-2 px-4 block w-full focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring");
     			attr_dev(input1, "type", "password");
-    			add_location(input1, file$3, 20, 16, 1397);
+    			add_location(input1, file$3, 47, 6, 1507);
     			attr_dev(div3, "class", "mt-4");
-    			add_location(div3, file$3, 14, 12, 1025);
+    			add_location(div3, file$3, 34, 4, 1113);
     			attr_dev(button, "class", "bg-red-500 text-white py-2 px-4 w-full tracking-wide rounded hover:bg-red-600 focus:outline-none focus:bg-gray-600");
-    			add_location(button, file$3, 24, 16, 1738);
+    			add_location(button, file$3, 55, 6, 1858);
     			attr_dev(div4, "class", "mt-8");
-    			add_location(div4, file$3, 23, 12, 1702);
+    			add_location(div4, file$3, 54, 4, 1832);
     			attr_dev(span0, "class", "border-b dark:border-gray-600 w-1/5 md:w-1/4");
-    			add_location(span0, file$3, 30, 16, 2041);
+    			add_location(span0, file$3, 63, 6, 2118);
     			attr_dev(a1, "href", "/register");
     			attr_dev(a1, "class", "text-xs text-gray-500 dark:text-gray-400 uppercase hover:underline");
-    			add_location(a1, file$3, 32, 16, 2127);
+    			add_location(a1, file$3, 65, 6, 2189);
     			attr_dev(span1, "class", "border-b dark:border-gray-600 w-1/5 md:w-1/4");
-    			add_location(span1, file$3, 34, 16, 2272);
+    			add_location(span1, file$3, 71, 6, 2344);
     			attr_dev(div5, "class", "mt-4 flex items-center justify-between");
-    			add_location(div5, file$3, 29, 12, 1971);
+    			add_location(div5, file$3, 62, 4, 2058);
     			attr_dev(div6, "class", "w-full py-8 px-6 md:px-8 lg:w-1/2");
-    			add_location(div6, file$3, 4, 8, 252);
+    			add_location(div6, file$3, 11, 2, 297);
     			attr_dev(div7, "class", "flex max-w-sm mx-auto bg-white dark:bg-gray-800 rounded-lg my-24 shadow-lg overflow-hidden lg:max-w-4xl");
-    			add_location(div7, file$3, 1, 4, 6);
+    			add_location(div7, file$3, 3, 0, 57);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
+    			insert_dev(target, t0, anchor);
     			insert_dev(target, div7, anchor);
     			append_dev(div7, div0);
-    			append_dev(div7, t0);
+    			append_dev(div7, t1);
     			append_dev(div7, div6);
     			append_dev(div6, h2);
-    			append_dev(div6, t2);
+    			append_dev(div6, t3);
     			append_dev(div6, p);
-    			append_dev(div6, t4);
+    			append_dev(div6, t5);
     			append_dev(div6, div1);
     			append_dev(div1, label0);
-    			append_dev(div1, t6);
+    			append_dev(div1, t7);
     			append_dev(div1, input0);
-    			append_dev(div6, t7);
+    			append_dev(div6, t8);
     			append_dev(div6, div3);
     			append_dev(div3, div2);
     			append_dev(div2, label1);
-    			append_dev(div2, t9);
+    			append_dev(div2, t10);
     			append_dev(div2, a0);
-    			append_dev(div3, t11);
+    			append_dev(div3, t12);
     			append_dev(div3, input1);
-    			append_dev(div6, t12);
+    			append_dev(div6, t13);
     			append_dev(div6, div4);
     			append_dev(div4, button);
-    			append_dev(div6, t14);
+    			append_dev(div6, t15);
     			append_dev(div6, div5);
     			append_dev(div5, span0);
-    			append_dev(div5, t15);
+    			append_dev(div5, t16);
     			append_dev(div5, a1);
-    			append_dev(div5, t17);
+    			append_dev(div5, t18);
     			append_dev(div5, span1);
     		},
     		p: noop,
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
+    			if (detaching) detach_dev(t0);
     			if (detaching) detach_dev(div7);
     		}
     	};
@@ -6956,7 +6922,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (43:8) {#each downloadFiles as file}
+    // (46:8) {#each downloadFiles as file}
     function create_each_block(ctx) {
     	let div;
     	let svg;
@@ -6988,23 +6954,23 @@ var app = (function () {
     			attr_dev(path, "stroke-linejoin", "round");
     			attr_dev(path, "stroke-width", "2");
     			attr_dev(path, "d", "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z");
-    			add_location(path, file$2, 50, 15, 1665);
+    			add_location(path, file$2, 53, 15, 1724);
     			attr_dev(svg, "class", "w-6 h-6");
     			attr_dev(svg, "fill", "none");
     			attr_dev(svg, "stroke", "currentColor");
     			attr_dev(svg, "viewBox", "0 0 24 24");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
-    			add_location(svg, file$2, 44, 12, 1464);
+    			add_location(svg, file$2, 47, 12, 1523);
     			attr_dev(p0, "class", "mt-2 text-gray-500 dark:text-gray-400");
-    			add_location(p0, file$2, 57, 12, 1975);
+    			add_location(p0, file$2, 60, 12, 2034);
     			attr_dev(a, "href", /*file*/ ctx[1].link);
     			attr_dev(a, "class", "inline-flex text-white text-xs bg-red-500 border-0 py-1 px-3 md:py-2 md:px-6 focus:outline-none hover:bg-red-600 rounded md:text-lg lg:mt-3");
     			attr_dev(a, "target", "_blank");
     			attr_dev(a, "download", "");
-    			add_location(a, file$2, 61, 14, 2148);
+    			add_location(a, file$2, 64, 14, 2207);
     			attr_dev(p1, "class", "mt-2 text-gray-500 dark:text-gray-400");
-    			add_location(p1, file$2, 60, 12, 2083);
-    			add_location(div, file$2, 43, 10, 1445);
+    			add_location(p1, file$2, 63, 12, 2142);
+    			add_location(div, file$2, 46, 10, 1504);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -7029,7 +6995,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(43:8) {#each downloadFiles as file}",
+    		source: "(46:8) {#each downloadFiles as file}",
     		ctx
     	});
 
@@ -7037,6 +7003,7 @@ var app = (function () {
     }
 
     function create_fragment$2(ctx) {
+    	let t;
     	let div2;
     	let section;
     	let div1;
@@ -7051,6 +7018,7 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
+    			t = space();
     			div2 = element("div");
     			section = element("section");
     			div1 = element("div");
@@ -7060,19 +7028,21 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
+    			document.title = "Downloads";
     			attr_dev(div0, "class", "grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3");
-    			add_location(div0, file$2, 41, 6, 1328);
+    			add_location(div0, file$2, 44, 6, 1387);
     			attr_dev(div1, "class", "container px-6 py-8 mx-auto");
-    			add_location(div1, file$2, 40, 4, 1279);
+    			add_location(div1, file$2, 43, 4, 1338);
     			attr_dev(section, "class", "bg-white dark:bg-gray-800");
-    			add_location(section, file$2, 39, 2, 1230);
+    			add_location(section, file$2, 42, 2, 1289);
     			attr_dev(div2, "class", "p-0 mx-auto container my-10   min-h-screen ");
-    			add_location(div2, file$2, 38, 0, 1169);
+    			add_location(div2, file$2, 41, 0, 1228);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
+    			insert_dev(target, t, anchor);
     			insert_dev(target, div2, anchor);
     			append_dev(div2, section);
     			append_dev(section, div1);
@@ -7110,6 +7080,7 @@ var app = (function () {
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
+    			if (detaching) detach_dev(t);
     			if (detaching) detach_dev(div2);
     			destroy_each(each_blocks, detaching);
     		}

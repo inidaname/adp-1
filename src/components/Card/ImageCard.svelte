@@ -1,4 +1,3 @@
-
 <!-- {#each galleries as image }
 <div class="lg:w-1/3 sm:w-1/2 p-4">
     <div class="flex relative ">
@@ -10,18 +9,28 @@
     </div>
   </div>
   {/each} -->
-  <script>
-      export let galleries;
-  </script>
+<script>
+  export let galleries;
+</script>
 
-{#each galleries as image }
-<div class="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 max-w-xs bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden mx-auto my-4">
-  <img class="w-full h-56 object-cover" src="{image.img}" alt="avatar">
-  
-  <div class="py-5 text-center">
+{#each galleries as image}
+  <div
+    class="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-90 max-w-xs bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden mx-auto my-4"
+    data-aos="fade-up"
+    data-aos-duration="{image.id}00"
+  >
+    <img class="w-full h-56 " src={image.img} alt="avatar" />
+
+    <div class="py-5 text-center">
       <!-- svelte-ignore a11y-invalid-attribute -->
-      <a href="#" class="block text-2xl text-gray-800 dark:text-white font-bold">{image.name}</a>
-      <span class="text-sm text-gray-700 dark:text-gray-200">{image.position}</span>
+      <a href="#" class="block text-xl text-gray-900  font-bold">{image.name}</a
+      >
+      <p class="text-sm font-medium text-red-900 ">
+        {image.position}
+      </p>
+
+      <p class="text-sm font-medium text-red-900">{image.email}</p>
+      <p class="text-sm font-medium text-red-900">{image.tel}</p>
+    </div>
   </div>
-</div>
 {/each}
