@@ -9,36 +9,36 @@
   import Slides from "../components/Carousel/Carousel.svelte";
   import Card from "../components/Card/Card.svelte";
 
-  const data = [
-    {
-      title: "Fact Number One",
-      body:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam repudiandae doloribus magni ratione accusamus accusantium quas odio veritatis dignissimos porro.",
-      footer: "Learn more",
-      img: "../nChairman.jpg",
-    },
-    {
-      title: "Fact Number Two",
-      body:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam repudiandae doloribus magni ratione accusamus accusantium quas odio veritatis dignissimos porro.",
-      footer: "Learn more",
-      img: "../nChairman.jpg",
-    },
-    {
-      title: "Fact Number Three",
-      body:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam repudiandae doloribus magni ratione accusamus accusantium quas odio veritatis dignissimos porro.",
-      footer: "Learn more",
-      img: "../nChairman.jpg",
-    },
-    {
-      title: "Fact Number Four",
-      body:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam repudiandae doloribus magni ratione accusamus accusantium quas odio veritatis dignissimos porro.",
-      footer: "Learn more",
-      img: "../nChairman.jpg",
-    },
-  ];
+  // const data = [
+  //   {
+  //     title: "Fact Number One",
+  //     body:
+  //       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam repudiandae doloribus magni ratione accusamus accusantium quas odio veritatis dignissimos porro.",
+  //     footer: "Learn more",
+  //     img: "../nChairman.jpg",
+  //   },
+  //   {
+  //     title: "Fact Number Two",
+  //     body:
+  //       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam repudiandae doloribus magni ratione accusamus accusantium quas odio veritatis dignissimos porro.",
+  //     footer: "Learn more",
+  //     img: "../nChairman.jpg",
+  //   },
+  //   {
+  //     title: "Fact Number Three",
+  //     body:
+  //       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam repudiandae doloribus magni ratione accusamus accusantium quas odio veritatis dignissimos porro.",
+  //     footer: "Learn more",
+  //     img: "../nChairman.jpg",
+  //   },
+  //   {
+  //     title: "Fact Number Four",
+  //     body:
+  //       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam repudiandae doloribus magni ratione accusamus accusantium quas odio veritatis dignissimos porro.",
+  //     footer: "Learn more",
+  //     img: "../nChairman.jpg",
+  //   },
+  // ];
 </script>
 
 <Slides />
@@ -54,7 +54,9 @@
     </div>
   </div>
 </section> -->
-
+<svelte:head>
+  <title>index</title>
+</svelte:head>
 <section class="text-gray-600 body-font py-24">
   <div class="container px-5  mx-auto flex flex-wrap items-center">
     <h2

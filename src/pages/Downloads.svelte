@@ -36,6 +36,9 @@
   ];
 </script>
 
+<svelte:head>
+  <title>Downloads</title>
+</svelte:head>
 <div class="p-0 mx-auto container my-10   min-h-screen ">
   <section class="bg-white dark:bg-gray-800">
     <div class="container px-6 py-8 mx-auto">
